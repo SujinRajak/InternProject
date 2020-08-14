@@ -13,6 +13,7 @@ namespace WorkerHub
     {
         private readonly IConfiguration Configuration;
 
+
         //this is the configuaration setting which helps to congigure the default files in the system
         public Startup(IConfiguration configuration)
         {
@@ -30,25 +31,30 @@ namespace WorkerHub
             //addidentity adds cookie based authentication
             //adds scoped classes for things like usermanager,signinmanager,pasword hashes and moree
             //adds the validated user from cookie to the httpcontext.user
-            services.AddIdentity<User, IdentityRole>(options =>
+            services.AddIdentity<IdentityUser, IdentityRole>(options =>
              {
                  options.SignIn.RequireConfirmedAccount = false;
                  options.Password.RequireLowercase = false;
                  options.Password.RequireUppercase = false;
+                 options.Password.RequireDigit = false;
              })
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddMvc();
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+            //services.AddScoped<in,service> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -66,7 +72,6 @@ namespace WorkerHub
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
-
         }
     }
 }

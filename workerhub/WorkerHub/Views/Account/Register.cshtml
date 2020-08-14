@@ -1,7 +1,7 @@
 ﻿@model RegisterViewModel
 @{
     ViewBag.Title = "User Registration";
-    Layout = "_mainLayout";
+    Layout = "../Shared/_mainLayout";
 } 
 
 
@@ -10,6 +10,7 @@
         <div class="text-center icoon">
             <i class="fa fa-user-plus ico" aria-hidden="true"></i>
         </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
         <div class="row register-row">
             <div class="form-group col-md-6">
                 <label asp-for="FirstName"></label>

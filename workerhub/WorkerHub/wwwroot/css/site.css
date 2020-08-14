@@ -147,3 +147,27 @@ div.icoon {
         font-size: 150px;
     }
 }
+
+/*Profile section*/
+
+/*for username*/
+section.UsernameContainer{
+    
+}
+
+div.row{
+    padding:15px;
+}
+
+div.Userinfobuttons {
+    border: 1px solid grey;
+    
+}
+
+div.userinfo {
+    border: 1px solid grey;
+}
+
+div.userinfoHeader {
+    border: 1px solid grey;
+}

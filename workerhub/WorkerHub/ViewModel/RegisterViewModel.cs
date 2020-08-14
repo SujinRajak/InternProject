@@ -1,5 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+
+/// <summary>
+/// this viewmodel is added so that we can take the  data from the from to the controller and the validations are done in the model itself
+/// </summary>
 namespace WorkerHub.ViewModel
 {
     public class RegisterViewModel

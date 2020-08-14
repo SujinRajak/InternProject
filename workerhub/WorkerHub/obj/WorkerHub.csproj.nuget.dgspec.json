@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sujin\\Desktop\\Project\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {}
+    "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sujin\\Desktop\\Project\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {
+    "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sujin\\Desktop\\Project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+        "projectUniqueName": "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
         "projectName": "WorkerHub",
-        "projectPath": "C:\\Users\\Sujin\\Desktop\\Project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+        "projectPath": "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
         "packagesPath": "C:\\Users\\Sujin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sujin\\Desktop\\Project\\WorkerHub\\WorkerHub\\obj\\",
+        "outputPath": "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Sujin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -41,6 +41,10 @@
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.6, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[3.1.7, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -75,7 +79,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -15,7 +15,7 @@ namespace WorkerHub.Models
         /// Dbset is for the table 
         /// and the workuser is the class which cointains the attributes of the table with properties 
         /// </summary>
-        public DbSet<User> Users { get; set; }
+        public DbSet<ApplicationUser> applicationUser { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
