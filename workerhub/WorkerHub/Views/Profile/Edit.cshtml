@@ -1,0 +1,91 @@
+﻿@model ApplicationUser
+<div class=" col-md-12" id="basicinfo">
+    <form enctype="multipart/form-data" method="post">
+        <div class="seperator ">
+            <div class="userinfo ">
+                <div class="userinfoHeader text-center">
+                    <h4>Basic Information</h4>
+                </div>
+                <div class="UserFrom">
+                    <div class="row register-row">
+                        <div class="form-group col-md-6">
+                            <label>First Name </label>
+                            <input asp-for="Firstname" class="form-control" placeholder="Enter Firstname" />
+                            <span asp-validation-for="Firstname" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Last Name</label>
+                            <input asp-for="LastName" class="form-control" placeholder="Enter Lastname" />
+                            <span asp-validation-for="LastName" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row register-row">
+                        <div class="form-group col-md-6">
+                            <label>Last Name</label>
+                            <input asp-for="UserName" class="form-control" placeholder="Enter Lastname" />
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Gender</label>
+                            <div class="col-sm-12">
+                                <select asp-for="Sex">
+                                    <option value="none">None</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="others">Others</option>
+                                </select>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="register-row">
+                        <div class=" form-group  col-md-12">
+                            <label class="col-form-label">Description</label>
+                            <div class="col-md-12">
+                                <textarea rows="6" cols="108"  asp-for="Descripition" placeholder="Enter your Descriptions"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="gap"></div>
+        <div class="seperator ">
+            <div class="userinfo ">
+                <div class="userinfoHeader text-center">
+                    <h4>Contact Information</h4>
+                </div>
+                <div class="UserFrom">
+                    <div class="row register-row">
+                        <div class="form-group col-md-6">
+                            <label>Phone Number</label>
+                            <input asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone Number" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Email</label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class=" row register-row">
+                        <div class="form-group col-md-6">
+                            <label>Permanent Address</label>
+                            <input asp-for="PermanentAddress" class="form-control" placeholder="Enter Your Permanent Address" />
+                            <span asp-validation-for="PermanentAddress" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label>Temporary Address</label>
+                            <input asp-for="TemporaryAddress" class="form-control" placeholder="Enter Your Temporary Address" />
+                            <span asp-validation-for="TemporaryAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="saveandupdate text-center">
+            <button type="submit" asp-controller="Profile" asp-action="Edit" class="btn btn-primary text-center ">Save &amp; Update</button>
+        </div>
+    </form>
+</div>
