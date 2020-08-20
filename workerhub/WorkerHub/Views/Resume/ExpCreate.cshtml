@@ -1,0 +1,161 @@
+﻿@model ProfileDetialViewModel
+@inject IQualification info
+@*this is for the Myresume section*@
+
+
+
+<div class="col-md-9 center" id="myresume">
+    @*for the experience section*@
+    @*for the Education section*@
+    <div class="table userinfo">
+        <div class="userinfoHeader">
+            <div class="row">
+                <div class=" col-md-10 text-center">
+                    <h4>Add Experience</h4>
+                </div>
+                <div class="col-md-2 ml-auto">
+                    <a class="btn btn-primary" asp-controller="Experiences" asp-action="Create">Add Item</a>
+                </div>
+            </div>
+        </div>
+        <div class="tablesection text-center">
+            <table id="mytable" class="col-md-12 " border="1">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Sector)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Startdate)-@Html.DisplayNameFor(Model => Model.AppExp.Enddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Position)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Description)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                @foreach (var item in info.getrecords())
+                {
+                    using (Html.BeginForm("Delete", "Experiences", new { id = item.Id }))
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Sector)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Position)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a class="btn btn-success" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
+                                <input type="submit" class="btn btn-danger" value="Delete" />
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+
+    @*for the Expericence  section*@
+    <div class="table userinfo">
+        <div class="userinfoHeader text-center">
+            <h4>Add Experience</h4>
+        </div>
+        <div class="tablesection">
+            <table id="mytable" class="col-md-10 text-center">
+                <tr>
+                    <th>Experience</th>
+                    <th>Dates</th>
+                    <th>Experince Details</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                </tr>
+            </table>
+        </div>
+        <div class="gap"></div>
+        <form method="post">
+            <div class="row register-row">
+                <div class="form-group col-md-12">
+                    <label>Experience</label>
+                    <input class="form-control" placeholder="Enter Your Experience field" />
+
+                </div>
+            </div>
+            <div class=" row register-row">
+                <div class="form-group col-md-6">
+                    <label>From</label>
+                    <input class="form-control" placeholder="Enter the year you started Working" />
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label>To</label>
+                    <input class="form-control" placeholder="Enter the year you last worked" />
+
+                </div>
+            </div>
+            <div class=" row register-row">
+                <div class="form-group col-md-12">
+                    <label>Experience Detail</label>
+                    <input class="form-control" placeholder="Enter Experience Details" />
+
+                </div>
+            </div>
+            <div class="text-center butto">
+                <button type="submit" class="btn btn-primary text-dark ">Add Item</button>
+            </div>
+        </form>
+    </div>
+
+    @*for the Skill section*@
+    <div class="table userinfo">
+        <div class="userinfoHeader text-center">
+            <h4>Add Skill</h4>
+        </div>
+        <div class="tablesection">
+            <table id="mytable" class="col-md-10 text-center">
+                <tr>
+                    <th>Skill</th>
+                    <th>Skill Description</th>
+                    <th>Action</th>
+                </tr>
+
+                <tr>
+                </tr>
+
+            </table>
+        </div>
+        <div class="gap"></div>
+        <form method="post">
+            <div class="row register-row">
+                <div class="form-group col-md-12">
+                    <label>Skill</label>
+                    <input class="form-control" placeholder="Enter Skill" />
+
+                </div>
+            </div>
+            <div class=" row register-row">
+                <div class="form-group col-md-12">
+                    <label>Skill Description</label>
+                    <input class="form-control" placeholder="Enter Skill Description" />
+
+                </div>
+            </div>
+
+            <div class="text-center butto"><button type="submit" class="btn btn-primary text-center " onclick="myexpFunction()">Add Item</button></div>
+        </form>
+    </div>
+</div>
+@*End  for the Myresume*@
+
+
