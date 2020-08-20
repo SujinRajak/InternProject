@@ -1,5 +1,31 @@
-﻿
-<div>
+﻿@model IEnumerable<ApplicationUser>
+@{ 
+    ViewBag.Title = "Employees";
+}
 
-    <p>hi man wasss upp</p>
+@*counting the total number of employes if not present then display no records found*@
+
+<div class="row">
+
+
+
+    @foreach (var item in Model)
+    {
+        @if (item.InactiveUsers == false)
+        {
+            <a asp-controller="Home" asp-action="Detail">
+                <div class="card userdet">
+                    <img src="~/images/userimg.jpg" alt="Avatar" style="width:100%">
+                    <div class="container">
+                        <h4 class="text-center">@item.Firstname @item.LastName</h4>
+                        @*<p>@item.Skill</p>
+                            <p>@item.SkillDesc</p>*@
+                    </div>
+                </div>
+            </a>
+        }
+
+    }
 </div>
+
+

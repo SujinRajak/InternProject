@@ -1,103 +1,394 @@
-﻿@inject SignInManager<IdentityUser> signInManager
-
+﻿@inject IApplicationUser info
+@inject IQualification qual
+@inject UserManager<ApplicationUser> UserManager
+@model ProfileDetialViewModel
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Basic Infromation";
 }
 
 
-@if (signInManager.IsSignedIn(User))
-{
-    <section class="UsernameContainer">
-        <div class="container">
-            <h1>Welcome,@User.Identity.Name</h1>
-        </div>
-    </section>
-}
+
+
+
+<section class="UsernameContainer" id="welcome">
+    <div class="container">
+        <h1>Welcome @Model.AppUser.Firstname @Model.AppUser.LastName</h1>
+    </div>
+</section>
+
 
 <div><hr /></div>
 
-<section>
+<section id="myprofile">
     <div class="row">
-        <div class="seperator col-md-3">
-            <div class="Userinfobuttons ">
-                <div class="usernavbar">
-                    <ul class="nav flex-column">
-                        <li>
-                            <div>
+        <div class="seperator col-md-3 programs">
+            <div class="">
+                <table class="table table-bordered" cellspacing="0" cellpadding="0">
+                    <tr class="act" id="profile" onclick="show1()">
+                        <td>
+                        </td>
+                    </tr>
+                    <tr class="act" id="ViewProfile" onclick="show2(),color2()">
+                        <td>
+                            <p>View Profile</p>
+                        </td>
+                    </tr>
+                    <tr class="act" id="ChangePassword" onclick="show3(),color3()">
+                        <td>
+                            <p>Change Password</p>
+                        </td>
+                    </tr>
+                    <tr class="act" id="Delete" onclick="show4(),color4()">
+                        <td>
+                            <p>Delete Account</p>
+                        </td>
+                    </tr>
+                    <tr class="act" id="logout" onclick="show5(),color5()">
+                        <td>
+                            <p>Log Out</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
 
+
+
+        <div class="col-md-9" id="viewprofile">
+            <div class="container">
+                <div class="container">
+                    <div class="addprofilepic col-md-12">
+                        <img src="~/images/chrome.png" />
+                        <div class="row  col-md-12 textfield">
+                            @*for profile pic section*@
+                            <div class="col-md-2">
+                                <img src="~/images/apple-touch-icon-180x180.png" />
                             </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">My Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">My Resume</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">View Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Change Password</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Delete Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout">
-                                <button type="submit" class="btn btn-link btn-danger text-dark dropdown-item">Logout</button>
-                            </form>
-                        </li>
-                    </ul>
+                            @*for user name section*@
+                            <div class="col-md-3 mt-5 ">
+                                <table>
+                                    <tr>
+                                        <td>@Model.AppUser.Firstname @Model.AppUser.LastName</td>
+                                        @*<td>@User.IsInRole("Admin") @info.getUser(id).LastName</td>*@
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>sth</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            @*for Edit update username button*@
+                            <div class="col-md-1 ml-auto mr-5 mt-3">
+                                <a class="btn btn-info" asp-controller="Profile" asp-action="Edit" >Edit</a>
+                                <div class="mt-1"></div>
+                                <a class="btn btn-info" asp-controller="Resume" asp-action="ExpCreate" >Resume</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="seperator ">
+                            <div class="userinfo ">
+                                <div class="userinfoHeader text-center">
+                                    <h4>Candidate Overview</h4>
+                                </div>
+                                <div class="UserFrom">
+                                    <div class="row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Full Name:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Firstname @Model.AppUser.LastName">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Description:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Descripition">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="seperator ">
+                            <div class="userinfo ">
+                                <div class="userinfoHeader text-center">
+                                    <h4>Candidate Details</h4>
+                                </div>
+                                <div class="UserFrom">
+                                    <div class="row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Gender:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Sex">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Qualification:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Experience:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gap"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="seperator ">
+                            <div class="userinfo ">
+                                <div class="userinfoHeader text-center">
+                                    <h4>Extra Skill and Knowledge</h4>
+                                </div>
+                                <div class="UserFrom">
+                                    <div class=" row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Skill:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Skill Description:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=" row register-row">
+                                        <div class="form-group col-md-12 row">
+                                            <label class="col-sm-3 col-form-label">Experience:</label>
+                                            <div class="col-sm-9">
+                                                <input type="text" readonly class="form-control-plaintext" value="#">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="seperator ">
+                            <div class="userinfo ">
+                                <div class="userinfoHeader text-center">
+                                    <h4>Candidate Address</h4>
+                                </div>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Email:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Email">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-6 col-form-label">Contact Number:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.PhoneNumber">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-sm-6 col-form-label">Permanent Address:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.PermanentAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12">
+                                        <label class="col-sm-6 col-form-label">Temporary Address:</label>
+                                        <div class="col-sm-6">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.TemporaryAddress">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="gap"></div>
+
+                <div class="col-md-12">
+                    <div class="seperator ">
+                        <div class="userinfo ">
+                            <div class="userinfoHeader text-center">
+                                <h4>Education</h4>
+                            </div>
+                            <div class="UserFrom">
+                                <div class="row register-row">
+                                    <div class="form-group col-md-6">
+                                        <label>First Name </label>
+                                        <label></label>
+
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Last Name</label>
+                                        <label></label>
+                                    </div>
+                                </div>
+                                <div class="row register-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Gender</label>
+                                        <label></label>
+                                    </div>
+                                </div>
+                                <div class="register-row">
+                                    <div class=" form-group  col-md-12">
+                                        <label class="col-form-label">Description</label>
+                                        <label></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        @*this is for the change password section*@
+        <div class="col-md-9" id="changepassword">
+            <form method="post" id="Changeform">
+                <div class="seperator ">
+                    <div class="userinfo ">
+                        <div class="userinfoHeader text-center">
+                            <h4>Change Password</h4>
+                        </div>
+                        <div class="userfrom">
+                            <div class="row register-row">
+                                <div class="form-group col-md-12">
+                                    <label asp-for="CurrentPassword"></label>
+                                    <input asp-for="CurrentPassword" class="form-control" placeholder="enter current password" />
+                                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class=" row register-row">
+                                <div class="form-group col-md-12">
+                                    <label asp-for="NewPassword"></label>
+                                    <input asp-for="NewPassword" class="form-control" placeholder="enter your new password" />
+                                    <span asp-validation-for="NewPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class=" row register-row">
+                                <div class="form-group col-md-12">
+                                    <label asp-for="ConfirmPassword"></label>
+                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="please retype your new password" />
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="saveandupdate text-center">
+                    <button onclick="onclickpass()" class="btn btn-primary text-center ">Submit</button>
+                </div>
+            </form>
+        </div>
+        
+        
+
+
+        @*this is for the delete section*@
+
+        <div class="col-md-9" id="delete1">
+            <div class="seperator ">
+                <div class="userinfo ">
+                    <div class="userinfoHeader text-center">
+                        <h4>Delete Account</h4>
+                    </div>
+                    <div class="UserFrom">
+                        <div class="text" style="padding:15px;">
+                            <h5 class="text">Do You Want to Delete Your Account?</h5>
+                            <h6 class="text-danger">Our Application wont permanently delete this account,if u wish to do so please <a href="#">Contact Us</a> </h6>
+                        </div>
+
+                        <form class="form-inline col-md-3" asp-controller="Profile" asp-action="DeletePartial" style="padding:10px;">
+                            <button type="submit" class="btn  btn-danger text-dark">Delete Account</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        @*<div class="seperator col-md-9">
-            <div class="userinfo ">
-                <div class="userinfoHeader">
-                    <h4>Basic information</h4>
-                </div>
-                <div class="UserFrom">
-                    <form method="post">
-                        <div class="text-center icoon">
-                            <i class="fa fa-user-plus ico" aria-hidden="true"></i>
-                        </div>
-                        <div class="row register-row">
-                            <div class="form-group col-md-6">
-                                <label asp-for="FirstName"></label>
-                                <input asp-for="" class="form-control" placeholder="Enter Firstname" />
-                                <span asp-validation-for="" class="text-danger"></span>
-                            </div>
-                            <div class=" col-md-6">
-                                <label asp-for=""></label>
-                                <input asp-for="" class="form-control" placeholder="Enter Lastname" />
-                                <span asp-validation-for="" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class=" register-row">
-                            <label asp-for=""></label>
-                            <input asp-for="" class="form-control" placeholder="Enter Email" />
-                            <span asp-validation-for="" class="text-danger"></span>
-                        </div>
-                        <div class="row register-row">
-                            <div class=" form-group  col-md-6">
-                                <label asp-for=""></label>
-                                <input asp-for="" class="form-control" placeholder="Enter Password" />
-                                <span asp-validation-for="" class="text-danger"></span>
-                            </div>
-                            <div class=" form-group col-md-6">
-                                <label asp-for=""></label>
-                                <input asp-for="" class="form-control" placeholder="Confirm  Password" />
-                                <span asp-validation-for="" class="text-danger"></span>
-                            </div>
-                        </div>
-                        <div class="register-row ">
-                            <button type="submit" class="btn btn-primary text-center ">Register</button>
-                        </div>
-                    </form>*@
 
+
+        @*this is for the logout section*@
+        <div class="col-md-9" id="logoutt1">
+            <div class="seperator ">
+                <div class="userinfo ">
+                    <div class="userinfoHeader text-center">
+                        <h4>Log Out</h4>
+                    </div>
+                    <div class="UserFrom">
+                        <div class="text" style="padding:15px;">
+                            <h6 class="text">Do You Want to Log Out of Your Account?</h6>
+                        </div>
+                        <form id="logoutForm" class="form-inline col-md-3" asp-controller="Account" asp-action="Logout" style="padding:10px;">
+                            <button type="submit" class="btn  btn-danger text-dark">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-   
 </section>
+
+
+@section Scripts{ 
+
+    <script>
+        $(document).ready(function(){ 
+        });
+
+        function onclickpass() {
+            var data = $("#Changeform").serialize();
+            $.ajax({
+                url:"@Url.Action("Changepass", "Profile")",
+                data: JSON.stringify(data),
+                type:"post",
+                async: true,
+                dataType: "json",
+                success: function (result) {
+                    debugger;
+                    if (result.Suceeded) {
+                        alert("Password has changed");
+                        window.location.href = "http://localhost:50763/Account/Login";
+                    }
+                },
+                error: function ({
+                })
+            });
+        }
+    </script>
+
+
+}

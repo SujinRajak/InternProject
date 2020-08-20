@@ -12,16 +12,53 @@ a {
     color: #0366d6;
 }
 
+
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #a14dff;
+    border-color: none;
 }
 
+.btn-primary:hover {
+    background-color: #a14dff;
+}
+
+a.dropdown-item:hover {
+    background-color: #a14dff;
+}
+
+button.dropdown-item:hover {
+    background-color: #a14dff;
+}
+
+a.mainbutt {
+    background-color: none; 
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    width:120px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    background-color:transparent;
+}
+
+a.mainbutt:hover {
+    background-color: #a14dff;
+}
+
+tr.act{
+    height:63px;
+}
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #1b6ec2;
-    border-color: #1861ac;
+    background-color: #a14dff;
+    border-color: none;
+}
+
+a.nav-link:hover {
+    background-color: #a14dff;
 }
 
 /* Sticky footer styles
@@ -169,5 +206,52 @@ div.userinfo {
 }
 
 div.userinfoHeader {
-    border: 1px solid grey;
+    border-bottom: 1px solid grey;
+}
+
+div.gap{
+    height:40px;
+}
+
+div.saveandupdate{
+    padding:30px;
+}
+
+/*for the table elements */
+tr.act:hover {
+    cursor: pointer;
+}
+
+
+/*for viewprofile section*/
+div.addprofilepic{
+    border:1px solid gray;
+    height:200px;
+}
+
+
+/*for myresume section*/
+
+div.table {
+    border: 1px solid gray;
+}
+
+div.tablesection {
+    padding:10px;
+}
+
+div.butto{
+   padding:10px;
+}
+
+
+/*for the details section viwing profile*/
+div.addprofilepic {
+    position: relative;
+    text-align: center;
+}
+
+div.row.textfield {
+    position: absolute;
+    top:20px;
 }

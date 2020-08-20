@@ -40,26 +40,19 @@
                             </div>
                             <div class="UserFrom">
                                 <div class="row register-row">
-                                    <div class="form-group col-md-6">
-                                        <label>First Name</label>
-                                        <label>@Model.AppUser.Firstname</label>
-
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Last Name</label>
-                                        <label>@Model.AppUser.LastName</label>
-                                    </div>
-                                </div>
-                                <div class="row register-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Gender</label>
-                                        <label>@Model.AppUser.Sex</label>
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Full Name:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Firstname @Model.AppUser.LastName">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="register-row">
-                                    <div class=" form-group  col-md-12">
-                                        <label class="col-form-label">Description</label>
-                                        <label>@Model.AppUser.Descripition</label>
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Description:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Descripition">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -74,19 +67,27 @@
                             </div>
                             <div class="UserFrom">
                                 <div class="row register-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Gender</label>
-                                        <label>@Model.AppUser.Sex</label>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Experience</label>
-                                        <label>@Model.AppUser.Email</label>
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Gender:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Sex">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class=" row register-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Qualification</label>
-                                        <label>@Model.AppUser.PermanentAddress</label>
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Qualification:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="#">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Experience:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="#">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -103,27 +104,28 @@
                                 <h4>Extra Skill and Knowledge</h4>
                             </div>
                             <div class="UserFrom">
-                                <div class="row register-row">
-                                    <div class="form-group col-md-6">
-                                        <label>First Name </label>
-                                        <label></label>
-
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label>Last Name</label>
-                                        <label></label>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Skill:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="#">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row register-row">
-                                    <div class="form-group col-md-6">
-                                        <label>Gender</label>
-                                        <label></label>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Skill Description:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="#">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="register-row">
-                                    <div class=" form-group  col-md-12">
-                                        <label class="col-form-label">Description</label>
-                                        <label></label>
+                                <div class=" row register-row">
+                                    <div class="form-group col-md-12 row">
+                                        <label class="col-sm-3 col-form-label">Experience:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" readonly class="form-control-plaintext" value="#">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -136,25 +138,36 @@
                             <div class="userinfoHeader text-center">
                                 <h4>Candidate Address</h4>
                             </div>
-                            <div class="row register-row">
-                                <div class="form-group col-md-6">
-                                    <label>Phone Number</label>
-                                    <label>@Model.AppUser.PhoneNumber</label>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <label>Email</label>
-                                    <label>@Model.AppUser.Email</label>
+                            <div class=" row register-row">
+                                <div class="form-group col-md-12 row">
+                                    <label class="col-sm-3 col-form-label">Email:</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Email">
+                                    </div>
                                 </div>
                             </div>
                             <div class=" row register-row">
-                                <div class="form-group col-md-6">
-                                    <label>Permanent Address</label>
-                                    <label>@Model.AppUser.PermanentAddress</label>
+                                <div class="form-group col-md-12 row">
+                                    <label class="col-sm-6 col-form-label">Contact Number:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.PhoneNumber">
+                                    </div>
                                 </div>
-
-                                <div class="form-group col-md-6">
-                                    <label>Temporary Address</label>
-                                    <label>@Model.AppUser.TemporaryAddress</label>
+                            </div>
+                            <div class=" row register-row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-sm-6 col-form-label">Permanent Address:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.PermanentAddress">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class=" row register-row">
+                                <div class="form-group col-md-12">
+                                    <label class="col-sm-6 col-form-label">Temporary Address:</label>
+                                    <div class="col-sm-6">
+                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.TemporaryAddress">
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -1,31 +1,142 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WorkerHub.Interface;
 using WorkerHub.Models;
+using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
 {
+    [Authorize]
     public class ProfileController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IApplicationUser _context;
+        private readonly ApplicationDbContext dbcontext;
+        private readonly IQualification _qualContext;
 
 
-        public ProfileController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, ApplicationDbContext context)
+        /// <summary>
+        /// Constructorr
+        /// </summary>
+        /// <param name="userManager"></param>
+        /// <param name="signInManager"></param>
+        /// <param name="context"></param>
+        /// <param name="_db"></param>
+        /// <param name="qualContext"></param>
+        public ProfileController(UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            IApplicationUser context, ApplicationDbContext _db, IQualification qualContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            dbcontext = _db;
+            _qualContext = qualContext;
         }
-        
+
+
+        /// <summary>
+        /// Get section for Profile seting when we req the profile section then everything will be available to us
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
-        public  IActionResult ProfileSection()
+        public IActionResult ProfileSection()
         {
+            //var id = _userManager.GetUserAsync(User);
+            //var idid = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            // ApplicationUser user = _context.getUser(idid);
+            ProfileDetialViewModel det = new ProfileDetialViewModel()
+            {
+                AppUser = _context.getUser(_userManager.GetUserId(User))
+            };
+            return View(det);
+        }
 
 
 
+        /// <summary>
+        /// geeting the the application users from id in gettt method
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            ApplicationUser user = await dbcontext.applicationUser.FindAsync(_userManager.GetUserId(User));
             return View();
         }
+
+
+        /// <summary>
+        /// submitting the form after editing the details of the users
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> Edit(ValidateAppmodel model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.Id = _userManager.GetUserId(User);
+                var update = await dbcontext.applicationUser.FindAsync(model.Id);
+                update.Firstname = model.FirstName;
+                update.LastName = model.LastName;
+                update.PhoneNumber = model.PhoneNumber;
+                update.Sex = model.Sex;
+                update.Descripition = model.Descripition;
+                update.PermanentAddress = model.PermanentAddress;
+                update.TemporaryAddress = model.TemporaryAddress;
+                await dbcontext.SaveChangesAsync();
+                return RedirectToAction("ProfileSection", "Profile");
+            }
+            return View(model);
+        }
+
+
+
+        /// <summary>
+        /// for the delete button of the user the user clicks on the delete button
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public async Task<IActionResult> DeletePartial()
+        {
+            //used to get the currrent user 
+            var user = await _userManager.GetUserAsync(User);
+            //sets the value of the current user to 1 
+            user.InactiveUsers = true;
+            dbcontext.SaveChanges();
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Changepass(ProfileDetialViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var change = await _userManager.GetUserAsync(User);
+                if (change == null)
+                {
+                    return RedirectToAction("Login","Account");
+                }
+                var result = await _userManager.ChangePasswordAsync(change, model.CurrentPassword, model.ConfirmPassword);
+                if (!result.Succeeded)
+                {
+                    foreach(var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+                await _signInManager.SignOutAsync();
+                return Json(result);
+            }
+            return View(model);
+        }
+
     }
 }

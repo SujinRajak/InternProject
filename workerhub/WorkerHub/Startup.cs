@@ -5,7 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WorkerHub.Interface;
 using WorkerHub.Models;
+using WorkerHub.Service;
 
 namespace WorkerHub
 {
@@ -31,7 +33,7 @@ namespace WorkerHub
             //addidentity adds cookie based authentication
             //adds scoped classes for things like usermanager,signinmanager,pasword hashes and moree
             //adds the validated user from cookie to the httpcontext.user
-            services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
              {
                  options.SignIn.RequireConfirmedAccount = false;
                  options.Password.RequireLowercase = false;
@@ -42,7 +44,10 @@ namespace WorkerHub
 
             services.AddMvc();
             services.AddRazorPages().AddRazorRuntimeCompilation();
-            //services.AddScoped<in,service> ();
+            services.AddScoped<IApplicationUser,MockIApplicationUser> ();
+            services.AddScoped<IQualification, MockQualification>();
+            services.AddScoped<IEducation, MockEducation>();
+            services.AddScoped<ISkill, MockSkill>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
