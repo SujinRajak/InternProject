@@ -128,31 +128,5 @@ namespace WorkerHub.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Changepass(ProfileDetialViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var change = await _userManager.GetUserAsync(User);
-                if (change == null)
-                {
-                    return Json(model);
-                }
-                var result = await _userManager.ChangePasswordAsync(change, model.CurrentPassword, model.ConfirmPassword);
-                if (!result.Succeeded)
-                {
-                    return Json(new
-                    {
-                        result="Error",
-                        Message="Form Not valid "+"pleace cprrect it and try again"
-
-                    });
-                }
-                await _signInManager.SignOutAsync();
-                return Json(result);
-            }
-            return Json(model);
-        }
-
     }
 }

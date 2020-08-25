@@ -9,21 +9,25 @@
         </div>
         <div class="col-md-6 offset-3 mt-4">
             <div class="input-group">
-                <input  id ="txtfiled" class="form-control" placeholder="Search for" />
+                <input id="txtfiled" class="form-control" placeholder="Search for" />
             </div>
         </div>
     </div>
-    <hr class="mt-5"/>
+    <hr class="mt-5" />
     <section class="container mt-4">
-        <div class="text-center mb-5">
-            <h3>Popular Workers Category</h3>
-            <hr class="text-center mb-3" style="width: 100px;
-        height: 2px;
-        border: none;
-        color: #a14dff;
-        background-color: #a14dff;
-"/>
+        <div class=" text-center col-md-12 mb-5">
+            <div class="row ">
+                <div class=" col-md-12">
+                    <h3 class="mr-4">Popular Workers Category</h3>
+                    <hr class="text-center mb-3" style="width: 100px;height: 2px; border: none;color: #a14dff;background-color: #a14dff;" />
+                </div>
+            </div>  
         </div>
+
+        <div class="col-md-2 ml-auto mb-5">
+            <a class="btn btn-info " asp-controller="Join" asp-action="showAll">Show all</a>
+        </div>
+
         <div id="filter">
             <div class="row">
                 <div class="col-md-2 text-center">
@@ -169,7 +173,7 @@
 </div>
 
 @section Scripts {
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -178,7 +182,7 @@
                 var value = $(this).val().toLowerCase();
 
                 $("#filter *").filter(function () {
-               
+
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });

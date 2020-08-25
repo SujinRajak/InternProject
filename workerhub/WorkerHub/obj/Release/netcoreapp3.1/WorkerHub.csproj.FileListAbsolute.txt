@@ -434,3 +434,5 @@ C:\Users\Sujin\Desktop\InternProject\WorkerHub\WorkerHub\obj\Release\netcoreapp3
 C:\Users\Sujin\Desktop\InternProject\WorkerHub\WorkerHub\obj\Release\netcoreapp3.1\Razor\Views\Join\SearchAction.cshtml.g.cs
 C:\Users\Sujin\Desktop\InternProject\WorkerHub\WorkerHub\obj\Release\netcoreapp3.1\Razor\Views\Shared\_Layout1.cshtml.g.cs
 C:\Users\Sujin\Desktop\InternProject\WorkerHub\WorkerHub\obj\Release\netcoreapp3.1\Razor\Views\Home\MoreContent.cshtml.g.cs
+C:\Users\Sujin\Desktop\InternProject\WorkerHub\WorkerHub\obj\Release\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
+C:\Users\Sujin\Desktop\InternProject\WorkerHub\WorkerHub\obj\Release\netcoreapp3.1\Razor\Views\Join\showAll.cshtml.g.cs

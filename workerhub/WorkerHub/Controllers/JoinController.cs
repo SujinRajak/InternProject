@@ -25,7 +25,6 @@ namespace WorkerHub.Controllers
         [HttpGet]
         public IActionResult SearchAction(string searchKey = "")
         {
-
             List<UserSkills> userSkills = _context.SkillSets.ToList();
             var query = (from m in userSkills
                          join k in _context.applicationUser on m.Userid equals k.Id
@@ -47,6 +46,31 @@ namespace WorkerHub.Controllers
                          }).ToList();
             return View(query);
 
+        }
+
+
+        [HttpGet]
+        public IActionResult showAll()
+        {
+            List<UserSkills> userSkills = _context.SkillSets.ToList();
+            var query = (from m in userSkills
+                         join k in _context.applicationUser on m.Userid equals k.Id
+                         select new JoinViewModel
+                         {
+                             Id = k.Id,
+                             Firstname = k.Firstname,
+                             LastName = k.LastName,
+                             PhoneNumber = k.PhoneNumber,
+                             Email = k.Email,
+                             UserName = k.UserName,
+                             Sex = k.Sex,
+                             Descripition = k.Descripition,
+                             PermanentAddress = k.PermanentAddress,
+                             TemporaryAddress = k.TemporaryAddress,
+                             Skill = m.Skill,
+                             skillDescription = m.Description
+                         }).ToList();
+            return View(query);
         }
     }
 }
