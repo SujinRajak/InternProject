@@ -9,9 +9,13 @@ a.navbar-brand {
 
 /* Provide sufficient contrast against white background */
 a {
-    color: #0366d6;
+    color: #a14dff;
+    text-decoration: none !important;
 }
 
+a:hover{
+    color:black;
+}
 
 .btn-primary {
     color: #fff;
@@ -99,12 +103,10 @@ html {
 
 body {
     /* Margin bottom by footer height */
-    margin-bottom: 60px;
     font-family: 'Mulish', sans-serif;
 }
 
 .footer {
-    position: absolute;
     bottom: 0;
     width: 100%;
     white-space: nowrap;
@@ -188,9 +190,6 @@ div.icoon {
 /*Profile section*/
 
 /*for username*/
-section.UsernameContainer{
-    
-}
 
 div.row{
     padding:15px;
@@ -254,4 +253,10 @@ div.addprofilepic {
 div.row.textfield {
     position: absolute;
     top:20px;
+}
+
+
+/*profilesection butt*/
+a.butt{
+    width:100px;
 }

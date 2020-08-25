@@ -1,28 +1,24 @@
 ﻿@{
-    ViewBag.Title = "Home";
+    ViewBag.Title = "Browse";
 }
 <div class="container-fluid mt-4">
     <div class="backgoundpic">
-        <div class="content text-center">
-            <h2 class="pd-3"> Find all workers in Nepal</h2>
-            <h5 class="p-3">One cup of Coffee Everyday keeps you working Everyday</h5>
-        </div>
         <div class="col-md-6 offset-3 mt-4">
             <div class="input-group">
-                <input  id ="txtfiled" class="form-control" placeholder="Search for" />
+                <input id="txtfiled" class="form-control" placeholder="Search for" />
             </div>
         </div>
     </div>
-    <hr class="mt-5"/>
+    <hr class="mt-5" />
     <section class="container mt-4">
         <div class="text-center mb-5">
-            <h3>Popular Workers Category</h3>
+            <h3>More Workers Category</h3>
             <hr class="text-center mb-3" style="width: 100px;
         height: 2px;
         border: none;
         color: #a14dff;
         background-color: #a14dff;
-"/>
+" />
         </div>
         <div id="filter">
             <div class="row">
@@ -139,37 +135,50 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="text-center">
-            <a class="btn btn-primary" asp-controller="Home" asp-action="MoreContent">Browse for More</a>
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Saloon" })">
+                        <i class="fa fa-scissors fa-4x"></i>
+                        <p>Hair Saloon Stylists</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hotel"})">
+                        <i class="fa fa-h-square fa-4x"></i>
+                        <p>Hotel Helpers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Trainers" })">
+                        <i class="fa fa-motorcycle fa-4x"></i>
+                        <p> Automobile Trainers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="BabySitter"})">
+                        <i class="fa fa-child fa-4x"></i>
+                        <p>Nanny</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Key Restore"})">
+                        <i class="fa fa-key fa-4x"></i>
+                        <p>Key Restore</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Music"})">
+                        <i class="fa fa-music fa-4x"></i>
+                        <p>Music Training</p>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
-
-    <hr />
-    @*funfact counter*@
-    <Section class="container-fluid border-top alert-info">
-        <div class="row text-center pd-3 mt-3">
-            <div class="col-md-4">
-                <i class=" fa fa-user fa-4x" style="color: #a14dff;"></i>
-                <h4 class="stat-counter mt-1" data-target="5000">0</h4>
-                <h3 class="mt-1">Workers</h3>
-            </div>
-            <div class="col-md-4">
-                <i class=" fa fa-cogs fa-4x" style="color: #a14dff;"></i>
-                <h4 class="stat-counter mt-1" data-target="5000">0</h4>
-                <h3 class="mt-1">Skill Category</h3>
-            </div>
-            <div class="col-md-4">
-                <i class="fa fa-briefcase fa-4x" style="color: #a14dff;"></i>
-                <h4 class="stat-counter mt-1" data-target="5000">0</h4>
-                <h3 class="mt-1">Freelancers</h3>
-            </div>
-        </div>
-    </Section>
 </div>
 
 @section Scripts {
-    
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
@@ -178,44 +187,10 @@
                 var value = $(this).val().toLowerCase();
 
                 $("#filter *").filter(function () {
-               
+
                     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
                 });
             });
         });
     </script>
-
-    <script>
-        //get all the class with the samename
-        const count = document.querySelectorAll('.stat-counter');
-        //determining speed
-        const speed = 2500;
-
-        //looping
-        count.forEach(counter => {
-            //making and function of update counter
-            const updateCount = () => {
-                //gettig the target from the text filed
-                const target = +counter.getAttribute('data-target');
-                //getting the initial coun from the text filed
-                const countn = +counter.innerText;
-
-                //logic for inc with each loop
-                const inc = target / speed;
-
-                //setting to stop the coputer if it reaches its limit and more
-                if (countn < target) {
-                    counter.innerText = Math.ceil(countn + inc);
-                    setTimeout(updateCount, 300);
-                }
-                else {
-                    countn.innerText = target;
-                }
-            }
-            //calling function on each iteration loop
-            updateCount();
-        });
-
-    </script>
-
 }

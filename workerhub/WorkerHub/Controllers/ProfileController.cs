@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -48,10 +49,10 @@ namespace WorkerHub.Controllers
         {
             //var id = _userManager.GetUserAsync(User);
             //var idid = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            // ApplicationUser user = _context.getUser(idid);
+            ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
             ProfileDetialViewModel det = new ProfileDetialViewModel()
             {
-                AppUser = _context.getUser(_userManager.GetUserId(User))
+                AppUser = _context.getUser(_userManager.GetUserId(User)),
             };
             return View(det);
         }
@@ -67,7 +68,19 @@ namespace WorkerHub.Controllers
         public async Task<IActionResult> Edit()
         {
             ApplicationUser user = await dbcontext.applicationUser.FindAsync(_userManager.GetUserId(User));
-            return View();
+            ValidateAppmodel getuserinfo = new ValidateAppmodel()
+            {
+                Id=user.Id,
+                FirstName = user.Firstname,
+                LastName = user.LastName,
+                Descripition=user.Descripition,
+                PermanentAddress=user.PermanentAddress,
+                TemporaryAddress=user.TemporaryAddress,
+                PhoneNumber=user.PhoneNumber,
+                Sex=user.Sex,
+                InactiveUsers=user.InactiveUsers
+            };
+            return View(getuserinfo);
         }
 
 
@@ -90,7 +103,8 @@ namespace WorkerHub.Controllers
                 update.Descripition = model.Descripition;
                 update.PermanentAddress = model.PermanentAddress;
                 update.TemporaryAddress = model.TemporaryAddress;
-                await dbcontext.SaveChangesAsync();
+                update.InactiveUsers =model.InactiveUsers;
+                _context.update(update);
                 return RedirectToAction("ProfileSection", "Profile");
             }
             return View(model);
@@ -122,20 +136,22 @@ namespace WorkerHub.Controllers
                 var change = await _userManager.GetUserAsync(User);
                 if (change == null)
                 {
-                    return RedirectToAction("Login","Account");
+                    return Json(model);
                 }
                 var result = await _userManager.ChangePasswordAsync(change, model.CurrentPassword, model.ConfirmPassword);
                 if (!result.Succeeded)
                 {
-                    foreach(var error in result.Errors)
+                    return Json(new
                     {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
+                        result="Error",
+                        Message="Form Not valid "+"pleace cprrect it and try again"
+
+                    });
                 }
                 await _signInManager.SignOutAsync();
                 return Json(result);
             }
-            return View(model);
+            return Json(model);
         }
 
     }

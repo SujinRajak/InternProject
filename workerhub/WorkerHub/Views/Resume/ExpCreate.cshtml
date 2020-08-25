@@ -2,6 +2,7 @@
 @inject IQualification info
 @inject IEducation edu
 @inject ISkill skil
+@inject UserManager<ApplicationUser> _userManager
 @*this is for the Myresume section*@
 
 
@@ -38,23 +39,27 @@
                 </tr>
                 @foreach (var item in edu.getrecords())
                 {
-                    using (Html.BeginForm("Delete", "Education", new { id = item.Id }))
+
+                    if (item.Userid == _userManager.GetUserId(User))
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Qualification)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <a class="btn btn-success" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                <input type="submit" class="btn btn-danger" value="Delete" />
-                            </td>
-                        </tr>
+                        using (Html.BeginForm("Delete", "Education", new { id = item.Id }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Qualification)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
+                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                </td>
+                            </tr>
+                        }
                     }
                 }
             </table>
@@ -95,27 +100,32 @@
                 </tr>
                 @foreach (var item in info.getrecords())
                 {
-                    using (Html.BeginForm("Delete", "Experiences", new { id = item.Id }))
+                    if (item.Userid == _userManager.GetUserId(User))
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Sector)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Position)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <a class="btn btn-success" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                <input type="submit" class="btn btn-danger" value="Delete" />
-                            </td>
-                        </tr>
+                        using (Html.BeginForm("Delete", "Experiences", new { id = item.Id }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sector)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Position)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
+                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                </td>
+                            </tr>
+                        }
+
                     }
+
                 }
             </table>
         </div>
@@ -148,21 +158,25 @@
                 </tr>
                 @foreach (var item in skil.getrecords())
                 {
-                    using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                    if (item.Userid == _userManager.GetUserId(User))
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Skill)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <a class="btn btn-success" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                <input type="submit" class="btn btn-danger" value="Delete" />
-                            </td>
-                        </tr>
+                        using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Skill)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <a class="btn btn-success" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
+                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                </td>
+                            </tr>
+                        }
                     }
+
                 }
             </table>
         </div>
@@ -171,3 +185,4 @@
     @*End  for the Myresume*@
 
 
+</div>

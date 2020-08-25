@@ -12,7 +12,7 @@ namespace WorkerHub.ViewModel
         /// for application user 
         /// </summary>
         public ApplicationUser AppUser { get; set; }
-
+        public IEnumerable<ApplicationUser> appUser { get; set; }
         /// <summary>
         /// for user experience 
         /// </summary>
@@ -21,6 +21,7 @@ namespace WorkerHub.ViewModel
         public UserAcademic AppEdu { get; set; }
 
         public UserSkills AppSkill { get; set; }
+        public IEnumerable<UserSkills> skills { get; set; }
 
         public ValidateExperience validexp { get; set; }
 
@@ -28,9 +29,7 @@ namespace WorkerHub.ViewModel
         public IEnumerable<UserExperience> AppExpa { get; set; }
 
 
-        
-
-        
+      
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]

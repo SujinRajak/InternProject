@@ -11,12 +11,12 @@ namespace WorkerHub.Interface
 
         int count();
 
-      
+        ApplicationUser update(ApplicationUser changes);
 
-       //ApplicationUser Update(BasicInfoViewModel model);
+        //ApplicationUser Update(BasicInfoViewModel model);
 
 
-        //ApplicationUser update(ApplicationUser changes);
+
 
         //ApplicationUser delete(string id);
 

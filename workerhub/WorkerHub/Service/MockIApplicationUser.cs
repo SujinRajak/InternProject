@@ -36,7 +36,14 @@ namespace WorkerHub.Service
             return Context.applicationUser;
         }
 
-
+        //for updating the info of the user
+        public ApplicationUser update(ApplicationUser changes)
+        {
+            var details = Context.applicationUser.Attach(changes);
+            details.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+            Context.SaveChanges();
+            return changes;
+        }
 
         //public ApplicationUser Update(BasicInfoViewModel model, string id)
         //{
@@ -64,20 +71,5 @@ namespace WorkerHub.Service
         //    }
         //    return info;
         //}
-
-
-
-
-
-        ////for updating the info of the user
-        //public ApplicationUser update(ApplicationUser changes)
-        //{
-        //    var details = Context.applicationUser.Attach(changes);
-        //    details.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-        //    Context.SaveChanges();
-        //    return changes;
-        //}
-
-
     }
 }

@@ -27,8 +27,8 @@ namespace WorkerHub.ViewModel
         public string TemporaryAddress { get; set; }
 
         public string Sex { get; set; }
-
-       
+        
+        public bool InactiveUsers { get; set; }
         public string Descripition { get; set; }
     }
 }

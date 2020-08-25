@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.VisualStudio.Web.CodeGeneration.DotNet;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using WorkerHub.Interface;
 using WorkerHub.Models;
 using WorkerHub.ViewModel;
 
@@ -14,13 +16,14 @@ namespace WorkerHub.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _context;
-        
+        private readonly IApplicationUser _applicationinfo;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context,IApplicationUser applicationInfo)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _applicationinfo= applicationInfo;
         }
 
 
@@ -102,9 +105,8 @@ namespace WorkerHub.Controllers
                 //built in method suceeeded to check if the result succeded or not
                 if (result.Succeeded)
                 {
-
                     // var val = _userManager.GetUserAsync(User);
-                    //var val = _userManager.GetUserId(User);
+                 
                     //if (_context.applicationUser.Find(val).InactiveUsers == true)
                     //{
                     //    _context.applicationUser.Find(val).InactiveUsers = false;
