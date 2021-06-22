@@ -23,12 +23,13 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(255)")]
         public string Qualification { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Column(TypeName = "DateTime")]
+        public DateTime Startdate { get; set; }
 
-        [Column(TypeName = "int")]
-        public int Startdate { get; set; }
-
-        [Column(TypeName = "int")]
-        public int Enddate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Column(TypeName = "DateTime")]
+        public DateTime Enddate { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string Description { get; set; }

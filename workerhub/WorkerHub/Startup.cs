@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -36,7 +37,7 @@ namespace WorkerHub
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
              {
                  options.SignIn.RequireConfirmedAccount = false;
-                 options.Password.RequireLowercase = false;
+                 options.Password.RequireLowercase = false; 
                  options.Password.RequireUppercase = false;
                  options.Password.RequireDigit = false;
              })
@@ -57,6 +58,10 @@ namespace WorkerHub
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }  
+            else
+            {
+                app.UseExceptionHandler("/Error");
             }
 
 
@@ -69,6 +74,12 @@ namespace WorkerHub
             //for authentication with the user
             app.UseAuthentication();
             app.UseAuthorization();
+
+            
+            //this return the name of hostiing environment
+            //app.Run(async (context)=>{
+            //    await context.Response.WriteAsync(System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+            //});
 
             app.UseEndpoints(endpoints =>
             {

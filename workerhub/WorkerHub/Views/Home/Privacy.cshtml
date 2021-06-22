@@ -3,25 +3,50 @@
     ViewBag.Title = "Employees";
 }
 
+<div>
+    <div class="row seperator">
+        <h2> Available Users </h2>
 
-<div class="row">
-    @foreach (var item in Model)
-    {
-        @if (item.InactiveUsers == false)
+        @foreach (var item in Model)
         {
-            <div id="display" class="p-2">
-                <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
-                    <div class="card">
-                        <img src="~/mstile-150x150.png" alt="Avatar" class="Imagee">
-                        <div class="container text-center">
-                            <h5>@item.Firstname @item.LastName</h5>
+            @if (item.InactiveUsers == false && item.Availablility == true)
+            {
+                <div id="display" class="p-2">
+                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                        <div class="card">
+                            <img src="~/mstile-150x150.png" alt="Avatar" class="Imagee">
+                            <div class="container text-center">
+                                <h5>@item.Firstname @item.LastName</h5>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
+            }
         }
-    }
+    </div>
+
+    <div class="row seperator">
+        <h2> Not Available Users </h2>
+
+        @foreach (var item in Model)
+        {
+            @if (item.InactiveUsers == false && item.Availablility == false)
+            {
+                <div id="display" class="p-2">
+                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                        <div class="card">
+                            <img src="~/mstile-150x150.png" alt="Avatar" class="Imagee">
+                            <div class="container text-center">
+                                <h5>@item.Firstname @item.LastName</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        }
+    </div>
 </div>
+
 
 @section Scripts{ 
 

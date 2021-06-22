@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
+using System;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -70,15 +71,23 @@ namespace WorkerHub.Controllers
             ApplicationUser user = await dbcontext.applicationUser.FindAsync(_userManager.GetUserId(User));
             ValidateAppmodel getuserinfo = new ValidateAppmodel()
             {
-                Id=user.Id,
+                Id = user.Id,
                 FirstName = user.Firstname,
                 LastName = user.LastName,
-                Descripition=user.Descripition,
-                PermanentAddress=user.PermanentAddress,
-                TemporaryAddress=user.TemporaryAddress,
-                PhoneNumber=user.PhoneNumber,
-                Sex=user.Sex,
-                InactiveUsers=user.InactiveUsers
+                Descripition = user.Descripition,
+                PermanentAddress = user.PermanentAddress,
+                TemporaryAddress = user.TemporaryAddress,
+                PhoneNumber = user.PhoneNumber,
+                Sex = user.Sex,
+                InactiveUsers = user.InactiveUsers,
+                Availabilility = (user.Availablility == null) ? true : user.Availablility,
+                citizenship=user.citizenship,
+                country=user.country,
+                streetname=user.streetname,
+                city=user.city,
+                dob= user.dob,
+                states=user.states,
+                bloodgroup=user.bloodgroup
             };
             return View(getuserinfo);
         }
@@ -104,6 +113,14 @@ namespace WorkerHub.Controllers
                 update.PermanentAddress = model.PermanentAddress;
                 update.TemporaryAddress = model.TemporaryAddress;
                 update.InactiveUsers =model.InactiveUsers;
+                update.Availablility = model.Availabilility;
+                update.states = model.states;
+                update.city = model.city;
+                update.country = model.country;
+                update.citizenship = model.citizenship;
+                update.dob = model.dob;
+                update.streetname = model.streetname;
+                update.bloodgroup = model.bloodgroup;
                 _context.update(update);
                 return RedirectToAction("ProfileSection", "Profile");
             }
@@ -127,6 +144,5 @@ namespace WorkerHub.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
-
     }
 }

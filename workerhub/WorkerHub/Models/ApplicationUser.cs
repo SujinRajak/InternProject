@@ -36,5 +36,35 @@ namespace WorkerHub.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(255)")]
         public string Descripition { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "bit")]
+        public bool Availablility { get; set; }
+
+        [PersonalData]
+        [Column(TypeName = "nvarchar(max)")]
+        public string img { get; set; }
+
+        [Column(TypeName = "DateTime")]
+        public DateTime dob { get; set; }
+        
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string citizenship { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string country { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string city { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string streetname { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(100)")]
+        public string states { get; set; }
+        [PersonalData]
+        [Column(TypeName = "nvarchar(20)")]
+        public string bloodgroup { get; set; }
     }
 }

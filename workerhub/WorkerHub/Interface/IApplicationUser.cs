@@ -6,7 +6,7 @@ namespace WorkerHub.Interface
 {
     public interface IApplicationUser
     {
-         ApplicationUser getUser(string id);
+        ApplicationUser getUser(string id);
         IEnumerable<ApplicationUser> getRecords();
 
         int count();

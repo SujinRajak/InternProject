@@ -6,7 +6,6 @@
 @*this is for the Myresume section*@
 
 
-
 <div class="col-md-9 center" id="myresume">
     @*for the experience section*@
 
@@ -28,7 +27,7 @@
                         @Html.DisplayNameFor(Model => Model.AppEdu.Qualification)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(Model => Model.AppEdu.Startdate)-@Html.DisplayNameFor(Model => Model.AppEdu.Enddate)
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Startdate) - @Html.DisplayNameFor(Model => Model.AppEdu.Enddate)
                     </th>
                     <th>
                         @Html.DisplayNameFor(Model => Model.AppEdu.Description)
@@ -49,14 +48,14 @@
                                     @Html.DisplayFor(modelItem => item.Qualification)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
+                                    @Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
                                 <td>
                                     <a class="btn btn-success" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                    <input type="submit" class="btn btn-danger" value="Delete"  onclick="return confirm('Are You Sure u want to Delete: @item.Qualification')"/>
                                 </td>
                             </tr>
                         }
@@ -86,7 +85,7 @@
                         @Html.DisplayNameFor(Model => Model.AppExp.Sector)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(Model => Model.AppExp.Startdate)-@Html.DisplayNameFor(Model => Model.AppExp.Enddate)
+                        @Html.DisplayNameFor(Model => Model.AppExp.Startdate) - @Html.DisplayNameFor(Model => Model.AppExp.Enddate)
                     </th>
                     <th>
                         @Html.DisplayNameFor(Model => Model.AppExp.Position)
@@ -109,7 +108,7 @@
                                     @Html.DisplayFor(modelItem => item.Sector)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
+                                    @Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate)
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Position)
@@ -119,7 +118,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-success" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Sector')"/>
                                 </td>
                             </tr>
                         }
@@ -171,7 +170,7 @@
                                 </td>
                                 <td>
                                     <a class="btn btn-success" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" />
+                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Skill')" />
                                 </td>
                             </tr>
                         }

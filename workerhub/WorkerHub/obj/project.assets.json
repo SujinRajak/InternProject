@@ -9799,19 +9799,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Sujin\\.nuget\\packages\\": {}
+    "C:\\Users\\sujin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Sujin\\Desktop\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+      "projectUniqueName": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
       "projectName": "WorkerHub",
-      "projectPath": "C:\\Users\\Sujin\\Desktop\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
-      "packagesPath": "C:\\Users\\Sujin\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Sujin\\Desktop\\InternProject\\WorkerHub\\WorkerHub\\obj\\",
+      "projectPath": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+      "packagesPath": "C:\\Users\\sujin\\.nuget\\packages\\",
+      "outputPath": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Sujin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\sujin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -9823,6 +9823,7 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "projectReferences": {}
         }
       },
@@ -9834,6 +9835,7 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
+        "targetAlias": "netcoreapp3.1",
         "dependencies": {
           "Microsoft.AspNetCore": {
             "target": "Package",
@@ -9884,7 +9886,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

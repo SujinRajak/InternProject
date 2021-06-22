@@ -26,11 +26,11 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(255)")]
         public string Position { get; set; }
 
-        [Column(TypeName = "int")]
-        public  int Startdate { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Startdate { get; set; }
 
-        [Column(TypeName = "int")]
-        public int Enddate { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime Enddate { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string Description { get; set; }

@@ -1,4 +1,8 @@
 ﻿@model ValidateAppmodel
+
+<div class=" col-md-2 mr-auto">
+    <a asp-action="ProfileSection" asp-controller="Profile">Back to List</a>
+</div>
 <div class=" col-md-9 center" id="basicinfo">
     <form enctype="multipart/form-data" method="post">
         <div class="seperator ">
@@ -21,8 +25,24 @@
                     </div>
                     <div class="row register-row">
                         <div class="form-group col-md-6">
+                            <label asp-for="dob" class="control-label"></label>
+                            <input type="date" asp-for="dob" class="form-control" />
+                            <span asp-validation-for="dob" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label>Citizenship</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="citizenship">
+                                    <option value="None">None</option>
+                                    <option value="Nepali">Nepali</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row register-row">
+                        <div class="form-group  col-md-6">
                             <label>Gender</label>
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 custom-select">
                                 <select asp-for="Sex">
                                     <option value="None">None</option>
                                     <option value="Male">Male</option>
@@ -31,25 +51,28 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label>Deactivate Account</label>
-                            <div class="col-sm-12">
-                                <select asp-for="InactiveUsers">
-                                    <option value="True">True</option>
-                                    <option value="False">False</option>
+                        <div class="form-group  col-md-6">
+                            <label>Blood Group</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="bloodgroup">
+                                    <option value="None">None</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="register-row">
-                        <div class=" form-group  col-md-12">
+                        <div class="col-md-12">
                             <label class="col-form-label">Description</label>
-                            <div class="col-md-12">
-                                <textarea rows="6" cols="108"  asp-for="Descripition" placeholder="Enter your Descriptions"></textarea>
-                            </div>
+                            <textarea class="form-control" rows="6" cols="108" asp-for="Descripition" placeholder="Enter your Descriptions"></textarea>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -68,6 +91,54 @@
                         </div>
                     </div>
                     <div class=" row register-row">
+                        <div class="form-group  col-md-6">
+                            <label>Country</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="country">
+                                    <option value="None">None</option>
+                                    <option value="Nepal">Nepal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group  col-md-6">
+                            <label>States</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="states">
+                                    <option value="None">None</option>
+                                    <option value="Province 1">Province 1</option>
+                                    <option value="Province 2">Province 1</option>
+                                    <option value="Bagmati Province">Bagmati Province</option>
+                                    <option value="Gandaki Province">Gandaki Province</option>
+                                    <option value="Lumbini Province">Lumbini Province</option>
+                                    <option value="Karnali Province">Karnali Province</option>
+                                    <option value="Sudurpashchim Province">Sudurpashchim Province</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class=" row register-row">
+                        <div class="form-group  col-md-6">
+                            <label>City</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="city">
+                                    <option value="None">None</option>
+                                    <option value="Kathamndu">Kathamndu</option>
+                                    <option value="Pokhara">Pokhara</option>
+                                    <option value="Lalitpur">Lalitpur</option>
+                                    <option value="Bharatpur">Bharatpur</option>
+                                    <option value="Biratnagar">Biratnagar</option>
+                                    <option value="Birgunj">Birgunj</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group  col-md-6">
+                            <label>Street Name</label>
+                            <input asp-for="streetname" class="form-control" placeholder="Enter Street Name" />
+                            <span asp-validation-for="streetname" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class=" row register-row">
                         <div class="form-group col-md-6">
                             <label>Permanent Address</label>
                             <input asp-for="PermanentAddress" class="form-control" placeholder="Enter Your Permanent Address" />
@@ -83,8 +154,132 @@
                 </div>
             </div>
         </div>
+        <div class="gap"></div>
+        <div class="seperator ">
+            <div class="userinfo ">
+                <div class="userinfoHeader text-center">
+                    <h4>Deavtivation and Availability</h4>
+                </div>
+                <div class="UserFrom">
+                    <div class="row register-row">
+                        <div class="form-group col-md-6">
+                            <label>Deactivate Account</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="InactiveUsers">
+                                    <option value="None">None</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label class="col-form-label">Availability</label>
+                            <div class="col-sm-12 custom-select">
+                                <select asp-for="Availabilility">
+                                    <option value="None">None</option>
+                                    <option value="True">True</option>
+                                    <option value="False">False</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="saveandupdate text-center">
             <button type="submit" asp-controller="Profile" asp-action="Edit" class="btn btn-primary text-center ">Save &amp; Update</button>
         </div>
     </form>
 </div>
+
+
+<script>
+    var x, i, j, l, ll, selElmnt, a, b, c;
+    /*look for any elements with the class "custom-select":*/
+    x = document.getElementsByClassName("custom-select");
+    l = x.length;
+    for (i = 0; i < l; i++) {
+        selElmnt = x[i].getElementsByTagName("select")[0];
+        ll = selElmnt.length;
+        /*for each element, create a new DIV that will act as the selected item:*/
+        a = document.createElement("DIV");
+        a.setAttribute("class", "select-selected");
+        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+        x[i].appendChild(a);
+        /*for each element, create a new DIV that will contain the option list:*/
+        b = document.createElement("DIV");
+        b.setAttribute("class", "select-items select-hide");
+        for (j = 1; j < ll; j++) {
+            /*for each option in the original select element,
+            create a new DIV that will act as an option item:*/
+            c = document.createElement("DIV");
+            c.innerHTML = selElmnt.options[j].innerHTML;
+            c.addEventListener("click", function (e) {
+                /*when an item is clicked, update the original select box,
+                and the selected item:*/
+                var y, i, k, s, h, sl, yl;
+                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                sl = s.length;
+                h = this.parentNode.previousSibling;
+                for (i = 0; i < sl; i++) {
+                    if (s.options[i].innerHTML == this.innerHTML) {
+                        s.selectedIndex = i;
+                        h.innerHTML = this.innerHTML;
+                        y = this.parentNode.getElementsByClassName("same-as-selected");
+                        yl = y.length;
+                        for (k = 0; k < yl; k++) {
+                            y[k].removeAttribute("class");
+                        }
+                        this.setAttribute("class", "same-as-selected");
+                        break;
+                    }
+                }
+                h.click();
+            });
+            b.appendChild(c);
+        }
+        x[i].appendChild(b);
+        a.addEventListener("click", function (e) {
+            /*when the select box is clicked, close any other select boxes,
+            and open/close the current select box:*/
+            e.stopPropagation();
+            closeAllSelect(this);
+            this.nextSibling.classList.toggle("select-hide");
+            this.classList.toggle("select-arrow-active");
+        });
+    }
+    function closeAllSelect(elmnt) {
+        /*a function that will close all select boxes in the document,
+        except the current select box:*/
+        var x, y, i, xl, yl, arrNo = [];
+        x = document.getElementsByClassName("select-items");
+        y = document.getElementsByClassName("select-selected");
+        xl = x.length;
+        yl = y.length;
+        for (i = 0; i < yl; i++) {
+            if (elmnt == y[i]) {
+                arrNo.push(i)
+            } else {
+                y[i].classList.remove("select-arrow-active");
+            }
+        }
+        for (i = 0; i < xl; i++) {
+            if (arrNo.indexOf(i)) {
+                x[i].classList.add("select-hide");
+            }
+        }
+    }
+    /*if the user clicks anywhere outside the select box,
+    then close all select boxes:*/
+    document.addEventListener("click", closeAllSelect);
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.custom-file-input').on("change", function () {
+            var filename = $(this).val().split("\\").pop();
+            $(this).next('.custom - file - label').html(filename);
+        });
+    });
+</script>
+

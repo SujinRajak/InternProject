@@ -14,24 +14,33 @@
                     <th>Domain</th>
                     <th>Skill Description</th>
                     <th>Address</th>
+                    <th>Availability</th>
                 </tr>
             </thead>
             <tbody id="Filter">
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">@item.Firstname @item.LastName </a></td>
-                        <td>@item.Skill</td>
-                        <td>@item.skillDescription</td>
-                        @if (item.PermanentAddress != null)
-                        {
-                            <td>@item.PermanentAddress</td>
-                        }
-                        else
-                        {
-                            <td>@item.TemporaryAddress</td>
-                        }
-                    </tr>
+                <tr>
+                    <td><a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">@item.Firstname @item.LastName </a></td>
+                    <td>@item.Skill</td>
+                    <td>@item.skillDescription</td>
+                    @if (item.PermanentAddress != null)
+                    {
+                        <td>@item.PermanentAddress</td>
+                    }
+                    else
+                    {
+                        <td>@item.TemporaryAddress</td>
+                    }
+                    @if (@item.Availablility)
+                    {
+                        <td>Available</td>
+                    }
+                    else
+                    {
+                        <td>Not Aavailable</td>
+                    }
+                </tr>
                 }
             </tbody>
 

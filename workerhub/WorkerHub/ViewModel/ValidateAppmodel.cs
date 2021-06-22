@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace WorkerHub.ViewModel
 {
@@ -29,6 +31,17 @@ namespace WorkerHub.ViewModel
         public string Sex { get; set; }
         
         public bool InactiveUsers { get; set; }
+        public bool Availabilility { get; set; }
         public string Descripition { get; set; }
+        public string citizenship { get; set; }
+        public string country { get; set; }
+        public string city { get; set; }
+        public string streetname { get; set; }
+        public string states { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        public DateTime dob { get; set; }
+
+        public string bloodgroup { get; set; }
     }
 }
