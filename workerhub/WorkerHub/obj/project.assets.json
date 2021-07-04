@@ -9804,11 +9804,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+      "projectUniqueName": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
       "projectName": "WorkerHub",
-      "projectPath": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+      "projectPath": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
       "packagesPath": "C:\\Users\\sujin\\.nuget\\packages\\",
-      "outputPath": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\obj\\",
+      "outputPath": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\sujin\\AppData\\Roaming\\NuGet\\NuGet.Config",

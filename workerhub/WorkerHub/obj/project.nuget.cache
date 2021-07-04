@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G3aKzN9JtzTYdoWENP1WkVmsBdnhSOkTC7cx0xH6PMuLILMaw1y6iYDSAeGyJA7mP482Cu2HN/W54vT3zKD+5Q==",
+  "dgSpecHash": "MBtR+Fw66UH11CaOivnShfrZGPMampi4ov0ensXoOPw4XWlVPd79jyGDB+wahaock8F4uHyMV72DExZLBGtByQ==",
   "success": true,
-  "projectFilePath": "D:\\Main project - Copy (2)\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+  "projectFilePath": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\sujin\\.nuget\\packages\\microsoft.aspnetcore\\2.2.0\\microsoft.aspnetcore.2.2.0.nupkg.sha512",
     "C:\\Users\\sujin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

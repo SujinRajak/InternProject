@@ -9,8 +9,6 @@ namespace WorkerHub.ViewModel
 {
     public class ValidateExperience
     {
-
-
         //for model validation
         public int id { get; set; }
 
