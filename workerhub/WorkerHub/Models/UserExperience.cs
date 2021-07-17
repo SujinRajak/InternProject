@@ -26,9 +26,11 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(255)")]
         public string Position { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         [Column(TypeName = "DateTime")]
         public DateTime Startdate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         [Column(TypeName = "DateTime")]
         public DateTime Enddate { get; set; }
 

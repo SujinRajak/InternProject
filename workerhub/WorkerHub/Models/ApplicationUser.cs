@@ -45,7 +45,9 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(max)")]
         public string img { get; set; }
 
+        [PersonalData]
         [Column(TypeName = "DateTime")]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime dob { get; set; }
         
         [PersonalData]

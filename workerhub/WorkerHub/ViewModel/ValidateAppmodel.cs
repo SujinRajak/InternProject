@@ -38,8 +38,6 @@ namespace WorkerHub.ViewModel
         public string city { get; set; }
         public string streetname { get; set; }
         public string states { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         public DateTime dob { get; set; }
 
         public string bloodgroup { get; set; }

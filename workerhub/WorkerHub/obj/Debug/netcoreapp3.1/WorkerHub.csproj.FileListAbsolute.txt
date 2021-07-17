@@ -2526,7 +2526,6 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\b
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.AssemblyReference.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.AssemblyInfoInputs.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.AssemblyInfo.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.CoreCompileInputs.cache

@@ -16,6 +16,8 @@
         data = "Not Available";
     }
 
+    var dateChanger = Model.AppUser.dob;
+    dateChanger.ToString("dd MMM yyyy");
 }
 
 <div class="container" style="margin-top: 30px;">
@@ -95,7 +97,7 @@
                                     </tr>
                                     <tr>
                                         <td>Date of Birthday</td>
-                                        <td>: @Model.AppUser.dob</td>
+                                        <td>: @dateChanger.ToString("dd MMM yyyy")</td>
                                     </tr>
                                     <tr>
                                         <td>Gender</td>

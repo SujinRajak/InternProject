@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -18,6 +19,7 @@ namespace WorkerHub.Controllers
         private readonly IApplicationUser _context;
         private readonly ApplicationDbContext dbcontext;
         private readonly IQualification _qualContext;
+        private readonly IEnumerable<IEducation> _eduContext;
 
 
         /// <summary>
@@ -30,13 +32,14 @@ namespace WorkerHub.Controllers
         /// <param name="qualContext"></param>
         public ProfileController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IApplicationUser context, ApplicationDbContext _db, IQualification qualContext)
+            IApplicationUser context, ApplicationDbContext _db, IQualification qualContext, IEnumerable<IEducation> eduContext)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             dbcontext = _db;
             _qualContext = qualContext;
+            _eduContext = eduContext;
         }
 
 
