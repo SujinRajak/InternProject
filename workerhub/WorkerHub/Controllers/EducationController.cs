@@ -50,6 +50,8 @@ namespace WorkerHub.Controllers
                     Qualification = model.Qualification,
                     Startdate = model.Startdate,
                     Enddate = model.Enddate,
+                    Graduated=model.Graduated,
+                    Addressname=model.Addressname,
                     Description = model.Description
                 };
                 _context.Add(user);
@@ -71,6 +73,8 @@ namespace WorkerHub.Controllers
                 Qualification= user.Qualification,
                 Startdate = user.Startdate,
                 Enddate = user.Enddate,
+                Graduated = user.Graduated,
+                Addressname = user.Addressname,
                 Description = user.Description
             };
             return View(editViewModelEdu);
@@ -87,6 +91,8 @@ namespace WorkerHub.Controllers
                 user.Qualification= collection.Qualification;
                 user.Startdate = collection.Startdate;
                 user.Enddate = collection.Enddate;
+                user.Graduated = collection.Graduated;
+                user.Addressname = collection.Addressname;
                 user.Description = collection.Description;
 
                 _eduContext.update(user);

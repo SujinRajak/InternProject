@@ -2571,3 +2571,12 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\o
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.pdb
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.genruntimeconfig.cache
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.AssemblyReference.cache
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\FoolproofValidation.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll

@@ -33,11 +33,16 @@ namespace WorkerHub.Models
         [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
         [Column(TypeName = "DateTime")]
         public DateTime Enddate { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string WorkPlace { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string Addressname { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string Description { get; set; }
 
-
-
+        [Column(TypeName = "int")]
+        public int yearsExp { get; set; }
     }
 }

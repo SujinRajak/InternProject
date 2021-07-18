@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,7 +20,12 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(255)")]
         public string Skill { get; set; }
 
+        [Column(TypeName = "int")]
+        public int SkillPercent { get; set; }
+
         [Column(TypeName = "nvarchar(255)")]
         public string Description { get; set; }
+
+
     }
 }

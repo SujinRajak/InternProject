@@ -4,263 +4,157 @@
 @inject UserManager<ApplicationUser> UserManager
 @model HomeDetailsViewModel
 
+@{ 
+    var dateChanger = Model.AppUser.dob;
+}
+
 
 @if (Model.AppUser.InactiveUsers == false)
 {
-    <div class="col-md-12" id="viewprofile">
-        <div class="container">
-            <div class="container">
-                <div class="addprofilepic col-md-12 box-shadow">
-                    <img src="~/images/chrome.png" />
-                    <div class="row  col-md-12 textfield">
-                        @*for profile pic section*@
-                        <div class="col-md-2">
-                            <img src="~/images/apple-touch-icon-180x180.png" />
-                        </div>
-                        @*for user name section*@
-                        <div class="col-md-3 mt-5 ">
-                            <table>
-                                <tr>
-                                    <td>@Model.AppUser.Firstname @Model.AppUser.LastName</td>
-                                    @*<td>@User.IsInRole("Admin") @info.getUser(id).LastName</td>*@
-                                    <td></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="seperator">
-                        <div class="userinfo box-shadow">
-                            <table class="col-12">
-                                <tr class="border-bottom text-center">
-                                    <td colspan="2">
-                                        <h4>Candidate Overview</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Full Name:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext " value="@Model.AppUser.Firstname @Model.AppUser.LastName">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Gender:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Sex">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Description:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Descripition">
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="seperator box-shadow">
-                        <div class="userinfo ">
-                            <div class="userinfoHeader text-center">
-                                <h4>Candidate Experience</h4>
-                            </div>
-                            <div class="UserFrom">
-                                <div class="tablesection text-center">
-                                    <table id="mytable" class="col-md-12 " border="1">
-                                        <tr>
-                                            <th>
-                                                @Html.DisplayNameFor(Model => Model.AppExp.Sector)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(Model => Model.AppExp.Startdate)-@Html.DisplayNameFor(Model => Model.AppExp.Enddate)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(Model => Model.AppExp.Position)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(Model => Model.AppExp.Description)
-                                            </th>
-                                        </tr>
-                                        @foreach (var item in info.getrecords())
-                                        {
-                                            if (item.Userid == Model.AppUser.Id)
-                                            {
-
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Sector)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Position)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Description)
-                                                    </td>
-                                                </tr>
-                                            }
-
-                                        }
-                                    </table>
+<div class="tab-pane" id="tab_default_6">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="row align-items-center">
+                <div class="col-lg-5">
+                    <div class="resume-base bg-primary user-dashboard-info-box p-4">
+                        <div class="profile">
+                            <div class="jobster-user-info">
+                                <div class="profile-avatar">
+                                    <img class="img-fluid " src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="">
+                                </div>
+                                <div class="profile-avatar-info mt-3">
+                                    <h5 class="text-white">@Model.AppUser.Firstname @Model.AppUser.LastName</h5>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="gap"></div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="seperator box-shadow">
-                        <div class="userinfo ">
-                            <div class="userinfoHeader text-center">
-                                <h4>Extra Skill</h4>
+                        <div class="about-candidate border-top">
+                            <div class="candidate-info">
+                                <h6 class="text-white">Name:</h6>
+                                <p class="text-white">@Model.AppUser.Firstname @Model.AppUser.LastName</p>
                             </div>
-                            <div class="UserFrom">
-                                <div class="tablesection text-center">
-                                    <table id="mytable" class="col-md-12 " border="1">
-                                        <tr>
-                                            <th>
-                                                @Html.DisplayNameFor(Model => Model.AppSkill.Skill)
-                                            </th>
-                                            <th>
-                                                @Html.DisplayNameFor(Model => Model.AppSkill.Description)
-                                            </th>
-                                        </tr>
-                                        @foreach (var item in skil.getrecords())
-                                        {
-                                            if (item.Userid == Model.AppUser.Id)
-                                            {
-
-                                                <tr>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Skill)
-                                                    </td>
-                                                    <td>
-                                                        @Html.DisplayFor(modelItem => item.Description)
-                                                    </td>
-                                                </tr>
-
-                                            }
-
-                                        }
-                                    </table>
-                                </div>
-
-
+                            <div class="candidate-info">
+                                <h6 class="text-white">Email:</h6>
+                                <p class="text-white">@Model.AppUser.Email</p>
+                            </div>
+                            <div class="candidate-info">
+                                <h6 class="text-white">Phone:</h6>
+                                <p class="text-white">(+977) @Model.AppUser.PhoneNumber</p>
+                            </div>
+                            <div class="candidate-info">
+                                <h6 class="text-white">Date Of Birth:</h6>
+                                <p class="text-white"> @dateChanger.ToString("dd MMM yyyy")</p>
+                            </div>
+                            <div class="candidate-info">
+                                <h6 class="text-white">Address:</h6>
+                                <p class="text-white">@Model.AppUser.PermanentAddress, @Model.AppUser.streetname,@Model.AppUser.states,@Model.AppUser.country</p>
+                            </div>
+                            <div class="candidate-info">
+                                <h6 class="text-white">Gender:</h6>
+                                <p class="text-white">@Model.AppUser.Sex</p>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="seperator box-shadow">
-                        <div class="userinfo ">
-                            <table class="col-12">
-                                <tr class="border-bottom text-center">
-                                    <td colspan="2">
-                                        <h4>Candidate Address</h4>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Email:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.Email">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Contact Number:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.PhoneNumber">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Permanent Address:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.PermanentAddress">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="col-form-label ml-2">Temporary Address:</label>
-                                    </td>
-                                    <td>
-                                        <input type="text" readonly class="form-control-plaintext" value="@Model.AppUser.TemporaryAddress">
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="mt-0">
+                            <h5 class="text-white">Professional Skill:</h5>
+                            @foreach (var item in skil.getrecords())
+                            {
+                                if (item.Userid == UserManager.GetUserId(User))
+                                {
+                                    using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                                    {
+                                        <div class="progress bg-dark">
+                                            <div class="progress-bar bg-white" role="progressbar" style="width:55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                                                <div class="progress-bar-title text-white"> @Html.DisplayFor(modelItem => item.Skill)</div>
+                                                <span class="progress-bar-number text-white"> @Html.DisplayFor(modelItem => item.SkillPercent)</span>
+                                            </div>
+                                        </div>}
+                                }
+                            }
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="gap"></div>
-
-            <div class="col-md-12">
-                <div class="seperator box-shadow">
-                    <div class="userinfo ">
-                        <div class="userinfoHeader text-center">
-                            <h4>Education</h4>
-                        </div>
-                        <div class="UserFrom">
-                            <div class="tablesection">
-
+                <div class="col-lg-7">
+                    <div class="resume-experience">
+                        <div class="timeline-box">
+                            <h5 class="resume-experience-title">Education:</h5>
+                            <div class="jobster-candidate-timeline">
                                 @foreach (var item in edu.getrecords())
                                 {
 
                                     if (item.Userid == Model.AppUser.Id)
                                     {
-                                        <i class="fa fa-check fa-2x"></i>
-                                        <table id="mytable" class="col-md-12" border="1">
-                                            <tr>
-                                                <td colspan="3">
-                                                    @Html.DisplayFor(modelItem => item.Startdate)
-                                                </td>
-                                            </tr>
-                                            <tr class="text-center">
-
-                                                <td colspan="2" class="col-md-6">
-                                                    @Html.DisplayFor(modelItem => item.Qualification)
-                                                </td>
-                                                <td class="col-md-6">
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td colspan="3">
-                                                    @Html.DisplayFor(modelItem => item.Enddate)
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <div class="jobster-timeline-item">
+                                            <div class="jobster-timeline-cricle">
+                                                <i class="fa fa-circle"></i>
+                                            </div>
+                                            <div class="jobster-timeline-info">
+                                                <div class="dashboard-timeline-info">
+                                                    <span class="jobster-timeline-time">@Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate) </span>
+                                                    <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Qualification)</h6>
+                                                    <span>-  @Html.DisplayFor(modelItem => item.Graduated) , @Html.DisplayFor(modelItem => item.Addressname)</span>
+                                                    <p class="mt-2">Description</p>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     }
-
                                 }
-
                             </div>
-
+                        </div>
+                        <div class="timeline-box mt-4">
+                            <h5 class="resume-experience-title">Work &amp; Experience:</h5>
+                            <div class="jobster-candidate-timeline">
+                                @foreach (var item in info.getrecords())
+                                {
+                                    if (item.Userid == UserManager.GetUserId(User))
+                                    {
+                                        <div class="jobster-timeline-item">
+                                            <div class="jobster-timeline-cricle">
+                                                <i class="fa fa-circle"></i>
+                                            </div>
+                                            <div class="jobster-timeline-info">
+                                                <div class="dashboard-timeline-info">
+                                                    <span class="jobster-timeline-time"> @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)</span>
+                                                    <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Position)</h6>
+                                                    <span>- @Html.DisplayFor(modelItem => item.WorkPlace) , @Html.DisplayFor(modelItem => item.Addressname)</span>
+                                                    <p class="mt-2">@Html.DisplayFor(modelItem => item.Description)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                        </div>
+                        <div class="timeline-box mt-4">
+                            <h5 class="resume-experience-title">Skills:</h5>
+                            <div class="jobster-candidate-timeline">
+                                @foreach (var item in skil.getrecords())
+                                {
+                                    if (item.Userid == UserManager.GetUserId(User))
+                                    {
+                                        using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                                        {
+                                            <div class="jobster-timeline-item">
+                                                <div class="jobster-timeline-cricle">
+                                                    <i class="fa fa-circle"></i>
+                                                </div>
+                                                <div class="jobster-timeline-info">
+                                                    <div class="dashboard-timeline-info">
+                                                        <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Skill)</h6>
+                                                        <p class="mt-2"> @Html.DisplayFor(modelItem => item.Description)</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
+
+</div>
 }

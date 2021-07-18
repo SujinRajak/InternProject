@@ -46,6 +46,7 @@ namespace WorkerHub.Controllers
                 {
                     Userid = _userManager.GetUserId(User),
                     Skill = model.Skill,
+                    SkillPercent=(model.SkillPercent==0)?50:model.SkillPercent,
                     Description = model.skillDescription
                 };
                 _context.Add(user);
@@ -65,6 +66,7 @@ namespace WorkerHub.Controllers
             {
                 Id = user.Id,
                 Skill= user.Skill,
+                SkillPercent = (user.SkillPercent == 0) ? 50 : user.SkillPercent,
                 skillDescription = user.Description
             };
             return View(editViewModelEdu);
@@ -79,6 +81,7 @@ namespace WorkerHub.Controllers
             {
                 UserSkills user = _SkiContext.getqal(id);
                 user.Skill = collection.Skill;
+                user.SkillPercent = collection.SkillPercent;
                 user.Description = collection.skillDescription;
 
                 _SkiContext.update(user);

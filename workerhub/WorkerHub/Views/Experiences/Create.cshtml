@@ -1,4 +1,4 @@
-﻿@model WorkerHub.ViewModel.ValidateExperience
+﻿ @model WorkerHub.ViewModel.ValidateExperience
 
 
 <div class=" col-md-2 mr-auto">
@@ -33,6 +33,16 @@
                     <label asp-for="Enddate" class="control-label"></label>
                     <input type="date" asp-for="Enddate" class="form-control" />
                     <span asp-validation-for="Enddate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="WorkPlace" class="control-label"></label>
+                    <input asp-for="WorkPlace" class="form-control" />
+                    <span asp-validation-for="WorkPlace" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Addressname" class="control-label"></label>
+                    <input asp-for="Addressname" class="form-control" />
+                    <span asp-validation-for="Addressname" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Description" class="control-label"></label>

@@ -22,7 +22,21 @@ namespace WorkerHub.Controllers
             _qualContext = qualContext;
         }
 
-
+        public static int starCalcu(int expCalculator)
+        {
+            if (expCalculator <= 3)
+            {
+                return 1;
+            }
+            else if (expCalculator >= 3 && expCalculator <= 6)
+            {
+                return 2;
+            }
+            else
+            {
+                return 3;
+            }
+        }
 
         // GET: ExperiencesController/Create
         public ActionResult Create()
@@ -39,6 +53,8 @@ namespace WorkerHub.Controllers
 
             if (ModelState.IsValid)
             {
+                var expCalculator =model.Enddate.Year - model.Startdate.Year;
+                
                 var user = new UserExperience
                 {
                     Userid = _userManager.GetUserId(User),
@@ -46,9 +62,13 @@ namespace WorkerHub.Controllers
                     Position = model.Position,
                     Startdate = model.Startdate,
                     Enddate = model.Enddate,
+                    WorkPlace=model.WorkPlace,
+                    Addressname=model.Addressname,
+                    yearsExp=expCalculator,
                     Description = model.Description
 
                 };
+                
                 _context.Add(user);
                 _context.SaveChanges();
                 return RedirectToAction("ExpCreate", "Resume");
@@ -61,7 +81,8 @@ namespace WorkerHub.Controllers
         {
             //we need to alter the user experience table so populating he user with the data of the userexperince 
             UserExperience user = _qualContext.getqal(id);
-            //populating the editviewmodel field and using it to send it to the edit.cshtml
+            var expCalculator = user.Enddate.Year - user.Startdate.Year;
+                //populating the editviewmodel field and using it to send it to the edit.cshtml
             EditViewModelExp editViewModelExp = new EditViewModelExp()
             {
                 id = user.Id,
@@ -69,6 +90,9 @@ namespace WorkerHub.Controllers
                 Position = user.Position,
                 Startdate = user.Startdate,
                 Enddate = user.Enddate,
+                WorkPlace = user.WorkPlace,
+                YearsOfExp=expCalculator,
+                Addressname = user.Addressname,
                 Description = user.Description
 
             };
@@ -80,6 +104,7 @@ namespace WorkerHub.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, ValidateExperience collection)
         {
+            var expCalculator =collection.Enddate.Year - collection.Startdate.Year;
             if (ModelState.IsValid)
             {
                 UserExperience user = _qualContext.getqal(id);
@@ -87,6 +112,9 @@ namespace WorkerHub.Controllers
                 user.Position = collection.Position;
                 user.Startdate = collection.Startdate;
                 user.Enddate = collection.Enddate;
+                user.WorkPlace = collection.WorkPlace;
+                user.yearsExp = expCalculator;
+                user.Addressname = collection.Addressname;
                 user.Description = collection.Description;
 
                 _qualContext.update(user);

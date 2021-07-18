@@ -14,6 +14,7 @@ namespace WorkerHub.ViewModel
         [Required]
         public string Skill { get; set; }
 
+        public int SkillPercent { get; set; }
         [Required]
         public string skillDescription { get; set; }
     }

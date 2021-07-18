@@ -40,6 +40,10 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Foolproof": {
+              "target": "Package",
+              "version": "[0.9.4518, )"
+            },
             "Microsoft.AspNetCore": {
               "target": "Package",
               "version": "[2.2.0, )"

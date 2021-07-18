@@ -27,5 +27,7 @@ namespace WorkerHub.ViewModel
 
         //to sdisplay all the values in the table
         public IEnumerable<UserExperience> AppExpa { get; set; }
+        public List<ApplicationUser> applicationUsers { get; set; }
+        public List<ValidateExperience> applicationUsersvalid { get; set; }
     }
 }

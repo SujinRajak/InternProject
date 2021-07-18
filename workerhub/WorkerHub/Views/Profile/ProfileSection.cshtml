@@ -16,8 +16,7 @@
         data = "Not Available";
     }
 
-    var dateChanger = Model.AppUser.dob;
-    dateChanger.ToString("dd MMM yyyy");
+    var dateChanger = Model.AppUser.dob; 
 }
 
 <div class="container" style="margin-top: 30px;">
@@ -126,9 +125,11 @@
                                     <table class="table bio-table">
                                         <tbody>
                                             <tr>
+
                                                 <td>@Html.DisplayFor(modelItem => item.Qualification)</td>
-                                                <td>: @Html.DisplayFor(modelItem => item.Startdate) </td>
+                                                <td>@Html.DisplayFor(modelItem => item.Graduated)</td> <td>@Html.DisplayFor(modelItem => item.Addressname)</td>
                                                 <td>Year Graduated</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Startdate) </td>
                                                 <td>: @Html.DisplayFor(modelItem => item.Enddate) </td>
                                             </tr>
                                         </tbody>
@@ -150,14 +151,24 @@
                                 {
                                     <table class="table bio-table">
                                         <tbody>
-
+                                            <tr>
+                                                <td>Organizaition</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.WorkPlace)
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td>Date</td>
                                                 <td>
                                                     @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
                                                 </td>
                                             </tr>
-
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Addressname)
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <td>Principle Activites</td>
                                                 <td>
@@ -323,7 +334,7 @@
                                                     </div>
                                                     <div class="candidate-info">
                                                         <h6 class="text-white">Date Of Birth:</h6>
-                                                        <p class="text-white">@Model.AppUser.dob</p>
+                                                        <p class="text-white"> @dateChanger.ToString("dd MMM yyyy")</p>
                                                     </div>
                                                     <div class="candidate-info">
                                                         <h6 class="text-white">Address:</h6>
@@ -345,7 +356,7 @@
                                                                 <div class="progress bg-dark">
                                                                     <div class="progress-bar bg-white" role="progressbar" style="width:55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
                                                                         <div class="progress-bar-title text-white"> @Html.DisplayFor(modelItem => item.Skill)</div>
-                                                                        <span class="progress-bar-number text-white">70%</span>
+                                                                        <span class="progress-bar-number text-white"> @Html.DisplayFor(modelItem => item.SkillPercent)</span>
                                                                     </div>
                                                                 </div>}
                                                         }
@@ -372,7 +383,7 @@
                                                                         <div class="dashboard-timeline-info">
                                                                             <span class="jobster-timeline-time">@Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate) </span>
                                                                             <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Qualification)</h6>
-                                                                            <span>- school college name</span>
+                                                                            <span>-  @Html.DisplayFor(modelItem => item.Graduated) , @Html.DisplayFor(modelItem => item.Addressname)</span>
                                                                             <p class="mt-2">Description</p>
                                                                         </div>
                                                                     </div>
@@ -397,7 +408,7 @@
                                                                         <div class="dashboard-timeline-info">
                                                                             <span class="jobster-timeline-time"> @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)</span>
                                                                             <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Position)</h6>
-                                                                            <span>- workplace name </span>
+                                                                            <span>- @Html.DisplayFor(modelItem => item.WorkPlace) , @Html.DisplayFor(modelItem => item.Addressname)</span>
                                                                             <p class="mt-2">@Html.DisplayFor(modelItem => item.Description)</p>
                                                                         </div>
                                                                     </div>
@@ -464,7 +475,7 @@
                                 <label for="email">Availability:</label>
                                 <p>
                                     @if (@data == "Available")
-                                    {<button type="button" class="btn btn-info btn-rounded btn-icon" /> }
+                                    {<button type="button" class="btn btn-success btn-rounded btn-icon" /> }
                                     else
                                     { <button type="button" class="btn btn-danger btn-rounded btn-icon" />}
                                 </p>

@@ -41,8 +41,12 @@ namespace WorkerHub.Controllers
         [HttpGet]
         public IActionResult Privacy()
         {
-            List<ApplicationUser> applicationUsers = dbcontext.applicationUser.ToList();
-            return View(applicationUsers);
+            DisplayEmployee display = new DisplayEmployee()
+            {
+                applicationUsers = dbcontext.applicationUser.ToList(),
+
+            };
+            return View(display);
         }
 
         [HttpGet]

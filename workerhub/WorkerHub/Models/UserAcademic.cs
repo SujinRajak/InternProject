@@ -31,6 +31,13 @@ namespace WorkerHub.Models
         [Column(TypeName = "DateTime")]
         public DateTime Enddate { get; set; }
 
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string Graduated { get; set; }
+
+        [Column(TypeName = "nvarchar(100)")]
+        public string Addressname { get; set; }
+
         [Column(TypeName = "nvarchar(255)")]
         public string Description { get; set; }
 

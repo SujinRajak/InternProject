@@ -30,6 +30,12 @@
                         @Html.DisplayNameFor(Model => Model.AppEdu.Startdate) - @Html.DisplayNameFor(Model => Model.AppEdu.Enddate)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Graduated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Addressname)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(Model => Model.AppEdu.Description)
                     </th>
                     <th>
@@ -50,12 +56,18 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate)
                                 </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Graduated)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Addressname)
+                                </th>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
                                 <td>
                                     <a class="btn btn-success" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete"  onclick="return confirm('Are You Sure u want to Delete: @item.Qualification')"/>
+                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Qualification')" />
                                 </td>
                             </tr>
                         }
@@ -88,7 +100,14 @@
                         @Html.DisplayNameFor(Model => Model.AppExp.Startdate) - @Html.DisplayNameFor(Model => Model.AppExp.Enddate)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.WorkPlace)
+                    </th>
+
+                    <th>
                         @Html.DisplayNameFor(Model => Model.AppExp.Position)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Addressname)
                     </th>
                     <th>
                         @Html.DisplayNameFor(Model => Model.AppExp.Description)
@@ -110,15 +129,21 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate)
                                 </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.WorkPlace)
+                                </th>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Position)
                                 </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Addressname)
+                                </th>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
                                 <td>
                                     <a class="btn btn-success" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Sector')"/>
+                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Sector')" />
                                 </td>
                             </tr>
                         }
@@ -149,6 +174,9 @@
                         @Html.DisplayNameFor(Model => Model.AppSkill.Skill)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(Model => Model.AppSkill.SkillPercent)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(Model => Model.AppSkill.Description)
                     </th>
                     <th>
@@ -165,9 +193,13 @@
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Skill)
                                 </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.SkillPercent)
+                                </th>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
+
                                 <td>
                                     <a class="btn btn-success" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
                                     <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Skill')" />

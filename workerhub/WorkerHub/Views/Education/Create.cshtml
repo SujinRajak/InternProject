@@ -29,8 +29,18 @@
                 </div>
                 <div class="form-group">
                     <label asp-for="Enddate" class="control-label"></label>
-                    <input type="date"  asp-for="Enddate" class="form-control" />
+                    <input type="date" asp-for="Enddate" class="form-control" />
                     <span asp-validation-for="Enddate" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Graduated" class="control-label"></label>
+                    <input asp-for="Graduated" class="form-control" />
+                    <span asp-validation-for="Graduated" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Addressname" class="control-label"></label>
+                    <input asp-for="Addressname" class="form-control" />
+                    <span asp-validation-for="Addressname" class="text-danger"></span>
                 </div>
                 <div class="form-group">
                     <label asp-for="Description" class="control-label"></label>
@@ -38,7 +48,7 @@
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" onclick="return validation()"/>
+                    <input type="submit" value="Create" class="btn btn-primary" onclick="return validation()" />
                 </div>
             </form>
         </div>
