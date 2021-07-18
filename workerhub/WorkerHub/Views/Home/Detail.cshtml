@@ -6,6 +6,15 @@
 
 @{ 
     var dateChanger = Model.AppUser.dob;
+    var address="";
+    if (Model.AppUser.PermanentAddress != null)
+    {
+        address = Model.AppUser.PermanentAddress + "," + Model.AppUser.streetname + "," + Model.AppUser.states + "," + Model.AppUser.country;
+    }
+    {
+        address="";
+    }
+
 }
 
 
@@ -46,7 +55,7 @@
                             </div>
                             <div class="candidate-info">
                                 <h6 class="text-white">Address:</h6>
-                                <p class="text-white">@Model.AppUser.PermanentAddress, @Model.AppUser.streetname,@Model.AppUser.states,@Model.AppUser.country</p>
+                                <p class="text-white">@address</p>
                             </div>
                             <div class="candidate-info">
                                 <h6 class="text-white">Gender:</h6>
@@ -57,7 +66,7 @@
                             <h5 class="text-white">Professional Skill:</h5>
                             @foreach (var item in skil.getrecords())
                             {
-                                if (item.Userid == UserManager.GetUserId(User))
+                                if (item.Userid == Model.AppUser.Id)
                                 {
                                     using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
                                     {
@@ -106,7 +115,7 @@
                             <div class="jobster-candidate-timeline">
                                 @foreach (var item in info.getrecords())
                                 {
-                                    if (item.Userid == UserManager.GetUserId(User))
+                                    if (item.Userid == Model.AppUser.Id)
                                     {
                                         <div class="jobster-timeline-item">
                                             <div class="jobster-timeline-cricle">
@@ -130,7 +139,7 @@
                             <div class="jobster-candidate-timeline">
                                 @foreach (var item in skil.getrecords())
                                 {
-                                    if (item.Userid == UserManager.GetUserId(User))
+                                    if (item.Userid == Model.AppUser.Id)
                                     {
                                         using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
                                         {

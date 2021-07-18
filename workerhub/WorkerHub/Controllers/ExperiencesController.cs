@@ -41,7 +41,11 @@ namespace WorkerHub.Controllers
         // GET: ExperiencesController/Create
         public ActionResult Create()
         {
-            ValidateExperience model = new ValidateExperience();
+            ValidateExperience model = new ValidateExperience()
+            {
+                Startdate = DateTime.Now,
+                Enddate = DateTime.Now
+            };
             return View(model);
         }
 

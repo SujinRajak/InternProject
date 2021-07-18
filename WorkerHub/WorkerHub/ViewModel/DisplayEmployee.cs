@@ -9,5 +9,6 @@ namespace WorkerHub.ViewModel
     public class DisplayEmployee
     {
         public List<ApplicationUser> applicationUsers { get; set; }
+        public List<UserExperience> userExperiences { get; set; }
     }
 }

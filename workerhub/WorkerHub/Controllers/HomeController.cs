@@ -41,10 +41,11 @@ namespace WorkerHub.Controllers
         [HttpGet]
         public IActionResult Privacy()
         {
+           
             DisplayEmployee display = new DisplayEmployee()
             {
                 applicationUsers = dbcontext.applicationUser.ToList(),
-
+                userExperiences = dbcontext.Experices.ToList()
             };
             return View(display);
         }
@@ -55,6 +56,7 @@ namespace WorkerHub.Controllers
             HomeDetailsViewModel details = new HomeDetailsViewModel()
             {
                 AppUser = _context.getUser(id)
+
             };
             return View(details);
         }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -44,7 +45,7 @@ namespace WorkerHub.Controllers
             if (ModelState.IsValid)
             {
                 //creating a new user object of my own and capturing data of the user from the model 
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Firstname = Input.FirstName, LastName = Input.LastName, InactiveUsers = false };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Firstname = Input.FirstName, LastName = Input.LastName, InactiveUsers = false,dob=DateTime.Now,Availablility=true };
                 //to create new user we need to make use of the createasyn method to create a new user 
                 //there are two overloaded version so the first instance is of the user oof type my own User object
                 //the second param is the password.so then this password is then hash stored securely oin the database

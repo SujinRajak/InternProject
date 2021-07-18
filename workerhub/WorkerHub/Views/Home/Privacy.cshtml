@@ -1,8 +1,8 @@
 ﻿@model DisplayEmployee
-@inject IQualification info
 @{
     ViewBag.Title = "Employees";
-    var stars = 1;
+    var totalexp = 0;
+    var stars = 0;
 }
 
 <section id="team" class="pb-5">
@@ -15,8 +15,6 @@
             {
                 @if (item.InactiveUsers == false && item.Availablility == true)
                 {
-
-
                     <div class="col-xs-12 col-sm-6 col-md-4">
                         <div class="image-flip">
                             <div class="mainflip flip-0">
@@ -28,10 +26,8 @@
                                                 <h4 class="card-title">@item.Firstname @item.LastName</h4>
                                             </a>
                                             <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                            @for (int i = 1; i <= stars; i++)
-                                            {
-                                                <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-                                            }
+
+                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -93,10 +89,8 @@
                                                 <h4 class="card-title">@item.Firstname @item.LastName</h4>
                                             </a>
                                             <p class="card-text">This is basic card with image on top, title, description and button.</p>
-                                            @for (int i = 1; i <= stars; i++)
-                                            {
-                                                <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
-                                            }
+
+                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                                         </div>
                                     </div>
                                 </div>
