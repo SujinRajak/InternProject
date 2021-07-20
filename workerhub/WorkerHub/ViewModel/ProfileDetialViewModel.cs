@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WorkerHub.Models;
@@ -29,5 +30,8 @@ namespace WorkerHub.ViewModel
         public IEnumerable<UserExperience> AppExpa { get; set; }
         public List<ApplicationUser> applicationUsers { get; set; }
         public List<ValidateExperience> applicationUsersvalid { get; set; }
+
+
+        public IFormFile photo { get; set; }
     }
 }

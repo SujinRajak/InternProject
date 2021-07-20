@@ -1,8 +1,20 @@
 ﻿@model DisplayEmployee
 @{
     ViewBag.Title = "Employees";
-    var totalexp = 0;
-    var stars = 0;
+    var list = new List<Tuple<string, int>>();
+    @foreach (var item in Model.applicationUsers)
+    {
+        @foreach (var del in Model.userExperiences)
+        {
+            if (item.Id == del.Userid)
+            {
+                var id = item.Id;
+                var exp = 0;
+                exp = exp + del.yearsExp;
+                list.Add(new Tuple<string, int>(id, exp));
+            }
+        }
+    }
 }
 
 <section id="team" class="pb-5">
@@ -21,13 +33,37 @@
                                 <div class="frontside">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
+                                            <p><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "userimag.jpg"))" class="img-fluid " asp-append-version="true" /></p>
                                             <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                                 <h4 class="card-title">@item.Firstname @item.LastName</h4>
                                             </a>
                                             <p class="card-text">This is basic card with image on top, title, description and button.</p>
 
-                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                            @foreach (var data in list)
+                                            {
+                                                @if (data.Item1 == item.Id)
+                                                {
+                                                    @if (data.Item2 <= 3)
+                                                    {
+                                                        <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
+                                                    }
+                                                    else if (data.Item2 > 3 && data.Item2 <= 6)
+                                                    {
+                                                        for (int i = 1; i <= 2; i++)
+                                                        {
+                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
+                                                        }
+                                                    }
+                                                    else if (data.Item2 > 6)
+                                                    {
+                                                        for (int i = 1; i <= 3; i++)
+                                                        {
+                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
+                                                        }
+                                                    }
+                                                }
+                                            }
+
                                         </div>
                                     </div>
                                 </div>
@@ -84,13 +120,37 @@
                                 <div class="frontside">
                                     <div class="card">
                                         <div class="card-body text-center">
-                                            <p><img class=" img-fluid" src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" alt="card image"></p>
+                                            <p><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "userimg.jpg"))" class="img-fluid " asp-append-version="true" /></p>
                                             <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                                 <h4 class="card-title">@item.Firstname @item.LastName</h4>
                                             </a>
                                             <p class="card-text">This is basic card with image on top, title, description and button.</p>
 
-                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                            @foreach (var data in list)
+                                            {
+                                                @if (data.Item1 == item.Id)
+                                                {
+                                                    @if (data.Item2 <= 3)
+                                                    {
+                                                        <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
+                                                    }
+                                                    else if (data.Item2 > 3 && data.Item2 <= 6)
+                                                    {
+                                                        for (int i = 1; i <= 2; i++)
+                                                        {
+                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
+                                                        }
+                                                    }
+                                                    else if (data.Item2 > 6)
+                                                    {
+                                                        for (int i = 1; i <= 3; i++)
+                                                        {
+                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
+                                                        }
+                                                    }
+                                                }
+                                            }
+
                                         </div>
                                     </div>
                                 </div>

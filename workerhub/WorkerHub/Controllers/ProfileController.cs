@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -21,6 +24,7 @@ namespace WorkerHub.Controllers
         private readonly IQualification _qualContext;
         private readonly IEnumerable<IEducation> _eduContext;
 
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         /// <summary>
         /// Constructorr
@@ -32,7 +36,7 @@ namespace WorkerHub.Controllers
         /// <param name="qualContext"></param>
         public ProfileController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IApplicationUser context, ApplicationDbContext _db, IQualification qualContext, IEnumerable<IEducation> eduContext)
+            IApplicationUser context, ApplicationDbContext _db, IQualification qualContext, IEnumerable<IEducation> eduContext, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,6 +44,7 @@ namespace WorkerHub.Controllers
             dbcontext = _db;
             _qualContext = qualContext;
             _eduContext = eduContext;
+            _webHostEnvironment = webHostEnvironment;
         }
 
 
@@ -146,6 +151,29 @@ namespace WorkerHub.Controllers
             dbcontext.SaveChanges();
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPostMyUploader(IFormFile MyUploader)
+        {
+            var user = _userManager.GetUserId(User);
+            var update = await dbcontext.applicationUser.FindAsync(user);
+           
+            if (MyUploader != null)
+            {
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+                string filePath = Path.Combine(uploadsFolder, MyUploader.FileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    MyUploader.CopyTo(fileStream);
+                }
+                string file = Path.GetFileName(filePath);
+                update.img = file;
+                _context.update(update);
+                return RedirectToAction("ProfileSection", "Profile");
+            }
+            return new ObjectResult(new { status = "fail" });
+
         }
     }
 }
