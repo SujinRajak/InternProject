@@ -1,0 +1,21 @@
+﻿@model EditRoleViewModel
+
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="row register-row">
+        <div class="form-group col-md-6">
+            <div class="form-group">
+                <label asp-for="RoleName" class="control-label"></label><span class="text-danger">(Roles Must be Unique)</span>
+                <br />
+                <input asp-for="RoleName" class="form-control" />
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="register-row ">
+        <button asp-controller="Administration" asp-action="EditRole" type="submit" class="btn btn-primary text-center ">Update Role</button>
+        <a asp-controller="Administration" asp-action="AdminPage" class="btn btn-danger text-center ">Cancel</a>
+    </div>
+</form>

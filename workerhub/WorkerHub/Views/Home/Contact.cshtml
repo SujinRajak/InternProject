@@ -1,0 +1,46 @@
+﻿@model ContactViewModel
+
+<form method="post" class="col-md-8 offset-2">
+    <div class="userinfo ">
+        <div class="userinfoHeader text-center">
+            <h4>Contact Us</h4>
+        </div>
+        <div class="UserFrom">
+            <div class="row register-row">
+                <div class="form-group col-md-6">
+                    <label>First Name </label>
+                    <input asp-for="Firstname" class="form-control" placeholder="Enter Firstname" />
+                    <span asp-validation-for="Firstname" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Last Name</label>
+                    <input asp-for="Lastname" class="form-control" placeholder="Enter Lastname" />
+                    <span asp-validation-for="Lastname" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="row register-row">
+                <div class="form-group col-md-6">
+                    <label>Email </label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter Email Address" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Address </label>
+                    <input asp-for="Address" class="form-control" placeholder="Enter Address" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="register-row">
+                <div class=" form-group  col-md-12">
+                    <label class="col-form-label">Description</label>
+                    <div class="col-md-12">
+                        <textarea rows="6" cols="95" asp-for="Description" placeholder="Enter your Descriptions"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="saveandupdate text-center">
+                <button type="submit" class="btn btn-primary text-center ">Contact Us</button>
+            </div>
+        </div>
+    </div>
+</form>

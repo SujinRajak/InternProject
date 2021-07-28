@@ -1,0 +1,25 @@
+﻿@model CreateRoleModel
+@{
+    ViewBag.Title = "Create New Role";
+    Layout = "/Views/Shared/_adminView.cshtml";
+} 
+
+
+<div class="container register-main">
+    <form method="post">
+        <div class="row register-row">
+            <div class="form-group col-md-6">
+                <div class="form-group">
+                    <label asp-for="RoleName" class="control-label"></label><span class="text-danger">(Roles Must be Unique)</span>
+                    <br />
+                    <input asp-for="RoleName" class="form-control" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                </div>
+            </div>
+        </div>
+        <div class="register-row ">
+            <button type="submit" class="btn btn-primary text-center ">Create Role</button>
+            <a asp-controller="Administration" asp-action="AdminPage" class="btn btn-danger text-center ">Cancel</a>
+        </div>
+    </form>
+</div>

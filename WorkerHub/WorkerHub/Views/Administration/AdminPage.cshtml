@@ -1,0 +1,106 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@model AdminProfileModel
+@{
+    ViewBag.Title = "Admin";
+    Layout = "/Views/Shared/_adminView.cshtml";
+}
+
+
+<div class="tab">
+    <button class="tablinks" onclick="openCity(event, 'Add Roles')" id="defaultOpen">Add Roles</button>
+    <button class="tablinks" onclick="openCity(event, 'User Roles')">User Roles</button>
+    <button class="tablinks" onclick="openCity(event, 'Users')">Users</button>
+</div>
+<div id="Add Roles" class="tabcontent">
+    <div class="row" style="float:right; padding:10px" >
+        <a class="btn btn-primary" asp-controller="Administration" asp-action="CreateRole">Create Role</a>
+    </div>
+    <div class="row pt-5">
+        @if (Model.identityRoles.Any())
+        {
+            @foreach (var item in Model.identityRoles)
+            {
+                if (item.Name != "Admin")
+                {
+
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">@item.Name</h5>
+                                <a asp-controller="Administration" asp-action="EditRole" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                                @using (Html.BeginForm("Delete", "Administration", new { id = item.Id }))
+                                {
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Sure u want to Delete: @item.Name')">Delete</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+            }
+        }
+        else
+        {
+            <h2>Admin has not Created any roles</h2>
+        }
+
+
+    </div>
+
+</div>
+
+<div id="User Roles" class="tabcontent">
+    <div class="card pt-1">
+        <div class="card-header">
+            User Roles
+        </div>
+
+        @if (Model.Users!=null)
+        {
+            @foreach (var data in Model.Users)
+            {
+                <div class="card-body">
+                    <h5 class="card-title">@data</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="card-body">
+                <h5 class="card-title">No Users Assigned with Roles</h5>
+            </div>
+        }
+
+
+
+    </div>
+
+</div>
+
+<div id="Users" class="tabcontent">
+
+
+</div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    // Get the element with id="defaultOpen" and click on it
+    document.getElementById("defaultOpen").click();
+</script>
+

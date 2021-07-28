@@ -82,6 +82,10 @@ namespace WorkerHub.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(256)")
                         .HasMaxLength(256);
@@ -133,6 +137,8 @@ namespace WorkerHub.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -215,17 +221,95 @@ namespace WorkerHub.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("WorkerHub.Models.ApplicationUser", b =>
+            modelBuilder.Entity("WorkerHub.Models.UserAcademic", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("CV")
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Citizenship")
+                    b.Property<int>("Enddate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Qualification")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Startdate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Userid")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Userid");
+
+                    b.ToTable("Academics");
+                });
+
+            modelBuilder.Entity("WorkerHub.Models.UserExperience", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Enddate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Position")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Sector")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("Startdate")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Userid")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Userid");
+
+                    b.ToTable("Experices");
+                });
+
+            modelBuilder.Entity("WorkerHub.Models.UserSkills", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Skill")
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Userid")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Userid");
+
+                    b.ToTable("SkillSets");
+                });
+
+            modelBuilder.Entity("WorkerHub.Models.ApplicationUser", b =>
+                {
+                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
+
+                    b.Property<string>("Descripition")
                         .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Firstname")
@@ -246,14 +330,7 @@ namespace WorkerHub.Migrations
                     b.Property<string>("TemporaryAddress")
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<string>("Userid")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Userid");
-
-                    b.ToTable("applicationUser");
+                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -307,9 +384,23 @@ namespace WorkerHub.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("WorkerHub.Models.ApplicationUser", b =>
+            modelBuilder.Entity("WorkerHub.Models.UserAcademic", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                    b.HasOne("WorkerHub.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("Userid");
+                });
+
+            modelBuilder.Entity("WorkerHub.Models.UserExperience", b =>
+                {
+                    b.HasOne("WorkerHub.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("Userid");
+                });
+
+            modelBuilder.Entity("WorkerHub.Models.UserSkills", b =>
+                {
+                    b.HasOne("WorkerHub.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("Userid");
                 });
