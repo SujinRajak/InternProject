@@ -64,9 +64,8 @@ namespace WorkerHub.Controllers
                     //var abc = System.Security.Claims.ClaimsPrincipal.Current.Identities.ToList();
 
                     //sending the value of the user id from controller to the views
-
+                    //return RedirectToAction("CreateRole", "Administration");
                     return RedirectToAction("ProfileSection", "Profile");
-
                 }
 
                 //loopthrough each errors in error collection
@@ -87,6 +86,7 @@ namespace WorkerHub.Controllers
         /// <returns></returns>
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View();
@@ -94,6 +94,7 @@ namespace WorkerHub.Controllers
 
 
         [HttpPost]
+        [AllowAnonymous]
 
         public async Task<IActionResult> Login(LoginViewModel model)
         {

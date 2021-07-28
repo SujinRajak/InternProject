@@ -2134,6 +2134,12 @@ D:\Main project - Copy (2)\Final intern project\WorkerHub\WorkerHub\obj\Debug\ne
 D:\Main project - Copy (2)\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.dll
 D:\Main project - Copy (2)\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.pdb
 D:\Main project - Copy (2)\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.genruntimeconfig.cache
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Experiences\Create.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Join\SearchAction.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Edit.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Skill\Create.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\appsettings.json
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\libman.json
@@ -2409,6 +2415,13 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\b
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\refs\WindowsBase.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\WorkerHub.Views.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\WorkerHub.Views.pdb
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\FoolproofValidation.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
@@ -2453,6 +2466,7 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\b
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\NuGet.Frameworks.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Collections.Immutable.dll
@@ -2519,13 +2533,13 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\b
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\Microsoft.Data.SqlClient.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win-arm64\native\sni.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win-x64\native\sni.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.AssemblyReference.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.AssemblyInfoInputs.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.AssemblyInfo.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.CoreCompileInputs.cache
@@ -2542,25 +2556,21 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\o
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Account\ChangePassword.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\CreateRole.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Education\Create.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Education\Edit.cshtml.g.cs
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Experiences\Create.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Experiences\Edit.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Home\Contact.cshtml.g.cs
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Home\Detail.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Home\MoreContent.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.cs
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Join\SearchAction.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Join\showAll.cshtml.g.cs
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Profile\Edit.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Profile\ProfileSection.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Resume\ExpCreate.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout1.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_mainLayout.cshtml.g.cs
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Skill\Create.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Skill\Edit.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
@@ -2571,12 +2581,7 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\o
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.dll
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.pdb
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.genruntimeconfig.cache
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.AssemblyReference.cache
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\FoolproofValidation.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Mvc.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Razor.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.Helpers.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.Deployment.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.Razor.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\System.Web.WebPages.dll
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\Microsoft.Web.Infrastructure.dll
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\bin\Debug\netcoreapp3.1\bundleconfig.json
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\AdminPage.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_adminView.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EditRole.cshtml.g.cs

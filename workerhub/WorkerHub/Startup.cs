@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +45,11 @@ namespace WorkerHub
              })
             .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddMvc();
+            services.AddMvc(options=> {
+                var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+                options.Filters.Add(new AuthorizeFilter(policy));
+                
+            }).AddXmlSerializerFormatters();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddScoped<IApplicationUser,MockIApplicationUser> ();
             services.AddScoped<IQualification, MockQualification>();
