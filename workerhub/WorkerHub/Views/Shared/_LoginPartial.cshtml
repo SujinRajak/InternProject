@@ -2,17 +2,17 @@
 @inject UserManager<ApplicationUser> UserManager
 
 
-
 @if (SignInManager.IsSignedIn(User))
 {
-     <div class="btn-group">
-        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+    <div class="social-links pt-2">
+        <button type="button" class="btn btn-defualt btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <i class="fa fa-user fa-lg" aria-hidden="true">@User.Identity.Name</i>
         </button>
         <div class="dropdown-menu dropdown-menu-right text-right" id="drop">
             <ul class="navbar-nav flex-column">
                 <li class="nav-item">
-                    <a asp-controller="Profile" asp-action="ProfileSection"  class="dropdown-item">Profile</a>
+                    <a asp-controller="Profile" asp-action="ProfileSection" class="dropdown-item">Profile</a>
                 </li>
                 <li class="nav-item">
                     <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout">
