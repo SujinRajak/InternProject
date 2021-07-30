@@ -17,13 +17,71 @@
     }
 }
 
-<section id="team" class="pb-5">
+
+<section id="team" class="team">
+    <div class="container">
+
+        <div class="row">
+            @foreach (var item in Model.applicationUsers)
+            {
+                @if (item.InactiveUsers == false && item.Availablility == true)
+                {
+
+                    <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                        <div class="member">
+                            <div class="pic"><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "userimag.jpg"))" class="img-fluid " asp-append-version="true" /></div>
+                            <div class="member-info">
+                                <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                                    <h4 class="card-title">@item.Firstname @item.LastName</h4>
+                                </a>
+                                <span></span>
+                                <div class="social">
+                                    @foreach (var data in list)
+                                    {
+                                        @if (data.Item1 == item.Id)
+                                        {
+                                            @if (data.Item2 <= 3)
+                                            {
+                                                <i class="fa fa-star fa-2x"></i>
+                                            }
+                                            else if (data.Item2 > 3 && data.Item2 <= 6)
+                                            {
+                                                for (int i = 1; i <= 2; i++)
+                                                {
+                                                    <i class="fa fa-star fa-2x"></i>
+                                                }
+                                            }
+                                            else if (data.Item2 > 6)
+                                            {
+                                                for (int i = 1; i <= 3; i++)
+                                                {
+                                                    <i class="fa fa-star fa-2x"></i>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+
+
+        </div>
+
+    </div>
+</section><!-- End Our Team Section -->
+
+
+
+<!--<section id="team" class="pb-5 sec">
     <div class="container">
         <h5 class="section-title h1">Available Users</h5>
-        <div class="row">
+        <div class="row">-->
 
             <!-- Team member -->
-            @foreach (var item in Model.applicationUsers)
+            <!--@foreach (var item in Model.applicationUsers)
             {
                 @if (item.InactiveUsers == false && item.Availablility == true)
                 {
@@ -194,7 +252,7 @@
             }
         </div>
     </div>
-</section>
+</section>-->
 
 
 @section Scripts{
