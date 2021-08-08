@@ -17,13 +17,15 @@ namespace WorkerHub.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ApplicationDbContext _context;
         private readonly IApplicationUser _applicationinfo;
+        private readonly RoleManager<IdentityRole> roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context, IApplicationUser applicationInfo)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context, IApplicationUser applicationInfo, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _applicationinfo = applicationInfo;
+            this.roleManager = roleManager;
         }
 
 
@@ -36,7 +38,9 @@ namespace WorkerHub.Controllers
         [AllowAnonymous]
         public IActionResult Register()
         {
-            return View();
+            RegisterViewModel register = new RegisterViewModel();
+            register.Roles= roleManager.Roles.Where(x=>x.Name!="Admin").ToList();
+            return View(register);
         }
 
         [HttpPost]
@@ -54,11 +58,18 @@ namespace WorkerHub.Controllers
                 // and wrap the action result in a task
                 var result = await _userManager.CreateAsync(user, Input.Password);
 
+                var role = await roleManager.FindByIdAsync(Input.RoleName);
+                if (role == null)
+                {
+                    ViewBag.ErrorMessage = $"Role with Role id ={Input.RoleName} count not be found";
+                    return View("NotFound");
 
+                }
+               var userRoleresult= await _userManager.AddToRoleAsync(user, role.Name);
 
-
+                Input.Roles= roleManager.Roles.Where(x => x.Name != "Admin").ToList();
                 //built in method suceeeded to check if the result succeded or not
-                if (result.Succeeded)
+                if (result.Succeeded && userRoleresult.Succeeded)
                 {
                     //sign in th user and forwarded to the location
                     await _signInManager.SignInAsync(user, isPersistent: false);
@@ -66,7 +77,7 @@ namespace WorkerHub.Controllers
 
                     //sending the value of the user id from controller to the views
                     //return RedirectToAction("CreateRole", "Administration");
-                    return RedirectToAction("ProfileSection", "Profile");
+                    return RedirectToAction("Login", "Account");
                 }
 
                 //loopthrough each errors in error collection
