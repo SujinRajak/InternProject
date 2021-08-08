@@ -6,17 +6,17 @@
 @*this is for the Myresume section*@
 
 
-<div class="col-md-9 center" id="myresume">
+<div class="col-md-12" id="myresume">
     @*for the experience section*@
 
     <div class="table userinfo">
         <div class="userinfoHeader">
-            <div class="row">
-                <div class=" col-md-10 text-center">
+            <div class="row p-1">
+                <div class=" col-md-10">
                     <h4>Add Education</h4>
                 </div>
-                <div class="col-md-2 ml-auto">
-                    <a class="btn btn-primary" asp-controller="Education" asp-action="Create">Add Item</a>
+                <div class="col-md-2">
+                    <a class="btn btn-primary float-right " asp-controller="Education" asp-action="Create">Add Item</a>
                 </div>
             </div>
         </div>
@@ -66,8 +66,10 @@
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
                                 <td>
-                                    <a class="btn btn-success" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Qualification')" />
+                                    <div class="btn-group mb-3">
+                                        <a class="btn btn-outline-secondary" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-outline-secondary bg-danger" onclick="return confirm('Are You Sure u want to Delete: @item.Qualification')"> <i class="fa fa-trash-o"></i></button>
+                                    </div>
                                 </td>
                             </tr>
                         }
@@ -81,12 +83,12 @@
     @*for the Education section*@
     <div class="table userinfo">
         <div class="userinfoHeader">
-            <div class="row">
-                <div class=" col-md-10 text-center">
+            <div class="row p-2">
+                <div class=" col-md-10">
                     <h4>Add Experience</h4>
                 </div>
-                <div class="col-md-2 ml-auto">
-                    <a class="btn btn-primary" asp-controller="Experiences" asp-action="Create">Add Item</a>
+                <div class="col-md-2">
+                    <a class="btn btn-primary float-right" asp-controller="Experiences" asp-action="Create">Add Item</a>
                 </div>
             </div>
         </div>
@@ -142,13 +144,17 @@
                                     @Html.DisplayFor(modelItem => item.Description)
                                 </td>
                                 <td>
-                                    <a class="btn btn-success" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Sector')" />
+                                    <div class="btn-group mb-3">
+                                        <a class="btn btn-outline-secondary" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-outline-secondary bg-danger" onclick="return confirm('Are You Sure u want to Delete: @item.Sector')"> <i class="fa fa-trash-o"></i></button>
+                                    </div>
+
                                 </td>
                             </tr>
                         }
 
                     }
+                    
 
                 }
             </table>
@@ -158,12 +164,12 @@
     @*for the Skill section*@
     <div class="table userinfo">
         <div class="userinfoHeader">
-            <div class="row">
-                <div class=" col-md-10 text-center">
+            <div class="row p-2">
+                <div class=" col-md-10">
                     <h4>Add Skill</h4>
                 </div>
-                <div class="col-md-2 ml-auto">
-                    <a class="btn btn-primary" asp-controller="Skill" asp-action="Create">Add Item</a>
+                <div class="col-md-2">
+                    <a class="btn btn-primary float-right" asp-controller="Skill" asp-action="Create">Add Item</a>
                 </div>
             </div>
         </div>
@@ -201,13 +207,14 @@
                                 </td>
 
                                 <td>
-                                    <a class="btn btn-success" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id">Edit</a> &nbsp;| &nbsp;
-                                    <input type="submit" class="btn btn-danger" value="Delete" onclick="return confirm('Are You Sure u want to Delete: @item.Skill')" />
+                                    <div class="btn-group mb-3">
+                                        <a class="btn btn-outline-secondary" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-outline-secondary bg-danger" onclick="return confirm('Are You Sure u want to Delete: @item.Skill')"> <i class="fa fa-trash-o"></i></button>
+                                    </div>
                                 </td>
                             </tr>
                         }
                     }
-
                 }
             </table>
         </div>

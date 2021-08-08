@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -102,16 +103,28 @@ namespace WorkerHub.Controllers
             {
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
 
+
+
                 //built in method suceeeded to check if the result succeded or not
                 if (result.Succeeded)
                 {
-                    // var val = _userManager.GetUserAsync(User);
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    // Get the roles for the user
+                    var roles = await _userManager.GetRolesAsync(user);
 
-                    //if (_context.applicationUser.Find(val).InactiveUsers == true)
-                    //{
-                    //    _context.applicationUser.Find(val).InactiveUsers = false;
-                    //}
-                    return RedirectToAction("Index", "Home");
+                    if (roles.First() == "Admin")
+                    {
+                        return RedirectToAction( "AdminPage","Administration");
+                    }
+                    else if (roles.First()== "Hiring Manager")
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                    
                 }
                 ModelState.AddModelError(string.Empty, "Invalid User Login");
             }
