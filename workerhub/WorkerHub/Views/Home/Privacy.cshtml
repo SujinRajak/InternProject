@@ -1,20 +1,6 @@
 ﻿@model DisplayEmployee
 @{
     ViewBag.Title = "Employees";
-    var list = new List<Tuple<string, int>>();
-    @foreach (var item in Model.applicationUsers)
-    {
-        @foreach (var del in Model.userExperiences)
-        {
-            if (item.Id == del.Userid)
-            {
-                var id = item.Id;
-                var exp = 0;
-                exp = exp + del.yearsExp;
-                list.Add(new Tuple<string, int>(id, exp));
-            }
-        }
-    }
 }
 
 
@@ -29,37 +15,64 @@
 
                     <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
                         <div class="member">
-                            <div class="pic"><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "userimag.jpg"))" class="img-fluid " asp-append-version="true" /></div>
+                            <div class="pic"><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "user.png"))" class="img-fluid " asp-append-version="true" /></div>
                             <div class="member-info">
                                 <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
                                     <h4 class="card-title">@item.Firstname @item.LastName</h4>
                                 </a>
                                 <span></span>
                                 <div class="social">
-                                    @foreach (var data in list)
+                                    @foreach (var data in Model.TotalExpdata)
                                     {
-                                        @if (data.Item1 == item.Id)
+                                        @if (data.userid == item.Id)
                                         {
-                                            @if (data.Item2 <= 3)
+                                            @if (data.totalExp <= 3)
                                             {
-                                                <i class="fa fa-star fa-2x"></i>
-                                            }
-                                            else if (data.Item2 > 3 && data.Item2 <= 6)
-                                            {
-                                                for (int i = 1; i <= 2; i++)
+                                                for (int i = 1; i <= 5; i++)
                                                 {
-                                                    <i class="fa fa-star fa-2x"></i>
+                                                    if (i == 1)
+                                                    {
+                                                        <i class="fa fa-star fa-2x" style="color:gold !important;"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                    }
+
                                                 }
                                             }
-                                            else if (data.Item2 > 6)
+                                            else if (data.totalExp > 3 && data.totalExp <= 6)
                                             {
-                                                for (int i = 1; i <= 3; i++)
+                                                for (int i = 1; i <= 5; i++)
                                                 {
-                                                    <i class="fa fa-star fa-2x"></i>
+                                                    if (i <= 2)
+                                                    {
+                                                        <i class="fa fa-star fa-2x" style="color:gold !important;"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                    }
+
+                                                }
+                                            }
+                                            else if (data.totalExp > 6)
+                                            {
+                                                for (int i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= 3)
+                                                    {
+                                                        <i class="fa fa-star fa-2x" style="color:gold !important;"></i>
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
+                                     }
+
                                 </div>
                             </div>
                         </div>
@@ -73,186 +86,6 @@
     </div>
 </section><!-- End Our Team Section -->
 
-
-
-<!--<section id="team" class="pb-5 sec">
-    <div class="container">
-        <h5 class="section-title h1">Available Users</h5>
-        <div class="row">-->
-
-            <!-- Team member -->
-            <!--@foreach (var item in Model.applicationUsers)
-            {
-                @if (item.InactiveUsers == false && item.Availablility == true)
-                {
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="image-flip">
-                            <div class="mainflip flip-0">
-                                <div class="frontside">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <p><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "userimag.jpg"))" class="img-fluid " asp-append-version="true" /></p>
-                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
-                                                <h4 class="card-title">@item.Firstname @item.LastName</h4>
-                                            </a>
-                                            <p class="card-text">This is basic card with image on top, title, description and button.</p>
-
-                                            @foreach (var data in list)
-                                            {
-                                                @if (data.Item1 == item.Id)
-                                                {
-                                                    @if (data.Item2 <= 3)
-                                                    {
-                                                        <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
-                                                    }
-                                                    else if (data.Item2 > 3 && data.Item2 <= 6)
-                                                    {
-                                                        for (int i = 1; i <= 2; i++)
-                                                        {
-                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
-                                                        }
-                                                    }
-                                                    else if (data.Item2 > 6)
-                                                    {
-                                                        for (int i = 1; i <= 3; i++)
-                                                        {
-                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="backside">
-                                    <div class="card">
-                                        <div class="card-body text-center mt-4">
-                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
-                                                <h4 class="card-title">@item.Firstname @item.LastName</h4>
-                                            </a>
-                                            <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                            <ul class="list-inline">
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-facebook"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-skype"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-google"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            }
-
-        </div>
-        <h5 class="section-title h1">Not Available Users</h5>
-        <div class="row seperator">
-
-            @foreach (var item in Model.applicationUsers)
-            {
-                @if (item.InactiveUsers == false && item.Availablility == false)
-                {
-
-                    <div class="col-xs-12 col-sm-6 col-md-4">
-                        <div class="image-flip">
-                            <div class="mainflip flip-0">
-                                <div class="frontside">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <p><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "userimg.jpg"))" class="img-fluid " asp-append-version="true" /></p>
-                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
-                                                <h4 class="card-title">@item.Firstname @item.LastName</h4>
-                                            </a>
-                                            <p class="card-text">This is basic card with image on top, title, description and button.</p>
-
-                                            @foreach (var data in list)
-                                            {
-                                                @if (data.Item1 == item.Id)
-                                                {
-                                                    @if (data.Item2 <= 3)
-                                                    {
-                                                        <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
-                                                    }
-                                                    else if (data.Item2 > 3 && data.Item2 <= 6)
-                                                    {
-                                                        for (int i = 1; i <= 2; i++)
-                                                        {
-                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
-                                                        }
-                                                    }
-                                                    else if (data.Item2 > 6)
-                                                    {
-                                                        for (int i = 1; i <= 3; i++)
-                                                        {
-                                                            <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-star"></i></a>
-                                                        }
-                                                    }
-                                                }
-                                            }
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="backside">
-                                    <div class="card">
-                                        <div class="card-body text-center mt-4">
-                                            <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
-                                                <h4 class="card-title">@item.Firstname @item.LastName</h4>
-                                            </a>
-                                            <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
-                                            <ul class="list-inline">
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-facebook"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-skype"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
-                                                        <i class="fa fa-google"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                }
-            }
-        </div>
-    </div>
-</section>-->
 
 
 @section Scripts{

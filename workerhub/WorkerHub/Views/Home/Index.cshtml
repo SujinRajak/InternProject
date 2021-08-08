@@ -1,176 +1,8 @@
-﻿@{
+﻿@model DisplayEmployee
+@{
     ViewBag.Title = "Home";
 }
-<!--<div class="container-fluid mt-4">
-    <div class="backgoundpic">
-        <div class="content text-center">
-            <h2 class="pd-3"> Find all workers in Nepal</h2>
-            <h5 class="p-3">One cup of Coffee Everyday keeps you working Everyday</h5>
-        </div>
-        <div class="col-md-6 offset-3 mt-4">
-            <div class="input-group">
-                <input id="txtfiled" class="form-control" placeholder="Search for" />
-            </div>
-        </div>
-    </div>
-    <hr class="mt-5" />
-    <section class="container mt-4">
-        <div class=" text-center col-md-12 mb-5">
-            <div class="row ">
-                <div class=" col-md-12">
-                    <h3 class="mr-4">Popular Workers Category</h3>
-                    <hr class="text-center mb-3" style="width: 100px;height: 2px; border: none;color: #a14dff;background-color: #a14dff;" />
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-2 ml-auto mb-5">
-            <a class="btn btn-info " asp-controller="Join" asp-action="showAll">Show all</a>
-        </div>
-
-        <div id="filter">
-            <div class="row">
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Automobile" })">
-                        <i class="fa fa-car fa-4x"></i>
-                        <p>Automobile Workers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Painter" })">
-                        <i class="fa fa-paint-brush fa-4x"></i>
-                        <p>Painter</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Electrician" })">
-                        <i class="fa fa-lightbulb-o fa-4x"></i>
-                        <p>Electrician</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Designing and Multimedia" })">
-                        <i class="fa fa-desktop fa-4x"></i>
-                        <p>Designing and Multimedia</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Telecommunication" })">
-                        <i class="fa fa-headphones fa-4x"></i>
-                        <p>Telecommunication</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Education"})">
-                        <i class="fa fa-book fa-4x"></i>
-                        <p>Educational Training</p>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Bank" })">
-                        <i class="fa fa-university fa-4x"></i>
-                        <p>Bank Workers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hospital" })">
-                        <i class="fa fa-hospital-o fa-4x"></i>
-                        <p>Hospital Workers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Construction" })">
-                        <i class="fa fa-building fa-4x"></i>
-                        <p>Construction Workers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Home"})">
-                        <i class="fa fa-home fa-4x"></i>
-                        <p>Home Helpers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Industry" })">
-                        <i class="fa fa-industry fa-4x"></i>
-                        <p>Industry Workers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Photographers" })">
-                        <i class="fa fa-video-camera fa-4x"></i>
-                        <p>Photographers</p>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Saloon" })">
-                        <i class="fa fa-scissors fa-4x"></i>
-                        <p>Hair Saloon Stylists</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hotel"})">
-                        <i class="fa fa-h-square fa-4x"></i>
-                        <p>Hotel Helpers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Trainers" })">
-                        <i class="fa fa-motorcycle fa-4x"></i>
-                        <p> Automobile Trainers</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="BabySitter"})">
-                        <i class="fa fa-child fa-4x"></i>
-                        <p>Nanny</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Key Restore"})">
-                        <i class="fa fa-key fa-4x"></i>
-                        <p>Key Restore</p>
-                    </a>
-                </div>
-                <div class="col-md-2 text-center">
-                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Music"})">
-                        <i class="fa fa-music fa-4x"></i>
-                        <p>Music Training</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="text-center">
-            <a class="btn btn-primary" asp-controller="Home" asp-action="MoreContent">Browse for More</a>
-        </div>
-    </section>
-
-    <hr />-->
-@*funfact counter*@
-<!--<Section class="container-fluid border-top alert-info">
-        <div class="row text-center pd-3 mt-3">
-            <div class="col-md-4">
-                <i class=" fa fa-user fa-4x" style="color: #a14dff;"></i>
-                <h4 class="stat-counter mt-1" data-target="5000">0</h4>
-                <h3 class="mt-1">Workers</h3>
-            </div>
-            <div class="col-md-4">
-                <i class=" fa fa-cogs fa-4x" style="color: #a14dff;"></i>
-                <h4 class="stat-counter mt-1" data-target="5000">0</h4>
-                <h3 class="mt-1">Skill Category</h3>
-            </div>
-            <div class="col-md-4">
-                <i class="fa fa-briefcase fa-4x" style="color: #a14dff;"></i>
-                <h4 class="stat-counter mt-1" data-target="5000">0</h4>
-                <h3 class="mt-1">Freelancers</h3>
-            </div>
-        </div>
-    </Section>
-</div>-->
 <!-- ======= Hero Section ======= -->
 <section id="hero">
     <div class="hero-container">
@@ -244,19 +76,19 @@
 
                     <div class="section-title">
                         <h2>About Us</h2>
-                        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.</p>
+                        <p>There are three steps involved in using this service. You first create an account, hiring manager then views the available accounts and finally there is hiring process that depends upon the skills you have and the type of job. After being hired the worker can negotiate with the manager about the time availability, compensation and so on.</p>
                     </div>
 
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon"><i class="bx bx-fingerprint"></i></div>
-                        <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-                        <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+                        <h4 class="title"><a href="">Create a profile</a></h4>
+                        <p class="description">A simple yet beautiful profile.</p>
                     </div>
 
                     <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
                         <div class="icon"><i class="bx bx-gift"></i></div>
-                        <h4 class="title"><a href="">Nemo Enim</a></h4>
-                        <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+                        <h4 class="title"><a href="">Get hired</a></h4>
+                        <p class="description">Get hired based on the skills you have.</p>
                     </div>
 
                 </div>
@@ -506,14 +338,11 @@
                     </a>
                 </div>
                 @*<div class="col-lg-4 col-md-3 icon-box" data-aos="fade-up" data-aos-delay="500">
-                    <div class="icon"><i class="icofont-tasks-alt"></i></div>
-                    <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
-                    <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
-                </div>*@
+                        <div class="icon"><i class="icofont-tasks-alt"></i></div>
+                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                    </div>*@
             </div>
-
-
-
         </div>
     </section><!-- End Services Section -->
     <!-- ======= Our Portfolio Section ======= -->
@@ -668,6 +497,42 @@
 
         </div>
     </section><!-- End Our Portfolio Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>Our Employee</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <a asp-controller="Home" asp-action="Privacy" class="btn btn-primary animate__animated animate__fadeInUp scrollto float-right">Display More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.applicationUsers.Take(4))
+                {
+
+                    @if (item.InactiveUsers == false && item.Availablility == true)
+                    {
+
+                        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                            <div class="member">
+                                <div class="pic"><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "user.png"))" class="img-fluid " asp-append-version="true" /></div>
+                                <div class="member-info">
+                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                                        <h4 class="card-title">@item.Firstname @item.LastName</h4>
+                                    </a>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            
+        </div>
+    </section><!-- End Our Team Section -->
     <!-- ======= Contact Us Section ======= -->
     <section id="contact" class="contact">
         <div class="container">
