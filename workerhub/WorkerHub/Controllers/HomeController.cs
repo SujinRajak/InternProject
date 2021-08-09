@@ -94,15 +94,7 @@ namespace WorkerHub.Controllers
         {
             try
             {
-                var query = dbcontext.Experices
-                .GroupBy(c => c.Userid)
-                .Select(g =>
-                    new
-                    {
-                        Id = g.Key,
-                        totalexp = g.Sum(s => s.yearsExp),
-                    }
-                 ).ToList();
+                
                 DisplayEmployee display = new DisplayEmployee();
                 var userExp = dbcontext.Experices.GroupBy(c => c.Userid).Select(g =>
                     new
@@ -142,7 +134,7 @@ namespace WorkerHub.Controllers
                  ) on c.Id equals p.Id into pss
                                   from add in pss.DefaultIfEmpty()
                                   select new { c.Id, add };
-                display.applicationUsers = employees.ToList();
+               
 
 
                 foreach (var item in nostarQuery)
@@ -154,10 +146,7 @@ namespace WorkerHub.Controllers
                     });
                 }
 
-
-
-
-
+                display.applicationUsers = employees.ToList();
 
                 return View(display);
             }

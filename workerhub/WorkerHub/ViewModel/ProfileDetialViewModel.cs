@@ -33,5 +33,7 @@ namespace WorkerHub.ViewModel
 
 
         public IFormFile photo { get; set; }
+        public TotalExp TotalExpdata { get; set; } = new TotalExp();
     }
+
 }

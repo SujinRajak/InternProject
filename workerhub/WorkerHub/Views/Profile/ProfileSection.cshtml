@@ -36,10 +36,10 @@
             <div class="col-md-5 col-sm-5 col-xs-12">
                 <h5>@Model.AppUser.Firstname @Model.AppUser.LastName</h5>
                 <ul>
-                    <li><i class="fa fa-briefcase"></i> 9 years</li>
+                    <li><i class="fa fa-briefcase"></i>@Model.TotalExpdata.totalExp Years</li>
                     <li><i class="fa fa-map-marker fa-1x"></i> Nepal</li>
-                    <li><i class="fa fa-home fa-1x"></i> @Model.AppUser.PermanentAddress @Model.AppUser.TemporaryAddress</li>
-                    <li><i class="fa fa-phone fa-1x"></i> <a href="#" title="call">(+977) @Model.AppUser.PhoneNumber</a></li>
+                    <li><i class="fa fa-home fa-1x"></i> @(Model.AppUser.PermanentAddress==null?"-": Model.AppUser.PermanentAddress)</li>
+                    <li><i class="fa fa-phone fa-1x"></i> <a href="#" title="call">(+977) @(Model.AppUser.PhoneNumber==null?"--- --- ----": Model.AppUser.PhoneNumber)</a></li>
                     <li><i class="fa fa-envelope fa-1x"></i><a href="#" title="mail"> @Model.AppUser.Email</a></li>
                 </ul>
             </div>
@@ -476,12 +476,10 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Availability:</label>
-                                <p>
-                                    @if (@data == "Available")
-                                    {<button type="button" class="btn btn-success btn-rounded btn-icon" /> }
-                                    else
-                                    { <button type="button" class="btn btn-danger btn-rounded btn-icon" />}
-                                </p>
+                                @if (@data == "Available")
+                                {<p><button type="button" class="btn btn-success btn-rounded btn-icon"/></p>}
+                                else
+                                {<p><button type="button" class="btn btn-danger btn-rounded btn-icon" /></p>}
                             </div>
                             <div class="form-group">
                                 <label for="email">Blood Group:</label>
