@@ -2586,3 +2586,4 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\o
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.genruntimeconfig.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.csproj.AssemblyReference.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\RoleAssign.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\High\Index.cshtml.g.cs
