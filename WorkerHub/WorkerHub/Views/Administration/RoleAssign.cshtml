@@ -6,7 +6,7 @@
 
 <!-- page content -->
 <div class="right_col" role="main">
-    <div class="col-md-12 col-sm-12  ">
+    <div class="col-md-12 col-sm-12">
         <div class="x_panel">
             <div class="x_title">
                 <h2>Assign Roles To Users</h2>
@@ -70,65 +70,67 @@
             </div>
         </div>
     </div>
+    <div class="row">
+        @foreach (var roles in Model.Roles)
+        {
+            <div class="col-md-6 col-sm-6">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>@roles </h2>
+                        <ul class="nav navbar-right panel_toolbox">
+                            <li>
+                                <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                            </li>
+                        </ul>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>UserName</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
 
-    @foreach (var roles in Model.Roles)
-    {
-        <div class="col-md-6 col-sm-6  ">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h2>@roles </h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                            <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>UserName</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
 
-
-                        <tbody>
-                            @foreach (var user in Model.AppUser)
-                            {
-                                @foreach (var data in Model.UserRole)
+                            <tbody>
+                                @foreach (var user in Model.AppUser)
                                 {
-                                    if (user.Id == data.UserId && roles.Id == data.RoleId)
+                                    @foreach (var data in Model.UserRole)
                                     {
-                                        <tr>
-                                            <td>
-                                                <div class="form-group row">
-                                                    <div class="col-md-9 col-sm-9 ">
-
-                                                        @user.Email
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group row">
-                                                    <form asp-controller="Administration" asp-action="RemoveRole" asp-route-id="@user.Id" style="float:left;">
+                                        if (user.Id == data.UserId && roles.Id == data.RoleId)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group row">
                                                         <div class="col-md-9 col-sm-9 ">
-                                                            <button type="submit" class="btn btn-block text-center" onclick="return confirm('Are You Sure u want to Delete?)"><i class="fa fa-trash-o"></i></button>
+
+                                                            @user.Email
+
                                                         </div>
-                                                    </form>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group row">
+                                                        <form asp-controller="Administration" asp-action="RemoveRole" asp-route-id="@user.Id" style="float:left;">
+                                                            <div class="col-md-9 col-sm-9 ">
+                                                                <button type="submit" class="btn btn-block text-center text-danger" onclick="return confirm('Are You Sure u want to Delete?)"><i class="fa fa-trash-o"></i></button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
                                     }
                                 }
-                            }
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+
 </div>
 <!-- /page content -->

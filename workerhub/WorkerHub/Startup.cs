@@ -43,7 +43,8 @@ namespace WorkerHub
                  options.Password.RequireUppercase = false;
                  options.Password.RequireDigit = false;
              })
-            .AddEntityFrameworkStores<ApplicationDbContext>();
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddMvc(options=> {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
