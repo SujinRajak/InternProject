@@ -7,6 +7,7 @@ using Microsoft.VisualStudio.Web.CodeGeneration.Contracts.Messaging;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -63,6 +64,29 @@ namespace WorkerHub.Controllers
             {
                 AppUser = _context.getUser(_userManager.GetUserId(User)),
             };
+            var nostarQuery = from c in dbcontext.applicationUser
+                              join p in dbcontext.Experices
+            .GroupBy(c => c.Userid)
+            .Select(g =>
+                new
+                {
+                    Id = g.Key,
+                    totalexp = g.Sum(s => s.yearsExp),
+                }
+             ) on c.Id equals p.Id into pss
+                              from add in pss.DefaultIfEmpty()
+                              select new { c.Id, add };
+           
+
+            foreach (var item in nostarQuery)
+            {
+                if (item.Id == user.Id)
+                {
+                    det.TotalExpdata.totalExp = item.add.totalexp;
+                    det.TotalExpdata.userid = item.Id;
+                }
+               
+            }
             return View(det);
         }
 

@@ -14,13 +14,13 @@
     {
         address="";
     }
-    var photopath = "~/images/" + (Model.AppUser.img ?? "userimag.jpg");
+    var photopath = "~/images/" + (Model.AppUser.img ?? "user.png");
 }
 
 
 @if (Model.AppUser.InactiveUsers == false)
 {
-<div class="container-fluid">
+<div class="container pt-3 pb-4" >
     <div class="row justify-content-center align-items-center">
                 <div class="col-lg-5">
                     <div class="resume-base bg-primary user-dashboard-info-box p-4">

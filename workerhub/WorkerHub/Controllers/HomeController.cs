@@ -67,34 +67,12 @@ namespace WorkerHub.Controllers
                     {
                         if (usersss.Id == users.UserId)
                         {
-                            display.applicationUsers.Add(new ApplicationUser
-                            {
-                                Id = usersss.Id,
-                                UserName = usersss.UserName,
-                                NormalizedEmail = usersss.NormalizedEmail,
-                                Email = usersss.Email,
-                                PhoneNumber = usersss.PhoneNumber,
-                                Firstname = usersss.Firstname,
-                                LastName = usersss.LastName,
-                                PermanentAddress = usersss.PermanentAddress,
-                                TemporaryAddress = usersss.TemporaryAddress,
-                                Sex = usersss.Sex,
-                                InactiveUsers = usersss.InactiveUsers,
-                                Descripition = usersss.Descripition,
-                                Availablility = usersss.Availablility,
-                                img = usersss.img,
-                                dob = usersss.dob,
-                                citizenship = usersss.citizenship,
-                                city = usersss.city,
-                                country = usersss.country,
-                                streetname = usersss.streetname,
-                                states = usersss.states,
-                                bloodgroup = usersss.bloodgroup
-                            });
+                            employees.Add(usersss);
 
                         }
                     }
                 }
+                display.applicationUsers = employees.Select(x => x).ToList();
                 foreach (var item in query)
                 {
                     display.TotalExpdata.Add(new TotalExp
@@ -116,19 +94,13 @@ namespace WorkerHub.Controllers
         {
             try
             {
-                var query = dbcontext.Experices
-            .GroupBy(c => c.Userid)
-            .Select(g =>
-                new
-                {
-                    Id = g.Key,
-                    totalexp = g.Sum(s => s.yearsExp),
-                }
-            ).ToList();
-                DisplayEmployee display = new DisplayEmployee()
-                {
-                    userExperiences = dbcontext.Experices.ToList()
-                };
+                
+                DisplayEmployee display = new DisplayEmployee();
+                var userExp = dbcontext.Experices.GroupBy(c => c.Userid).Select(g =>
+                    new
+                    {
+                        Id = g.Key,
+                    }).ToList();
                 var applicationUsersdata = dbcontext.applicationUser.ToList();
                 var userRole = dbcontext.UserRoles.ToList();
                 var Roles = roleManager.Roles.ToList();
@@ -145,42 +117,37 @@ namespace WorkerHub.Controllers
                     {
                         if (usersss.Id == users.UserId)
                         {
-                            display.applicationUsers.Add(new ApplicationUser
-                            {
-                                Id = usersss.Id,
-                                UserName = usersss.UserName,
-                                NormalizedEmail = usersss.NormalizedEmail,
-                                Email = usersss.Email,
-                                PhoneNumber = usersss.PhoneNumber,
-                                Firstname = usersss.Firstname,
-                                LastName = usersss.LastName,
-                                PermanentAddress = usersss.PermanentAddress,
-                                TemporaryAddress = usersss.TemporaryAddress,
-                                Sex = usersss.Sex,
-                                InactiveUsers = usersss.InactiveUsers,
-                                Descripition = usersss.Descripition,
-                                Availablility = usersss.Availablility,
-                                img = usersss.img,
-                                dob = usersss.dob,
-                                citizenship = usersss.citizenship,
-                                city = usersss.city,
-                                country = usersss.country,
-                                streetname = usersss.streetname,
-                                states = usersss.states,
-                                bloodgroup = usersss.bloodgroup
-                            });
-
+                            employees.Add(usersss);
                         }
                     }
                 }
-                foreach (var item in query)
+
+                var nostarQuery = from c in dbcontext.applicationUser
+                                  join p in dbcontext.Experices
+                .GroupBy(c => c.Userid)
+                .Select(g =>
+                    new
+                    {
+                        Id = g.Key,
+                        totalexp = g.Sum(s => s.yearsExp),
+                    }
+                 ) on c.Id equals p.Id into pss
+                                  from add in pss.DefaultIfEmpty()
+                                  select new { c.Id, add };
+               
+
+
+                foreach (var item in nostarQuery)
                 {
                     display.TotalExpdata.Add(new TotalExp
                     {
                         userid = item.Id,
-                        totalExp = item.totalexp
+                        totalExp = item.add.totalexp
                     });
                 }
+
+                display.applicationUsers = employees.ToList();
+
                 return View(display);
             }
             catch (Exception ex)
@@ -220,5 +187,6 @@ namespace WorkerHub.Controllers
             return View();
         }
 
+        
     }
 }

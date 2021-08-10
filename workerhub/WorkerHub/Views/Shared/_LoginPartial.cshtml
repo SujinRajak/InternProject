@@ -4,10 +4,9 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <div class="social-links pt-2">
-        <button type="button" class="btn btn-defualt btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-            <i class="fa fa-user fa-lg" aria-hidden="true">@User.Identity.Name</i>
+    <div class="social-links">
+        <button type="button" class="btn btn-defualt btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: 20px; color: #5c768d;border-radius: 20%; text-align:center;">
+            @User.Identity.Name.Substring(0,1)
         </button>
         <div class="dropdown-menu dropdown-menu-right text-right" id="drop">
             <ul class="navbar-nav flex-column">

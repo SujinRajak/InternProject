@@ -1,0 +1,387 @@
+﻿@model DisplayEmployee
+
+@{
+    ViewBag.Title = "Hiring Manager";
+    Layout = "/Views/Shared/_LayoutHire.cshtml";
+}
+
+
+<main id="main">
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>Our Employee</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <a asp-controller="High" asp-action="HighEmployees" class="btn btn-primary animate__animated animate__fadeInUp scrollto float-right">Display More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.applicationUsers.Take(4))
+                {
+
+                    @if (item.InactiveUsers == false && item.Availablility == true)
+                    {
+
+                        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                            <div class="member">
+                                <div class="pic"><img id="output_image" src="@Url.Content("~/images/"+(item.img ?? "user.png"))" class="img-fluid " asp-append-version="true" /></div>
+                                <div class="member-info">
+                                    <a asp-controller="High" asp-action="HighEmployeeDetails" asp-route-id="@item.Id">
+                                        <h4 class="card-title">@item.Firstname @item.LastName</h4>
+                                    </a>
+                                    <span></span>
+                                    <div class="social">
+                                        @foreach (var data in Model.TotalExpdata)
+                                        {
+                                            @if (data.userid == item.Id)
+                                            {
+                                                @if (data.totalExp != 0 && data.totalExp <= 3)
+                                                {
+                                                    for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i == 1)
+                                                        {
+                                                            <i class="fa fa-star fa-2x" style="color:gold !important;"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                        }
+
+                                                    }
+                                                }
+                                                else if (data.totalExp > 3 && data.totalExp <= 6)
+                                                {
+                                                    for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= 2)
+                                                        {
+                                                            <i class="fa fa-star fa-2x" style="color:gold !important;"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                        }
+
+                                                    }
+                                                }
+                                                else if (data.totalExp > 6)
+                                                {
+                                                    for (int i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= 3)
+                                                        {
+                                                            <i class="fa fa-star fa-2x" style="color:gold !important;"></i>
+                                                        }
+                                                        else
+                                                        {
+                                                            <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                        }
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    for (int i = 1; i <= 5; i++)
+                                                    {
+
+                                                        <i class="fa fa-star fa-2x" style="color:black !important;"></i>
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+    </section><!-- End Our Team Section -->
+    <section id="services" class="services">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Services</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Automobile" })">
+                        <div class="icon"><i class="icofont-auto-mobile"></i></div>
+                        <h4 class="title">AutoMobile</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Painter" })">
+                        <div class="icon"><i class="icofont-paint"></i></div>
+                        <h4 class="title">Painter</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Electrician" })">
+                        <div class="icon"><i class="icofont-brand-wire"></i></div>
+                        <h4 class="title">Electrician</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Designing and Multimedia" })">
+                        <div class="icon"><i class="icofont-multimedia"></i></div>
+                        <h4 class="title">Designing and multimedia</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Telecommunication" })">
+                        <div class="icon"><i class="icofont-telephone"></i></div>
+                        <h4 class="title">Telecommunication</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Education" })">
+                        <div class="icon"><i class="icofont-education"></i></div>
+                        <h4 class="title">Education</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Bank" })">
+                        <div class="icon"><i class="icofont-bank-alt"></i></div>
+                        <h4 class="title">Bank</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hospital" })">
+                        <div class="icon"><i class="icofont-hospital"></i></div>
+                        <h4 class="title">Hospital</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Construction" })">
+                        <div class="icon"><i class="icofont-under-construction-alt"></i></div>
+                        <h4 class="title">Construction</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Home" })">
+                        <div class="icon"><i class="icofont-home"></i></div>
+                        <h4 class="title">Home</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Industry" })">
+                        <div class="icon"><i class="icofont-industries-2"></i></div>
+                        <h4 class="title">Industry</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Photographers" })">
+                        <div class="icon"><i class="icofont-camera-alt"></i></div>
+                        <h4 class="title">Photographer</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Saloon" })">
+                        <div class="icon"><i class="icofont-boy"></i></div>
+                        <h4 class="title">Saloon</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hotel" })">
+                        <div class="icon"><i class="icofont-5-star-hotel"></i></div>
+                        <h4 class="title">Hotel</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Trainers" })">
+                        <div class="icon"><i class="icofont-gym"></i></div>
+                        <h4 class="title">Trainers</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="BabySitter" })">
+                        <div class="icon"><i class="icofont-baby"></i></div>
+                        <h4 class="title">Baby sitter</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Key Restore" })">
+                        <div class="icon"><i class="icofont-key"></i></div>
+                        <h4 class="title">Key restore</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Music" })">
+                        <div class="icon"><i class="icofont-music"></i></div>
+                        <h4 class="title">Music</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Carpenter" })">
+                        <div class="icon"><i class="icofont-chair"></i></div>
+                        <h4 class="title">Carpenter</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Builder" })">
+                        <div class="icon"><i class="icofont-building"></i></div>
+                        <h4 class="title">Builder</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Fisherman" })">
+                        <div class="icon"><i class="icofont-fish-5"></i></div>
+                        <h4 class="title">Fisherman</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Butcher" })">
+                        <div class="icon"><i class="icofont-rooster"></i></div>
+                        <h4 class="title">Butcher</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Ranger" })">
+                        <div class="icon"><i class="icofont-rhino"></i></div>
+                        <h4 class="title">Ranger</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Watchman" })">
+                        <div class="icon"><i class="icofont-hotel-boy-alt"></i></div>
+                        <h4 class="title">Watchman</h4>
+                    </a>
+                </div>
+                @*<div class="col-lg-4 col-md-3 icon-box" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon"><i class="icofont-tasks-alt"></i></div>
+                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                    </div>*@
+            </div>
+        </div>
+    </section><!-- End Services Section -->
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="info-box">
+                        <i class="bx bx-map"></i>
+                        <h3>Our Address</h3>
+                        <p>Putalisadak,Kathamndu, NP 44600</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-box">
+                        <i class="bx bx-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>rajaksujin.sr@gmail.com</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-box ">
+                        <i class="bx bx-phone-call"></i>
+                        <h3>Call Us</h3>
+                        <p>+977-9843644464</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="form-row">
+                            <div class="col-lg-6 form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validate"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validate"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Us Section -->
+
+</main><!-- End #main -->
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#txtfiled").on("keyup", function () {
+                //gets all the value
+                var value = $(this).val().toLowerCase();
+
+                $("#filter *").filter(function () {
+
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <script>
+        //get all the class with the samename
+        const count = document.querySelectorAll('.stat-counter');
+        //determining speed
+        const speed = 2500;
+
+        //looping
+        count.forEach(counter => {
+            //making and function of update counter
+            const updateCount = () => {
+                //gettig the target from the text filed
+                const target = +counter.getAttribute('data-target');
+                //getting the initial coun from the text filed
+                const countn = +counter.innerText;
+
+                //logic for inc with each loop
+                const inc = target / speed;
+
+                //setting to stop the coputer if it reaches its limit and more
+                if (countn < target) {
+                    counter.innerText = Math.ceil(countn + inc);
+                    setTimeout(updateCount, 300);
+                }
+                else {
+                    countn.innerText = target;
+                }
+            }
+            //calling function on each iteration loop
+            updateCount();
+        });
+
+    </script>
+
+}

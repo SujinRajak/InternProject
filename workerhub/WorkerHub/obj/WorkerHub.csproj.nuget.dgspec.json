@@ -44,6 +44,10 @@
               "target": "Package",
               "version": "[0.9.4518, )"
             },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
             "Microsoft.AspNetCore": {
               "target": "Package",
               "version": "[2.2.0, )"
