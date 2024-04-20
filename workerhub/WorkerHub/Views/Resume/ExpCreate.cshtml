@@ -1,0 +1,226 @@
+﻿@model ProfileDetialViewModel
+@inject IQualification info
+@inject IEducation edu
+@inject ISkill skil
+@inject UserManager<ApplicationUser> _userManager
+@*this is for the Myresume section*@
+
+
+<div class="col-md-12" id="myresume">
+    @*for the experience section*@
+
+    <div class="table userinfo">
+        <div class="userinfoHeader">
+            <div class="row p-1">
+                <div class=" col-md-10">
+                    <h4>Add Education</h4>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary float-right " asp-controller="Education" asp-action="Create">Add Item</a>
+                </div>
+            </div>
+        </div>
+        <div class="tablesection text-center">
+            <table id="mytable" class="col-md-12 " border="1">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Qualification)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Startdate) - @Html.DisplayNameFor(Model => Model.AppEdu.Enddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Graduated)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Addressname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppEdu.Description)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                @foreach (var item in edu.getrecords())
+                {
+
+                    if (item.Userid == _userManager.GetUserId(User))
+                    {
+                        using (Html.BeginForm("Delete", "Education", new { id = item.Id }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Qualification)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Graduated)
+                                </th>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Addressname)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <div class="btn-group mb-3">
+                                        <a class="btn btn-outline-secondary" asp-controller="Education" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-outline-secondary bg-danger" onclick="return confirm('Delete this item?')"> <i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+
+    @*for the Education section*@
+    <div class="table userinfo">
+        <div class="userinfoHeader">
+            <div class="row p-2">
+                <div class=" col-md-10">
+                    <h4>Add Experience</h4>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary float-right" asp-controller="Experiences" asp-action="Create">Add Item</a>
+                </div>
+            </div>
+        </div>
+        <div class="tablesection text-center">
+            <table id="mytable" class="col-md-12 " border="1">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Sector)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Startdate) - @Html.DisplayNameFor(Model => Model.AppExp.Enddate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.WorkPlace)
+                    </th>
+
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Position)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Addressname)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppExp.Description)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                @foreach (var item in info.getrecords())
+                {
+                    if (item.Userid == _userManager.GetUserId(User))
+                    {
+                        using (Html.BeginForm("Delete", "Experiences", new { id = item.Id }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Sector)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.WorkPlace)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Position)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.Addressname)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+                                    <div class="btn-group mb-3">
+                                        <a class="btn btn-outline-secondary" asp-controller="Experiences" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-outline-secondary bg-danger" onclick="return confirm('Delete this item?')"> <i class="fa fa-trash-o"></i></button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+
+                    }
+                    
+
+                }
+            </table>
+        </div>
+    </div>
+
+    @*for the Skill section*@
+    <div class="table userinfo">
+        <div class="userinfoHeader">
+            <div class="row p-2">
+                <div class=" col-md-10">
+                    <h4>Add Skill</h4>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-primary float-right" asp-controller="Skill" asp-action="Create">Add Item</a>
+                </div>
+            </div>
+        </div>
+        <div class="tablesection text-center">
+            <table id="mytable" class="col-md-12 " border="1">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppSkill.Skill)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppSkill.SkillPercent)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(Model => Model.AppSkill.Description)
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+                @foreach (var item in skil.getrecords())
+                {
+                    if (item.Userid == _userManager.GetUserId(User))
+                    {
+                        using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Skill)
+                                </td>
+                                <th>
+                                    @Html.DisplayFor(modelItem => item.SkillPercent)
+                                </th>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+
+                                <td>
+                                    <div class="btn-group mb-3">
+                                        <a class="btn btn-outline-secondary" asp-controller="Skill" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                        <button type="submit" class="btn btn-outline-secondary bg-danger" onclick="return confirm('Delete this item?')"> <i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+    @*End  for the Myresume*@
+
+
+</div>

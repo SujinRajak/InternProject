@@ -1,0 +1,196 @@
+﻿@{
+    ViewBag.Title = "Browse";
+}
+<div class="container-fluid mt-4">
+    <div class="backgoundpic">
+        <div class="col-md-6 offset-3 mt-4">
+            <div class="input-group">
+                <input id="txtfiled" class="form-control" placeholder="Search for" />
+            </div>
+        </div>
+    </div>
+    <hr class="mt-5" />
+    <section class="container mt-4">
+        <div class="text-center mb-5">
+            <h3>More Workers Category</h3>
+            <hr class="text-center mb-3" style="width: 100px;
+        height: 2px;
+        border: none;
+        color: #a14dff;
+        background-color: #a14dff;
+" />
+        </div>
+        <div id="filter">
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Automobile" })">
+                        <i class="fa fa-car fa-4x"></i>
+                        <p>Automobile Workers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Painter" })">
+                        <i class="fa fa-paint-brush fa-4x"></i>
+                        <p>Painter</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Electrician" })">
+                        <i class="fa fa-lightbulb-o fa-4x"></i>
+                        <p>Electrician</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Designing and Multimedia" })">
+                        <i class="fa fa-desktop fa-4x"></i>
+                        <p>Designing and Multimedia</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Telecommunication" })">
+                        <i class="fa fa-headphones fa-4x"></i>
+                        <p>Telecommunication</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Education"})">
+                        <i class="fa fa-book fa-4x"></i>
+                        <p>Educational Training</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Bank" })">
+                        <i class="fa fa-university fa-4x"></i>
+                        <p>Bank Workers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hospital" })">
+                        <i class="fa fa-hospital-o fa-4x"></i>
+                        <p>Hospital Workers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Construction" })">
+                        <i class="fa fa-building fa-4x"></i>
+                        <p>Construction Workers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Home"})">
+                        <i class="fa fa-home fa-4x"></i>
+                        <p>Home Helpers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Industry" })">
+                        <i class="fa fa-industry fa-4x"></i>
+                        <p>Industry Workers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Photographers" })">
+                        <i class="fa fa-video-camera fa-4x"></i>
+                        <p>Photographers</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Saloon" })">
+                        <i class="fa fa-scissors fa-4x"></i>
+                        <p>Hair Saloon Stylists</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hotel"})">
+                        <i class="fa fa-h-square fa-4x"></i>
+                        <p>Hotel Helpers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Trainers" })">
+                        <i class="fa fa-motorcycle fa-4x"></i>
+                        <p> Automobile Trainers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="BabySitter"})">
+                        <i class="fa fa-child fa-4x"></i>
+                        <p>Nanny</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Key Restore"})">
+                        <i class="fa fa-key fa-4x"></i>
+                        <p>Key Restore</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Music"})">
+                        <i class="fa fa-music fa-4x"></i>
+                        <p>Music Training</p>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Saloon" })">
+                        <i class="fa fa-scissors fa-4x"></i>
+                        <p>Hair Saloon Stylists</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hotel"})">
+                        <i class="fa fa-h-square fa-4x"></i>
+                        <p>Hotel Helpers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Trainers" })">
+                        <i class="fa fa-motorcycle fa-4x"></i>
+                        <p> Automobile Trainers</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="BabySitter"})">
+                        <i class="fa fa-child fa-4x"></i>
+                        <p>Nanny</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Key Restore"})">
+                        <i class="fa fa-key fa-4x"></i>
+                        <p>Key Restore</p>
+                    </a>
+                </div>
+                <div class="col-md-2 text-center">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Music"})">
+                        <i class="fa fa-music fa-4x"></i>
+                        <p>Music Training</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#txtfiled").on("keyup", function () {
+                //gets all the value
+                var value = $(this).val().toLowerCase();
+
+                $("#filter *").filter(function () {
+
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

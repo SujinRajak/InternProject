@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {}
+    "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {
+    "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+        "projectUniqueName": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
         "projectName": "WorkerHub",
-        "projectPath": "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
-        "packagesPath": "C:\\Users\\Sujin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Sujin\\Desktop\\Project\\InternProject\\WorkerHub\\WorkerHub\\obj\\",
+        "projectPath": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\WorkerHub.csproj",
+        "packagesPath": "C:\\Users\\sujin\\.nuget\\packages\\",
+        "outputPath": "D:\\8th project\\CurrentlWorkingproject\\Final intern project\\WorkerHub\\WorkerHub\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Sujin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\sujin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,10 +22,13 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\Telerik": {},
+          "D:\\NugetPackages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
             "projectReferences": {}
           }
         },
@@ -37,7 +40,20 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "Foolproof": {
+              "target": "Package",
+              "version": "[0.9.4518, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[2.14.0, )"
+            },
+            "Microsoft.AspNetCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.6, )"
@@ -59,6 +75,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.6, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "bootstrap.sass": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -67,7 +91,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -79,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,47 +1,59 @@
 ﻿@model RegisterViewModel
 @{
     ViewBag.Title = "User Registration";
-    Layout = "../Shared/_mainLayout";
-} 
-
-
-<div class="container register-main">
-    <form method="post">
-        <div class="text-center icoon">
-            <i class="fa fa-user-plus ico" aria-hidden="true"></i>
-        </div>
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="row register-row">
-            <div class="form-group col-md-6">
-                <label asp-for="FirstName"></label>
-                <input asp-for="FirstName" class="form-control" placeholder="Enter Firstname" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+    Layout = "/Views/Shared/_Layout1.cshtml";
+}
+<div class="row align-items-center justify-content-center">
+    <h3>Register <strong>Worker</strong>Hub</h3>
+    <div class="col-md-12">
+        <p>Already have an Account?<a asp-controller="Account" asp-action="Login"> Log in</a></p>
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group first">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Enter Firstname" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group pr-0">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" placeholder="Enter Lastname" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                </div>
             </div>
-            <div class=" col-md-6">
-                <label asp-for="LastName"></label>
-                <input asp-for="LastName" class="form-control" placeholder="Enter Lastname" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" placeholder="Enter Email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-        </div>
-        <div class=" register-row">
-            <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" placeholder="Enter Email" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-        <div class="row register-row">
-            <div class=" form-group  col-md-6">
+            <div class=" form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" placeholder="Enter Password" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class=" form-group col-md-6">
+            <div class="form-group last">
                 <label asp-for="ConfirmPassword"></label>
                 <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm  Password" />
                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
             </div>
-        </div>
-        <div class="register-row ">
-            <button type="submit" class="btn btn-primary text-center ">Register</button>
-        </div>
-    </form>
+            <div class="form-group last">
+                <label>Role</label>
+                @foreach (var item in Model.Roles)
+                {
+                    <div class="form-check">
+                        <input class="form-check-input" asp-for="RoleName" type="radio" value="@item.Id" checked>
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            @item.Name
+                        </label>
+                    </div>
+                }
+                <span asp-validation-for="RoleName" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Register" class="btn btn-block btn-primary pt-1">
+        </form>
+    </div>
 </div>

@@ -2,39 +2,72 @@
 
 @{
     ViewBag.Title = "Log in";
-    Layout = "../Shared/_mainLayout";
+    Layout = "/Views/Shared/_Layout1.cshtml";
 }
 
 
-<div class="container signin">
-    <form id="account" method="post">
-        <div class="text-center icoon">
-            <i class="fa fa-user ico" aria-hidden="true"></i>
-        </div>
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="col-md-8 offset-3 login-content">
-            <div class="form-group fontuser">
+<div class="row align-items-center justify-content-center">
+    <div class="col-md-7">
+        <h3>Login<strong>Worker</strong>Hub</h3>
+        <p>Do not have an Account?<a asp-controller="Account" asp-action="Register"> Create Account</a></p>
+        <form method="post" asp-controller="Account" asp-action="Login">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group first">
                 <label asp-for="Email"></label>
-                <input asp-for="Email" class="form-control" placeholder="Enter the Email" />
+                <input asp-for="Email" class="form-control p-2" placeholder="your-email@gmail.com" id="username">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="form-group fontPassword">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" class="form-control" placeholder="Enter the Password" />
-                <span asp-validation-for="Password" class="text-danger"></span>
+            <div class="form-group last mb-3">
+                <label asp-for="Password">Password</label>
+                <input asp-for="Password" class="form-control p-2" placeholder="Your Password" id="password">
             </div>
-            <div class="form-group">
-                <div class="checkbox">
-                    <label asp-for="RememberMe">
-                        <input  asp-for="RememberMe"/>
-                        @Html.DisplayNameFor(m => m.RememberMe)
-                    </label>
+
+            <div class="d-flex mb-5 align-items-center">
+                <label class="control control--checkbox mb-0">
+                    <span asp-for="RememberMe" class="caption"></span>
+                    <input asp-for="RememberMe" />
+                    @Html.DisplayNameFor(m => m.RememberMe)
+                    <div class="control__indicator"></div>
+                </label>
+                <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password</a></span>
+            </div>
+
+            <input type="submit" value="Log In" class="btn btn-block btn-primary">
+
+        </form>
+    </div>
+</div>
+
+
+@*<div class="container signin">
+        <form id="account" method="post">
+            <div class="text-center icoon">
+                <i class="fa fa-user ico" aria-hidden="true"></i>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="col-md-8 offset-3 login-content">
+                <div class="form-group fontuser">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter the Email" />
+
+                </div>
+                <div class="form-group fontPassword">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" placeholder="Enter the Password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label asp-for="RememberMe">
+                            <input  asp-for="RememberMe"/>
+                            @Html.DisplayNameFor(m => m.RememberMe)
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Log in</button>
                 </div>
             </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Log in</button>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>*@
 

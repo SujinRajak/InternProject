@@ -1,103 +1,543 @@
-﻿@inject SignInManager<IdentityUser> signInManager
-
+﻿@inject IQualification info
+@inject IEducation edu
+@inject ISkill skil
+@inject UserManager<ApplicationUser> UserManager
+@using System.ComponentModel.DataAnnotations;
+@model ProfileDetialViewModel
 @{
-    ViewBag.Title = "Profile";
+    ViewBag.Title = "Basic Infromation";
+    var data = "";
+    if (Model.AppUser.Availablility)
+    {
+        data = "Available";
+    }
+    else
+    {
+        data = "Not Available";
+    }
+
+    var dateChanger = Model.AppUser.dob;
+    var photopath = "~/images/"+(Model.AppUser.img ?? "user.png");
 }
 
+<div class="container" style="margin-top: 30px;">
+    <div class="profile-head">
+        <div class="row">
 
-@if (signInManager.IsSignedIn(User))
-{
-    <section class="UsernameContainer">
-        <div class="container">
-            <h1>Welcome,@User.Identity.Name</h1>
+            <div class="col-md- col-sm-4 col-xs-12">
+                <img id="output_image" src="@Url.Content(photopath)" class="img-responsive" asp-append-version="true" />
+                <div class="container" style="margin-left: 110px;">
+                    <span class="btn btn-default uplod-file">
+                        Upload Photo <input type="file" name="image" id="image_changer" accept="image/*" onchange="preview_image(event)" />
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-5 col-sm-5 col-xs-12">
+                <h5>@Model.AppUser.Firstname @Model.AppUser.LastName</h5>
+                <ul>
+                    <li><i class="fa fa-briefcase"></i>@Model.TotalExpdata.totalExp Years</li>
+                    <li><i class="fa fa-map-marker fa-1x"></i> Nepal</li>
+                    <li><i class="fa fa-home fa-1x"></i> @(Model.AppUser.PermanentAddress==null?"-": Model.AppUser.PermanentAddress)</li>
+                    <li><i class="fa fa-phone fa-1x"></i> <a href="#" title="call">(+977) @(Model.AppUser.PhoneNumber==null?"--- --- ----": Model.AppUser.PhoneNumber)</a></li>
+                    <li><i class="fa fa-envelope fa-1x"></i><a href="#" title="mail"> @Model.AppUser.Email</a></li>
+                </ul>
+            </div>
         </div>
-    </section>
-}
+    </div>
+    @*profile-head close*@
+</div>
+@*container close*@
 
-<div><hr /></div>
 
-<section>
-    <div class="row">
-        <div class="seperator col-md-3">
-            <div class="Userinfobuttons ">
-                <div class="usernavbar">
-                    <ul class="nav flex-column">
+<br />
+<br />
+
+<div class="container">
+    <div class="row pt-2 pb-2">
+        <div class="col-sm-8">
+            <div data-spy="scroll" class="tabbable-panel">
+                <div class="tabbable-line">
+                    <ul class="nav nav-tabs ">
+                        <li class="active">
+                            <a href="#tab_default_1" data-toggle="tab">Personal Info </a>
+                        </li>
                         <li>
-                            <div>
-
-                            </div>
+                            <a href="#tab_default_2" data-toggle="tab">Education</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">My Profile</a>
+                        <li>
+                            <a href="#tab_default_3" data-toggle="tab">Work Experience</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">My Resume</a>
+                        <li>
+                            <a href="#tab_default_4" data-toggle="tab">Contact Details</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">View Profile</a>
+                        <li>
+                            <a href="#tab_default_5" data-toggle="tab">Address Details</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Change Password</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Delete Account</a>
-                        </li>
-                        <li class="nav-item">
-                            <form id="logoutForm" class="form-inline" asp-controller="Account" asp-action="Logout">
-                                <button type="submit" class="btn btn-link btn-danger text-dark dropdown-item">Logout</button>
-                            </form>
+                        <li>
+                            <a href="#tab_default_6" data-toggle="tab">Resume</a>
                         </li>
                     </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_default_1">
+                            <div class="well well-sm">
+                                <h4>PERSONAL DATA</h4>
+                            </div>
+                            <p align="right">
+                                <a class="btn btn-primary butt btn-sm" asp-controller="Profile" asp-action="Edit"> <i class="fa fa-edit"></i>Edit</a>
+                            </p>
+                            <table class="table bio-table">
+                                <tbody>
+                                    <tr>
+                                        <td>Firstname</td>
+                                        <td>: @Model.AppUser.Firstname</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Lastname</td>
+                                        <td>: @Model.AppUser.LastName</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Date of Birthday</td>
+                                        <td>: @dateChanger.ToString("dd MMM yyyy")</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Gender</td>
+                                        <td>: @Model.AppUser.Sex</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Citizenship</td>
+                                        <td>: @Model.AppUser.citizenship</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane" id="tab_default_2">
+                            <div class="well well-sm">
+                                <h4>EDUCATIONAL BACKGROUND</h4>
+                            </div>
+                            <p align="right">
+                                <a class="btn btn-primary butt btn-sm" asp-controller="Resume" asp-action="ExpCreate"> <i class="fa fa-edit"></i>Edit</a>
+                            </p>
+                            @foreach (var item in edu.getrecords())
+                            {
+
+                                if (item.Userid == Model.AppUser.Id)
+                                {
+                                    <table class="table bio-table">
+                                        <tbody>
+                                            <tr>
+
+                                                <td>@Html.DisplayFor(modelItem => item.Qualification)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Graduated)</td>
+                                                <td>@Html.DisplayFor(modelItem => item.Addressname)</td>
+                                                <td>Year Graduated</td>
+                                                <td> @Html.DisplayFor(modelItem => item.Startdate) </td>
+                                                <td>: @Html.DisplayFor(modelItem => item.Enddate) </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                }
+                            }
+                        </div>
+
+                        <div class="tab-pane" id="tab_default_3">
+                            <div class="well well-sm">
+                                <h4>EMPLOYMENT RECORD</h4>
+                            </div>
+                            <p align="right">
+                                <a class="btn btn-primary butt btn-sm" asp-controller="Resume" asp-action="ExpCreate"> <i class="fa fa-edit"></i>Edit</a>
+                            </p>
+                            @foreach (var item in info.getrecords())
+                            {
+                                if (item.Userid == UserManager.GetUserId(User))
+                                {
+                                    <table class="table bio-table">
+                                        <tbody>
+                                            <tr>
+                                                <td>Organizaition</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.WorkPlace)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Addressname)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Principle Activites</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Sector)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Position</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Position)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>Type of Activities</td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                }
+                            }
+                        </div>
+
+                        <div class="tab-pane" id="tab_default_4">
+                            <div class="well well-sm">
+                                <h4>OFFICIAL AND PERSONAL CONTACTS</h4>
+                            </div>
+                            <p align="right">
+                                <a class="btn btn-primary butt btn-sm" asp-controller="Profile" asp-action="Edit"> <i class="fa fa-edit"></i>Edit</a>
+                            </p>
+                            <table class="table bio-table">
+                                <tbody>
+                                    <tr>
+                                        <td>Personal Mobile Phone</td>
+                                        <td>: @Model.AppUser.PhoneNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Personal Email Address </td>
+                                        <td>: @Model.AppUser.Email</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Home Phone</td>
+                                        <td>: @Model.AppUser.PhoneNumber</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Facebook Account</td>
+                                        <td>: </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Twitter Account</td>
+                                        <td>: </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Skype Account</td>
+                                        <td>: </td>
+                                    </tr>
+                                    <tr>
+                                        <td>LinkedIn Account</td>
+                                        <td>: </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="tab-pane" id="tab_default_5">
+                            <div class="well well-sm">
+                                <h4>ADDRESS DETAILS</h4>
+                            </div>
+                            <p align="right">
+                                <a class="btn btn-primary butt btn-sm" asp-controller="Profile" asp-action="Edit"> <i class="fa fa-edit"></i>Edit</a>
+                            </p>
+                            <table class="table bio-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Present Residential Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Line 1</td>
+                                        <td>: @Model.AppUser.PermanentAddress</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Line 2</td>
+                                        <td>: @Model.AppUser.TemporaryAddress</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>: @Model.AppUser.city</td>
+                                    </tr>
+                                    <tr>
+                                        <td>State</td>
+                                        <td>: @Model.AppUser.states</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country</td>
+                                        <td>: @Model.AppUser.country</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <br />
+
+                            <table class="table bio-table">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2">Permanent Residential Address</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Street Name</td>
+                                        <td>: @Model.AppUser.streetname</td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td>: @Model.AppUser.city</td>
+                                    </tr>
+                                    <tr>
+                                        <td>State</td>
+                                        <td>: @Model.AppUser.city</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country</td>
+                                        <td>: @Model.AppUser.country</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="tab-pane" id="tab_default_6">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-5">
+                                            <div class="resume-base bg-primary user-dashboard-info-box p-4">
+                                                <div class="profile">
+                                                    <div class="jobster-user-info">
+                                                        <div class="profile-avatar">
+                                                            <img id="output_image" src="@Url.Content(photopath)" class="img-fluid " asp-append-version="true"  />
+                                                        </div>
+                                                        <div class="profile-avatar-info mt-3">
+                                                            <h5 class="text-white">@Model.AppUser.Firstname @Model.AppUser.LastName</h5>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="about-candidate border-top">
+                                                    <div class="candidate-info">
+                                                        <h6 class="text-white">Name:</h6>
+                                                        <p class="text-white">@Model.AppUser.Firstname @Model.AppUser.LastName</p>
+                                                    </div>
+                                                    <div class="candidate-info">
+                                                        <h6 class="text-white">Email:</h6>
+                                                        <p class="text-white">@Model.AppUser.Email</p>
+                                                    </div>
+                                                    <div class="candidate-info">
+                                                        <h6 class="text-white">Phone:</h6>
+                                                        <p class="text-white">(+977) @Model.AppUser.PhoneNumber</p>
+                                                    </div>
+                                                    <div class="candidate-info">
+                                                        <h6 class="text-white">Date Of Birth:</h6>
+                                                        <p class="text-white"> @dateChanger.ToString("dd MMM yyyy")</p>
+                                                    </div>
+                                                    <div class="candidate-info">
+                                                        <h6 class="text-white">Address:</h6>
+                                                        <p class="text-white">@Model.AppUser.PermanentAddress, @Model.AppUser.streetname,@Model.AppUser.states,@Model.AppUser.country</p>
+                                                    </div>
+                                                    <div class="candidate-info">
+                                                        <h6 class="text-white">Gender:</h6>
+                                                        <p class="text-white">@Model.AppUser.Sex</p>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-0">
+                                                    <h5 class="text-white">Professional Skill:</h5>
+                                                    @foreach (var item in skil.getrecords())
+                                                    {
+                                                        if (item.Userid == UserManager.GetUserId(User))
+                                                        {
+                                                            using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                                                            {
+                                                                <div class="progress bg-dark">
+                                                                    <div class="progress-bar bg-white" role="progressbar" style="width:55%" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+                                                                        <div class="progress-bar-title text-white"> @Html.DisplayFor(modelItem => item.Skill)</div>
+                                                                        <span class="progress-bar-number text-white"> @Html.DisplayFor(modelItem => item.SkillPercent)</span>
+                                                                    </div>
+                                                                </div>}
+                                                        }
+                                                    }
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-7">
+                                            <div class="resume-experience">
+                                                <div class="timeline-box">
+                                                    <h5 class="resume-experience-title">Education:</h5>
+                                                    <div class="jobster-candidate-timeline">
+                                                        @foreach (var item in edu.getrecords())
+                                                        {
+
+                                                            if (item.Userid == Model.AppUser.Id)
+                                                            {
+                                                                <div class="jobster-timeline-item">
+                                                                    <div class="jobster-timeline-cricle">
+                                                                        <i class="fa fa-circle"></i>
+                                                                    </div>
+                                                                    <div class="jobster-timeline-info">
+                                                                        <div class="dashboard-timeline-info">
+                                                                            <span class="jobster-timeline-time">@Html.DisplayFor(modelItem => item.Startdate) - @Html.DisplayFor(modelItem => item.Enddate) </span>
+                                                                            <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Qualification)</h6>
+                                                                            <span>-  @Html.DisplayFor(modelItem => item.Graduated) , @Html.DisplayFor(modelItem => item.Addressname)</span>
+                                                                            <p class="mt-2">Description</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="timeline-box mt-4">
+                                                    <h5 class="resume-experience-title">Work &amp; Experience:</h5>
+                                                    <div class="jobster-candidate-timeline">
+                                                        @foreach (var item in info.getrecords())
+                                                        {
+                                                            if (item.Userid == UserManager.GetUserId(User))
+                                                            {
+                                                                <div class="jobster-timeline-item">
+                                                                    <div class="jobster-timeline-cricle">
+                                                                        <i class="fa fa-circle"></i>
+                                                                    </div>
+                                                                    <div class="jobster-timeline-info">
+                                                                        <div class="dashboard-timeline-info">
+                                                                            <span class="jobster-timeline-time"> @Html.DisplayFor(modelItem => item.Startdate)-@Html.DisplayFor(modelItem => item.Enddate)</span>
+                                                                            <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Position)</h6>
+                                                                            <span>- @Html.DisplayFor(modelItem => item.WorkPlace) , @Html.DisplayFor(modelItem => item.Addressname)</span>
+                                                                            <p class="mt-2">@Html.DisplayFor(modelItem => item.Description)</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="timeline-box mt-4">
+                                                    <h5 class="resume-experience-title">Skills:</h5>
+                                                    <div class="jobster-candidate-timeline">
+                                                        @foreach (var item in skil.getrecords())
+                                                        {
+                                                            if (item.Userid == UserManager.GetUserId(User))
+                                                            {
+                                                                using (Html.BeginForm("Delete", "Skill", new { id = item.Id }))
+                                                                {
+                                                                    <div class="jobster-timeline-item">
+                                                                        <div class="jobster-timeline-cricle">
+                                                                            <i class="fa fa-circle"></i>
+                                                                        </div>
+                                                                        <div class="jobster-timeline-info">
+                                                                            <div class="dashboard-timeline-info">
+                                                                                <h6 class="mb-2">@Html.DisplayFor(modelItem => item.Skill)</h6>
+                                                                                <p class="mt-2"> @Html.DisplayFor(modelItem => item.Description)</p>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                }
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-        @*<div class="seperator col-md-9">
-            <div class="userinfo ">
-                <div class="userinfoHeader">
-                    <h4>Basic information</h4>
+        <div class="col-sm-4">
+            <div class="tabbable-panel panel-default">
+                <div class="menu_title">
+                    <b>Employee Info</b>
+                    <p>Worker Hub Nepal</p>
                 </div>
-                <div class="UserFrom">
-                    <form method="post">
-                        <div class="text-center icoon">
-                            <i class="fa fa-user-plus ico" aria-hidden="true"></i>
-                        </div>
-                        <div class="row register-row">
-                            <div class="form-group col-md-6">
-                                <label asp-for="FirstName"></label>
-                                <input asp-for="" class="form-control" placeholder="Enter Firstname" />
-                                <span asp-validation-for="" class="text-danger"></span>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="email">Name:</label>
+                                <p>@Model.AppUser.Firstname @Model.AppUser.LastName</p>
                             </div>
-                            <div class=" col-md-6">
-                                <label asp-for=""></label>
-                                <input asp-for="" class="form-control" placeholder="Enter Lastname" />
-                                <span asp-validation-for="" class="text-danger"></span>
+                            <div class="form-group">
+                                <label for="email">Emp Email:</label>
+                                <p>@Model.AppUser.Email</p>
                             </div>
-                        </div>
-                        <div class=" register-row">
-                            <label asp-for=""></label>
-                            <input asp-for="" class="form-control" placeholder="Enter Email" />
-                            <span asp-validation-for="" class="text-danger"></span>
-                        </div>
-                        <div class="row register-row">
-                            <div class=" form-group  col-md-6">
-                                <label asp-for=""></label>
-                                <input asp-for="" class="form-control" placeholder="Enter Password" />
-                                <span asp-validation-for="" class="text-danger"></span>
+                            <div class="form-group">
+                                <label for="email">Availability:</label>
+                                @if (@data == "Available")
+                                {<p><button type="button" class="btn btn-success btn-rounded btn-icon"/></p>}
+                                else
+                                {<p><button type="button" class="btn btn-danger btn-rounded btn-icon" /></p>}
                             </div>
-                            <div class=" form-group col-md-6">
-                                <label asp-for=""></label>
-                                <input asp-for="" class="form-control" placeholder="Confirm  Password" />
-                                <span asp-validation-for="" class="text-danger"></span>
+                            <div class="form-group">
+                                <label for="email">Blood Group:</label>
+                                <p>@Model.AppUser.bloodgroup</p>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">In Case of emergency please contact:</label>
+                                <p>(+977) @Model.AppUser.PhoneNumber</p>
                             </div>
                         </div>
-                        <div class="register-row ">
-                            <button type="submit" class="btn btn-primary text-center ">Register</button>
-                        </div>
-                    </form>*@
-
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-   
-</section>
+</div>
+
+
+
+<script type='text/javascript'>
+    function preview_image(event) {
+        var reader = new FileReader();
+        reader.onload = function () {
+            var output = document.getElementById('output_image');
+            output.src = reader.result;
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    }
+
+
+    $("#image_changer").on('change', function () {
+
+        var files = $('#image_changer').prop("files");
+        var url = "/Profile/OnPostMyUploader?handler=MyUploader";
+        formData = new FormData();
+        formData.append("MyUploader", files[0]);
+
+        jQuery.ajax({
+            type: 'POST',
+            url: url,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("XSRF-TOKEN",
+                    $('input:hidden[name="__RequestVerificationToken"]').val());
+            },
+            success: function (repo) {
+                if (repo.status == "success") {
+                    alert("File : " + repo.filename + " is uploaded successfully");
+                }
+            },
+            error: function () {
+                alert("Error occurs");
+            }
+        });
+    });
+</script>
+
+

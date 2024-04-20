@@ -12,12 +12,13 @@ namespace WorkerHub.Models
     {
         [Key]
         [Column(TypeName = "int")]
-        public int ExpId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
 
         //this will basically addd userid as the foreign key reference with the identity user
+        [ForeignKey("ApplicationUser")]
         public string Userid { get; set; }
-        [ForeignKey("Userid")]
-        public IdentityUser IdentityUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string Sector { get; set; }
@@ -25,15 +26,23 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(255)")]
         public string Position { get; set; }
 
-        public  DateTime? Startdate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Column(TypeName = "DateTime")]
+        public DateTime Startdate { get; set; }
 
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy}")]
+        [Column(TypeName = "DateTime")]
+        public DateTime Enddate { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string WorkPlace { get; set; }
 
-        public DateTime? Enddate { get; set; }
+        [Column(TypeName = "nvarchar(100)")]
+        public string Addressname { get; set; }
 
         [Column(TypeName = "nvarchar(255)")]
         public string Description { get; set; }
 
-
-
+        [Column(TypeName = "int")]
+        public int yearsExp { get; set; }
     }
 }

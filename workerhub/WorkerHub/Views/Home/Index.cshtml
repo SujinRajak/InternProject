@@ -1,12 +1,458 @@
-﻿@{
+﻿@model DisplayEmployee
+@{
     ViewBag.Title = "Home";
 }
-<div class="container">
-    <div class="content text-center">
-        <h2> Find all workers in Nepal</h2>
-        <h5>One cup of Coffee Everyday keeps you working Everyday</h5>
+
+<!-- ======= Hero Section ======= -->
+<section id="hero">
+    <div class="hero-container">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
+
+            <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+
+            <div class="carousel-inner" role="listbox">
+
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url('assets/img/slide/slide-1.jpg');">
+                    <div class="carousel-container">
+                        <div class="carousel-content container">
+                            <h2 class="animate__animated animate__fadeInDown">Create your <span>profile</span></h2>
+                            <p class="animate__animated animate__fadeInUp">Get started by creating your profile.</p>
+                            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url('assets/img/slide/slide-2.jpg');">
+                    <div class="carousel-container">
+                        <div class="carousel-content container">
+                            <h2 class="animate__animated animate__fadeInDown">Fill in information</h2>
+                            <p class="animate__animated animate__fadeInUp">Fill in the informations that are only needed.</p>
+                            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url('assets/img/slide/slide-3.jpg');">
+                    <div class="carousel-container">
+                        <div class="carousel-content container">
+                            <h2 class="animate__animated animate__fadeInDown">Get hired</h2>
+                            <p class="animate__animated animate__fadeInUp">Get hired by the best hiring managers.</p>
+                            <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon icofont-rounded-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#heroCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon icofont-rounded-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+
+        </div>
     </div>
+</section><!-- End Hero -->
 
-    
-</div>
+<main id="main">
 
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+        <div class="container">
+
+            <div class="row no-gutters">
+                <div class="col-lg-6 video-box">
+                    <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                    <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+                </div>
+
+                <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+                    <div class="section-title">
+                        <h2>About Us</h2>
+                        <p>There are three steps involved in using this service. You first create an account, hiring manager then views the available accounts and finally there is hiring process that depends upon the skills you have and the type of job. After being hired the worker can negotiate with the manager about the time availability, compensation and so on.</p>
+                    </div>
+
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon"><i class="bx bx-fingerprint"></i></div>
+                        <h4 class="title"><a href="">Create a profile</a></h4>
+                        <p class="description">A simple yet beautiful profile.</p>
+                    </div>
+
+                    <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                        <div class="icon"><i class="bx bx-gift"></i></div>
+                        <h4 class="title"><a href="">Get hired</a></h4>
+                        <p class="description">Get hired based on the skills you have.</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section><!-- End About Us Section -->
+    <!-- ======= Counts Section ======= -->
+    <section class="counts section-bg">
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up">
+                    <div class="count-box">
+                        <i class="icofont-simple-smile" style="color: #20b38e;"></i>
+                        <span data-toggle="counter-up">232</span>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="count-box">
+                        <i class="icofont-worker" style="color: #c042ff;"></i>
+                        <span data-toggle="counter-up">521</span>
+                        <p>Workers</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="count-box">
+                        <i class="icofont-certificate-alt-2" style="color: #46d1ff;"></i>
+                        <span data-toggle="counter-up">1,463</span>
+                        <p>Skill Category</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="600">
+                    <div class="count-box">
+                        <i class="icofont-users-alt-5" style="color: #ffb459;"></i>
+                        <span data-toggle="counter-up">15</span>
+                        <p>Freelancers</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Counts Section -->
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Services</h2>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Automobile" })">
+                        <div class="icon"><i class="icofont-auto-mobile"></i></div>
+                        <h4 class="title">AutoMobile</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Painter" })">
+                        <div class="icon"><i class="icofont-paint"></i></div>
+                        <h4 class="title">Painter</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Electrician" })">
+                        <div class="icon"><i class="icofont-brand-wire"></i></div>
+                        <h4 class="title">Electrician</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Designing and Multimedia" })">
+                        <div class="icon"><i class="icofont-multimedia"></i></div>
+                        <h4 class="title">Designing and multimedia</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Telecommunication" })">
+                        <div class="icon"><i class="icofont-telephone"></i></div>
+                        <h4 class="title">Telecommunication</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Education" })">
+                        <div class="icon"><i class="icofont-education"></i></div>
+                        <h4 class="title">Education</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Bank" })">
+                        <div class="icon"><i class="icofont-bank-alt"></i></div>
+                        <h4 class="title">Bank</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hospital" })">
+                        <div class="icon"><i class="icofont-hospital"></i></div>
+                        <h4 class="title">Hospital</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Construction" })">
+                        <div class="icon"><i class="icofont-under-construction-alt"></i></div>
+                        <h4 class="title">Construction</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Home" })">
+                        <div class="icon"><i class="icofont-home"></i></div>
+                        <h4 class="title">Home</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Industry" })">
+                        <div class="icon"><i class="icofont-industries-2"></i></div>
+                        <h4 class="title">Industry</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Photographers" })">
+                        <div class="icon"><i class="icofont-camera-alt"></i></div>
+                        <h4 class="title">Photographer</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Saloon" })">
+                        <div class="icon"><i class="icofont-boy"></i></div>
+                        <h4 class="title">Saloon</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Hotel" })">
+                        <div class="icon"><i class="icofont-5-star-hotel"></i></div>
+                        <h4 class="title">Hotel</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Trainers" })">
+                        <div class="icon"><i class="icofont-gym"></i></div>
+                        <h4 class="title">Trainers</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="BabySitter" })">
+                        <div class="icon"><i class="icofont-baby"></i></div>
+                        <h4 class="title">Baby sitter</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Key Restore" })">
+                        <div class="icon"><i class="icofont-key"></i></div>
+                        <h4 class="title">Key restore</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Music" })">
+                        <div class="icon"><i class="icofont-music"></i></div>
+                        <h4 class="title">Music</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Carpenter" })">
+                        <div class="icon"><i class="icofont-chair"></i></div>
+                        <h4 class="title">Carpenter</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Builder" })">
+                        <div class="icon"><i class="icofont-building"></i></div>
+                        <h4 class="title">Builder</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Fisherman" })">
+                        <div class="icon"><i class="icofont-fish-5"></i></div>
+                        <h4 class="title">Fisherman</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Butcher" })">
+                        <div class="icon"><i class="icofont-rooster"></i></div>
+                        <h4 class="title">Butcher</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Ranger" })">
+                        <div class="icon"><i class="icofont-rhino"></i></div>
+                        <h4 class="title">Ranger</h4>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 icon-box" data-aos="fade-up">
+                    <a href="@Url.Action("SearchAction","Join",new {searchKey="Watchman" })">
+                        <div class="icon"><i class="icofont-hotel-boy-alt"></i></div>
+                        <h4 class="title">Watchman</h4>
+                    </a>
+                </div>
+                @*<div class="col-lg-4 col-md-3 icon-box" data-aos="fade-up" data-aos-delay="500">
+                        <div class="icon"><i class="icofont-tasks-alt"></i></div>
+                        <h4 class="title"><a href="">Eiusmod Tempor</a></h4>
+                        <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi</p>
+                    </div>*@
+            </div>
+        </div>
+    </section><!-- End Services Section -->
+    <section id="team" class="team">
+        <div class="container">
+            <div class="section-title">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h2>Our Employee</h2>
+                    </div>
+                    <div class="col-md-2">
+                        <a asp-controller="Home" asp-action="Privacy" class="btn btn-primary animate__animated animate__fadeInUp scrollto float-right">Display More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.applicationUsers.Take(4))
+                {
+
+                    @if (item.InactiveUsers == false && item.Availablility == true)
+                    {
+
+                        <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
+                            <div class="member">
+                                <div class="pic"><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "user.png"))" class="img-fluid " asp-append-version="true" /></div>
+                                <div class="member-info">
+                                    <a asp-controller="Home" asp-action="Detail" asp-route-id="@item.Id">
+                                        <h4 class="card-title">@item.Firstname @item.LastName</h4>
+                                    </a>
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            
+        </div>
+    </section><!-- End Our Team Section -->
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact">
+        <div class="container">
+
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="info-box">
+                        <i class="bx bx-map"></i>
+                        <h3>Our Address</h3>
+                        <p>A108 Adam Street, New York, NY 535022</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+                    <div class="info-box">
+                        <i class="bx bx-envelope"></i>
+                        <h3>Email Us</h3>
+                        <p>info@example.com<br>contact@example.com</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
+                    <div class="info-box ">
+                        <i class="bx bx-phone-call"></i>
+                        <h3>Call Us</h3>
+                        <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+                    <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                        <div class="form-row">
+                            <div class="col-lg-6 form-group">
+                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                                <div class="validate"></div>
+                            </div>
+                            <div class="col-lg-6 form-group">
+                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                                <div class="validate"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                            <div class="validate"></div>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                            <div class="validate"></div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="loading">Loading</div>
+                            <div class="error-message"></div>
+                            <div class="sent-message">Your message has been sent. Thank you!</div>
+                        </div>
+                        <div class="text-center"><button type="submit">Send Message</button></div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </section><!-- End Contact Us Section -->
+
+</main><!-- End #main -->
+
+@section Scripts {
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#txtfiled").on("keyup", function () {
+                //gets all the value
+                var value = $(this).val().toLowerCase();
+
+                $("#filter *").filter(function () {
+
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+
+    <script>
+        //get all the class with the samename
+        const count = document.querySelectorAll('.stat-counter');
+        //determining speed
+        const speed = 2500;
+
+        //looping
+        count.forEach(counter => {
+            //making and function of update counter
+            const updateCount = () => {
+                //gettig the target from the text filed
+                const target = +counter.getAttribute('data-target');
+                //getting the initial coun from the text filed
+                const countn = +counter.innerText;
+
+                //logic for inc with each loop
+                const inc = target / speed;
+
+                //setting to stop the coputer if it reaches its limit and more
+                if (countn < target) {
+                    counter.innerText = Math.ceil(countn + inc);
+                    setTimeout(updateCount, 300);
+                }
+                else {
+                    countn.innerText = target;
+                }
+            }
+            //calling function on each iteration loop
+            updateCount();
+        });
+
+    </script>
+
+}

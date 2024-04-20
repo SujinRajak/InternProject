@@ -1,20 +1,24 @@
-﻿using Microsoft.AspNetCore.SignalR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WorkerHub.Models;
+using WorkerHub.ViewModel;
 
 namespace WorkerHub.Interface
 {
     public interface IApplicationUser
     {
-        ApplicationUser getUser(int id);
+        ApplicationUser getUser(string id);
         IEnumerable<ApplicationUser> getRecords();
+
+        int count();
 
         ApplicationUser update(ApplicationUser changes);
 
-        ApplicationUser delete(int id);
+        //ApplicationUser Update(BasicInfoViewModel model);
 
-        
 
+
+
+        //ApplicationUser delete(string id);
 
     }
 }
