@@ -1,4 +1,5 @@
 ﻿using MailKit.Net.Smtp;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using MimeKit;
@@ -13,6 +14,7 @@ using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
 {
+    [Authorize(Roles = "Hiring Manager")]
     public class HighController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -293,5 +295,30 @@ namespace WorkerHub.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public IActionResult SearchAction(string searchKey = "")
+        {
+            List<UserSkills> userSkills = dbcontext.SkillSets.ToList();
+            var query = (from m in userSkills
+                         join k in dbcontext.applicationUser on m.Userid equals k.Id
+                         where m.Skill == searchKey
+                         select new JoinViewModel
+                         {
+                             Id = k.Id,
+                             Firstname = k.Firstname,
+                             LastName = k.LastName,
+                             PhoneNumber = k.PhoneNumber,
+                             Email = k.Email,
+                             UserName = k.UserName,
+                             Sex = k.Sex,
+                             Descripition = k.Descripition,
+                             PermanentAddress = k.PermanentAddress,
+                             TemporaryAddress = k.TemporaryAddress,
+                             Skill = m.Skill,
+                             skillDescription = m.Description
+                         }).ToList();
+            return View(query);
+
+        }
     }
 }

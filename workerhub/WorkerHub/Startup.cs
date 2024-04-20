@@ -50,7 +50,7 @@ namespace WorkerHub
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
                 
-            }).AddXmlSerializerFormatters();
+            }).AddXmlSerializerFormatters().AddRazorRuntimeCompilation();
             services.AddRazorPages().AddRazorRuntimeCompilation();
             services.AddScoped<IApplicationUser,MockIApplicationUser> ();
             services.AddScoped<IQualification, MockQualification>();

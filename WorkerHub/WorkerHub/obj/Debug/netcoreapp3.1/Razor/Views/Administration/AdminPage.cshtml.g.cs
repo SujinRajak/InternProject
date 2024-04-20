@@ -49,7 +49,9 @@ using WorkerHub.Interface;
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"89b75da298c185f983e46b01ee607ed308519f42", @"/Views/Administration/AdminPage.cshtml")]
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d99adaa4a1a3d046c077d7a6583cb17ad8954426", @"/Views/_ViewImports.cshtml")]
+    #nullable restore
     public class Views_Administration_AdminPage : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<AdminProfileModel>
+    #nullable disable
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Administration", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_1 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "RemoveUser", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -281,7 +283,7 @@ using WorkerHub.Interface;
 #line hidden
 #nullable disable
             WriteLiteral("                                                        <td colspan=\"2\" class=\"text-center\">\r\n                                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4216101", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4216147", async() => {
                 WriteLiteral("\r\n                                                                <button type=\"submit\" class=\"btn btn-block text-danger\"");
                 BeginWriteAttribute("onclick", " onclick=\"", 9320, "\"", 9393, 10);
                 WriteAttributeValue("", 9330, "return", 9330, 6, true);
@@ -422,7 +424,7 @@ WriteAttributeValue(" ", 9376, item.UserName, 9377, 14, false);
 #line hidden
 #nullable disable
             WriteLiteral("</td>\r\n                                            <td colspan=\"2\">\r\n                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4223980", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4224026", async() => {
                 WriteLiteral("<i class=\"fa fa-edit\"></i>");
             }
             );
@@ -456,7 +458,7 @@ WriteAttributeValue(" ", 9376, item.UserName, 9377, 14, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4226595", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4226641", async() => {
                 WriteLiteral("\r\n                                                    <button type=\"submit\" class=\"btn btn-block text-danger\"");
                 BeginWriteAttribute("onclick", " onclick=\"", 12118, "\"", 12187, 10);
                 WriteAttributeValue("", 12128, "return", 12128, 6, true);
@@ -617,7 +619,7 @@ WriteAttributeValue(" ", 12174, item.Name, 12175, 10, false);
                                                     <td>
                                                         <div class=""form-group row"">
                                                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4235524", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "89b75da298c185f983e46b01ee607ed308519f4235570", async() => {
                 WriteLiteral(@"
                                                                 <div class=""col-md-9 col-sm-9 "">
                                                                     <button type=""submit"" class=""btn btn-block text-center text-danger"" onclick=""return confirm('Are You Sure u want to Delete?)""><i class=""fa fa-trash-o""></i></button>
@@ -688,20 +690,34 @@ WriteAttributeValue(" ", 12174, item.Name, 12175, 10, false);
             WriteLiteral("    </div>\r\n\r\n</div>\r\n<!-- /page content -->\r\n");
         }
         #pragma warning restore 1998
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public UserManager<ApplicationUser> UserManager { get; private set; }
+        public UserManager<ApplicationUser> UserManager { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public SignInManager<ApplicationUser> SignInManager { get; private set; }
+        public SignInManager<ApplicationUser> SignInManager { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.ViewFeatures.IModelExpressionProvider ModelExpressionProvider { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IUrlHelper Url { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.IViewComponentHelper Component { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IJsonHelper Json { get; private set; } = default!;
+        #nullable disable
+        #nullable restore
         [global::Microsoft.AspNetCore.Mvc.Razor.Internal.RazorInjectAttribute]
-        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<AdminProfileModel> Html { get; private set; }
+        public global::Microsoft.AspNetCore.Mvc.Rendering.IHtmlHelper<AdminProfileModel> Html { get; private set; } = default!;
+        #nullable disable
     }
 }
 #pragma warning restore 1591
