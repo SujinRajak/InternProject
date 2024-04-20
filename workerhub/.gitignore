@@ -240,3 +240,4 @@ _Pvt_Extensions
 #appsetting
 appsettings.json
 appsettings.Development.json
+/WorkerHub/bin/Debug/netcoreapp3.1
