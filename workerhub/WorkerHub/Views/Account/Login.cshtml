@@ -10,7 +10,7 @@
     <div class="col-md-7">
         <h3>Login<strong>Worker</strong>Hub</h3>
         <p>Do not have an Account?<a asp-controller="Account" asp-action="Register"> Create Account</a></p>
-        <form method="post">
+        <form method="post" asp-controller="Account" asp-action="Login">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group first">
                 <label asp-for="Email"></label>

@@ -2546,8 +2546,6 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\o
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.RazorAssemblyInfo.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.RazorAssemblyInfo.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\staticwebassets\WorkerHub.StaticWebAssets.Manifest.cache
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\staticwebassets\WorkerHub.StaticWebAssets.xml
-D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\scopedcss\bundle\WorkerHub.styles.css
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.TagHelpers.input.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.TagHelpers.output.cache
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.RazorCoreGenerate.cache
@@ -2600,3 +2598,5 @@ D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\o
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ShowHiringManager.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\EmployeeProfile.cshtml.g.cs
 D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\Administration\ManagerProfile.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\Razor\Views\High\SearchAction.cshtml.g.cs
+D:\8th project\CurrentlWorkingproject\Final intern project\WorkerHub\WorkerHub\obj\Debug\netcoreapp3.1\WorkerHub.GeneratedMSBuildEditorConfig.editorconfig

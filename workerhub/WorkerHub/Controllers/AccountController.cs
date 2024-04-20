@@ -70,13 +70,13 @@ namespace WorkerHub.Controllers
                 if (Input.RoleName == null)
                 {
                     ModelState.AddModelError("", "You must have a confirmed email to log on.");
-                    
+
 
                     Input.Roles = roleManager.Roles.Where(x => x.Name != "Admin").ToList();
                     return View();
                 }
 
-                
+
                 //built in method suceeeded to check if the result succeded or not
                 if (result.Succeeded && userRoleresult.Succeeded)
                 {
@@ -131,8 +131,8 @@ namespace WorkerHub.Controllers
             return View();
         }
 
-
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [AllowAnonymous]
 
         public async Task<IActionResult> Login(LoginViewModel model)
