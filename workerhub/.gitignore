@@ -241,4 +241,9 @@ _Pvt_Extensions
 appsettings.json
 appsettings.Development.json
 /WorkerHub/bin/Debug/netcoreapp3.1
+/WorkerHub/bin/Release/netcoreapp3.1
 /WorkerHub/obj
+/WorkerHub/obj/Debug/netcoreapp3.1
+/WorkerHub/obj/Release/netcoreapp3.1
+/.vs/WorkerHub/config
+/.vs//WorkerHub/DesignTimeBuild
