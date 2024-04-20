@@ -247,3 +247,5 @@ appsettings.Development.json
 /WorkerHub/obj/Release/netcoreapp3.1
 /.vs/WorkerHub/config
 /.vs//WorkerHub/DesignTimeBuild
+/workerhub/WorkerHub/obj/Debug/netcoreapp3.1
+/workerhub/WorkerHub/obj/Release/netcoreapp3.1
