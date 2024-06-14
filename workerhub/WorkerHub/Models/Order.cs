@@ -10,7 +10,7 @@ namespace WorkerHub.Models
 		public Guid Id { get; set; }
 		public string PurchaseOrderID { get; set; }
 		public string PurchaseOrderName { get; set; }
-		public int ApplicationUserId { get; set; }
+		public Guid ApplicationUserId { get; set; }
 		public virtual ApplicationUser ApplicationUser { get; set; }
 		public int Amount { get; set; }
 		public string ReturnUrl { get; set; }
