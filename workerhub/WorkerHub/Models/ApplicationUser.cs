@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -68,5 +69,7 @@ namespace WorkerHub.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(20)")]
         public string bloodgroup { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }
