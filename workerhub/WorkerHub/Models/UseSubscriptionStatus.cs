@@ -10,5 +10,6 @@ namespace WorkerHub.Models
 		public Guid ApplicationUserId { get; set; }
 		public virtual ApplicationUser ApplicationUser { get; set; }
 		public DateTime EndDate { get; set; }
+		public bool IsConsumed { get; set; }
 	}
 }
