@@ -44,5 +44,6 @@ namespace WorkerHub.Models
 
         [Column(TypeName = "int")]
         public int yearsExp { get; set; }
+        //
     }
 }
