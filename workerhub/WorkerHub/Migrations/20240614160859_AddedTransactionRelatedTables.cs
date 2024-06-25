@@ -7,130 +7,6 @@ namespace WorkerHub.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<int>(
-                name: "SkillPercent",
-                table: "SkillSets",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "Startdate",
-                table: "Experices",
-                type: "DateTime",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "Enddate",
-                table: "Experices",
-                type: "DateTime",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Addressname",
-                table: "Experices",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "WorkPlace",
-                table: "Experices",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<int>(
-                name: "yearsExp",
-                table: "Experices",
-                type: "int",
-                nullable: false,
-                defaultValue: 0);
-
-            migrationBuilder.AddColumn<bool>(
-                name: "Availablility",
-                table: "AspNetUsers",
-                type: "bit",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "bloodgroup",
-                table: "AspNetUsers",
-                type: "nvarchar(20)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "citizenship",
-                table: "AspNetUsers",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "city",
-                table: "AspNetUsers",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "country",
-                table: "AspNetUsers",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<DateTime>(
-                name: "dob",
-                table: "AspNetUsers",
-                type: "DateTime",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "img",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "states",
-                table: "AspNetUsers",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "streetname",
-                table: "AspNetUsers",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "Startdate",
-                table: "Academics",
-                type: "DateTime",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AlterColumn<DateTime>(
-                name: "Enddate",
-                table: "Academics",
-                type: "DateTime",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldType: "int");
-
-            migrationBuilder.AddColumn<string>(
-                name: "Addressname",
-                table: "Academics",
-                type: "nvarchar(100)",
-                nullable: true);
-
-            migrationBuilder.AddColumn<string>(
-                name: "Graduated",
-                table: "Academics",
-                type: "nvarchar(100)",
-                nullable: true);
-
             migrationBuilder.CreateTable(
                 name: "Orders",
                 columns: table => new
@@ -161,8 +37,7 @@ namespace WorkerHub.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false),
-                    OrderId = table.Column<Guid>(nullable: true),
+                    OrderId = table.Column<int>(nullable: false),
                     Label = table.Column<string>(nullable: true),
                     Amount = table.Column<int>(nullable: false)
                 },
@@ -182,8 +57,7 @@ namespace WorkerHub.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    OrderID = table.Column<int>(nullable: false),
-                    OrderId = table.Column<Guid>(nullable: true),
+                    OrderId = table.Column<int>(nullable: false),
                     KhaltiToken = table.Column<string>(nullable: true),
                     Amount = table.Column<int>(nullable: false),
                     Status = table.Column<string>(nullable: true),
