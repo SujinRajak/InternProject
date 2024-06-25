@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WorkerHub.Infrastructure;
 using WorkerHub.Interface;
 using WorkerHub.Models;
 using WorkerHub.Service;
@@ -56,6 +57,9 @@ namespace WorkerHub
             services.AddScoped<IQualification, MockQualification>();
             services.AddScoped<IEducation, MockEducation>();
             services.AddScoped<ISkill, MockSkill>();
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
+            services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
