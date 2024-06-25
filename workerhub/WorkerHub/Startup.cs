@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WorkerHub.Config;
 using WorkerHub.Infrastructure;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -47,6 +48,8 @@ namespace WorkerHub
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
+            services.Configure<Appsettings>(Configuration.GetSection("AppSettings"));
+
             services.AddMvc(options=> {
                 var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
                 options.Filters.Add(new AuthorizeFilter(policy));
@@ -60,6 +63,7 @@ namespace WorkerHub
             services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
+            services.AddScoped<IEmailSender, EmailSender>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

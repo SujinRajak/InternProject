@@ -49,4 +49,8 @@
     <None Include="wwwroot\images\bg_1.jpg" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EmailHandler\EmailHandler.csproj" />
+  </ItemGroup>
+
 </Project>

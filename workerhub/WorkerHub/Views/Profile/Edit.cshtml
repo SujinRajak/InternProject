@@ -125,24 +125,19 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group  col-md-4">
-                            <label>Street Name</label>
-                            <input asp-for="streetname" class="form-control" placeholder="Enter Street Name" />
-                            <span asp-validation-for="streetname" class="text-danger"></span>
-                        </div>
                     </div>
                     <div class="row">
                         <div class="form-group col-md-6">
-                            <label>Permanent Address</label>
-                            <input asp-for="PermanentAddress" class="form-control" placeholder="Enter Your Permanent Address" />
+                            <label>Current Address</label>
+                            <input asp-for="PermanentAddress" id="PermanentAddress" class="form-control" placeholder="Enter Your Permanent Address" />
                             <span asp-validation-for="PermanentAddress" class="text-danger"></span>
                         </div>
-
-                        <div class="form-group col-md-6">
+                        <button onclick="getCurrentLocation()">Get Current Location</button>
+                       @*  <div class="form-group col-md-6">
                             <label>Temporary Address</label>
                             <input asp-for="TemporaryAddress" class="form-control" placeholder="Enter Your Temporary Address" />
                             <span asp-validation-for="TemporaryAddress" class="text-danger"></span>
-                        </div>
+                        </div> *@
                     </div>
                 </div>
             </div>
@@ -241,6 +236,7 @@
             this.classList.toggle("select-arrow-active");
         });
     }
+
     function closeAllSelect(elmnt) {
         /*a function that will close all select boxes in the document,
         except the current select box:*/
@@ -276,3 +272,58 @@
     });
 </script>
 
+<script>
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition, showError);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        var lat = position.coords.latitude;
+        var lon = position.coords.longitude;
+        getAddressFromCoordinates(lat, lon);
+    }
+
+    function showError(error) {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                alert("User denied the request for Geolocation. Please enable location access in your browser settings by clicking the lock icon next to the URL and resetting the permission");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("Location information is unavailable.");
+                break;
+            case error.TIMEOUT:
+                alert("The request to get user location timed out.");
+                break;
+            case error.UNKNOWN_ERROR:
+                alert("An unknown error occurred.");
+                break;
+        }
+    }
+
+    function getAddressFromCoordinates(lat, lon) {
+        $.ajax({
+            url: 'https://nominatim.openstreetmap.org/reverse',
+            data: {
+                lat: lat,
+                lon: lon,
+                format: 'json'
+            },
+            success: function (data) {
+                if (data && data.address) {
+                    console.log(data);
+                    var address = data.display_name;
+                    $('#PermanentAddress').val(address);
+                } else {
+                    alert("Address not found.");
+                }
+            },
+            error: function () {
+                alert("Unable to retrieve address.");
+            }
+        });
+    }
+</script>

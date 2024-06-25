@@ -1,11 +1,15 @@
 ﻿using MailKit.Net.Smtp;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkerHub.Config;
+using WorkerHub.Helper;
 using WorkerHub.Interface;
 using WorkerHub.Models;
 using WorkerHub.ViewModel;
@@ -20,14 +24,17 @@ namespace WorkerHub.Controllers
         private readonly ApplicationDbContext _context;
         private readonly IApplicationUser _applicationinfo;
         private readonly RoleManager<IdentityRole> roleManager;
-
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context, IApplicationUser applicationInfo, RoleManager<IdentityRole> roleManager)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private Appsettings _app;
+        public AccountController(IOptions<Appsettings> appConfig, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationDbContext context, IApplicationUser applicationInfo, RoleManager<IdentityRole> roleManager, IHttpContextAccessor httpContextAccessor)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _applicationinfo = applicationInfo;
             this.roleManager = roleManager;
+            _httpContextAccessor= httpContextAccessor;
+            _app= appConfig.Value;
         }
 
 
@@ -52,13 +59,14 @@ namespace WorkerHub.Controllers
             if (ModelState.IsValid)
             {
                 //creating a new user object of my own and capturing data of the user from the model 
-                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email, Firstname = Input.FirstName, LastName = Input.LastName, InactiveUsers = false, dob = DateTime.Now, Availablility = true };
+                var user = new ApplicationUser { UserName = Input.Email, Email = Input.Email,InactiveUsers = false, dob = DateTime.Now, Availablility = true };
                 //to create new user we need to make use of the createasyn method to create a new user 
                 //there are two overloaded version so the first instance is of the user oof type my own User object
                 //the second param is the password.so then this password is then hash stored securely oin the database
                 //create aync is an asynchornous methos so we should await it and since it is the await we need to turn into async method
                 // and wrap the action result in a task
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                string password = RandomPassGenerator.GeneratePassword(12, includeUppercase: true, includeLowercase: true, includeDigits: true, includeSpecialCharacters: true);
+                var result = await _userManager.CreateAsync(user, password);
                 var role = await roleManager.FindByIdAsync(Input.RoleName);
                 if (role == null)
                 {
@@ -82,22 +90,16 @@ namespace WorkerHub.Controllers
                 {
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var confirmlink = Url.Action("ConfirmEmail", "Account", new { userid = user.Id, token = token }, Request.Scheme);
-                    var message = new MimeMessage();
-                    message.From.Add(new MailboxAddress("Confirm Your Email", "rajaksujin.sr@gmail.com"));
-                    message.To.Add(new MailboxAddress(user.Firstname, user.UserName));
-                    message.Subject = "Email Confirmation";
-                    var bodyBuilder = new BodyBuilder();
-                    bodyBuilder.HtmlBody = "<b>" + confirmlink + "</b>";
-                    bodyBuilder.TextBody = "This is some plain text";
+                    var request = _httpContextAccessor.HttpContext.Request;
+                    var baseUrl = $"{request.Scheme}://{request.Host}";
 
-                    message.Body = bodyBuilder.ToMessageBody();
-                    using (var client = new SmtpClient())
+                    EmailConfirmationModel emailConfirmationModel = new EmailConfirmationModel()
                     {
-                        client.Connect("smtp.gmail.com", 587, false);
-                        client.Authenticate("rajaksujin.sr@gmail.com", "$Uj##N$p123");
-                        client.Send(message);
-                        client.Disconnect(true);
-                    }
+                        EmailConfirmationLink = confirmlink,
+                        UserName = user.UserName,
+                        Password = password,
+                    };
+                    _applicationinfo.SendEmail(emailConfirmationModel, _app.EmailTemplatePath);
                     //sign in th user and forwarded to the location
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     //var abc = System.Security.Claims.ClaimsPrincipal.Current.Identities.ToList();
@@ -111,6 +113,9 @@ namespace WorkerHub.Controllers
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
+                    RegisterViewModel register = new RegisterViewModel();
+                    register.Roles = roleManager.Roles.Where(x => x.Name != "Admin").ToList();
+                    return View(register);
                 }
             }
             return View(Input);

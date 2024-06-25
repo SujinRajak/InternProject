@@ -1,22 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using WorkerHub.Interface;
 using WorkerHub.Models;
+using WorkerHub.ViewModel;
 
 namespace WorkerHub.Service
 {
     public class MockIApplicationUser : IApplicationUser
     {
         public IEnumerable<ApplicationUser> getdata { get; set; }
-        
+        private readonly IEmailSender _emailService;
 
         public ApplicationDbContext Context;
 
         //bringing the application db context to  the mockapplication to work with the db 
-        public MockIApplicationUser(ApplicationDbContext _context)
+        public MockIApplicationUser(ApplicationDbContext _context,IEmailSender emailSender)
         {
             Context = _context;
+            _emailService = emailSender;
         }
 
         //getting user info
@@ -43,6 +47,33 @@ namespace WorkerHub.Service
             details.State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             Context.SaveChanges();
             return changes;
+        }
+
+        public void SendEmail(EmailConfirmationModel emailConfirmationModel, string emailTemplatePath)
+        {
+            try
+            {
+                string EmailBodyCommon = string.Empty;
+                //var updateStatusUrl = $"{game.BaseURL}p/{token}";
+                var path = Path.Combine(Directory.GetCurrentDirectory(), emailTemplatePath);
+                var emailConfirmationLink = emailConfirmationModel.EmailConfirmationLink;
+                if (File.Exists(path))
+                {
+                    using (StreamReader reader = new StreamReader(path))
+                    {
+                        EmailBodyCommon = reader.ReadToEnd();
+                    }
+                    EmailBodyCommon = EmailBodyCommon.Replace("{UserName}", emailConfirmationModel.UserName);
+                    EmailBodyCommon = EmailBodyCommon.Replace("{EmailConfirmationLink}", emailConfirmationLink);
+                    EmailBodyCommon = EmailBodyCommon.Replace("{Password}", emailConfirmationModel.Password);
+                }
+                string subject = "Email Confirmation";
+                _emailService.SendEmail(emailConfirmationModel.UserName ?? "", subject, EmailBodyCommon);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         //public ApplicationUser Update(BasicInfoViewModel model, string id)

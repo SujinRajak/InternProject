@@ -15,7 +15,7 @@ namespace WorkerHub.Interface
 
         //ApplicationUser Update(BasicInfoViewModel model);
 
-
+        void SendEmail(EmailConfirmationModel emailConfirmationModel, string emailTemplatePath);
 
 
         //ApplicationUser delete(string id);
