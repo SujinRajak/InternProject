@@ -64,6 +64,7 @@ namespace WorkerHub
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IPaymentService, PaymentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
