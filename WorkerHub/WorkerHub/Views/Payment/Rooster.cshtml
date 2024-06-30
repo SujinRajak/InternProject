@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "Rooster Details";
+  
+    Layout = "/Views/Shared/_LayoutPayment.cshtml";
+}
+<div class="main-section">
+    <div class="block-grid-wrap">
+        <h4></h4>
+        @(Html.DevExtreme().DataGrid()
+            .ID("ContentFlaggingInfoDataGrid")
+            .Columns(c =>
+            {
+                c.Add().Caption("Video Owner").DataField("ContentUploadedByName").Width("15%");
+                c.Add().Caption("Video Caption").DataField("Caption").Width("25%");
+                c.Add().Caption("Date Uploaded").DataField("CreatedDate").CellTemplate(@<text>@Html.Raw("<%-formatDate(data.CreatedDate)%>")</text>).Width("10%");
+                c.Add().Caption("Video Category").DataField("ContentType").Width("15%");
+                c.Add().Caption("No of Reports").DataField("NoOfReports").Width("10%").Alignment(HorizontalAlignment.Left);
+                c.Add().Caption("Status").DataField("Status").Width("10%");
+                c.Add().Caption("Action").Width("10%").CellTemplate(
+            @<text>
+            <a onclick="showReportedContent('<%- data.ContentId %>')" title="View Report" class="c-l-action">
+                <i class="fa fa-eye"></i>
+            </a>
+            <a onclick="showVideo('<%- data.ContentFullMediaUrl %>')" title="Play Video" class="c-l-action">
+                <i class="fa fa-play"></i>
+            </a>
+            <a onclick="validUserContent(<%- data.ContentId%>,3)" title="Valid Content" class="c-l-action">
+                <i class="fa fa-flag"></i>
+            </a>
+            <a onclick="flagUserContent(<%- data.ContentId %>,2)" title="Flag Content" class="c-l-action">
+                <i class="fa fa-flag"></i>
+            </a>
+        </text>);
+            })
+            .WordWrapEnabled(true)
+            .RowAlternationEnabled(true)
+            .DataSource(d => d.Mvc().Controller("Content").LoadAction("ContentGrid").Key("ContentId"))
+            .Scrolling(scrolling => scrolling.RowRenderingMode(GridRowRenderingMode.Virtual))
+            .Paging(paging => paging.PageSize(20))
+            .Pager(pager =>
+            {
+                pager.Visible(true);
+                pager.ShowPageSizeSelector(true);
+                pager.AllowedPageSizes(new JS("[10, 20, 50]"));
+                pager.ShowInfo(false);
+                pager.ShowNavigationButtons(true);
+            })
+            .FilterRow(filterRow => filterRow
+            .Visible(true)
+            .ApplyFilter(GridApplyFilterMode.Auto)
+            )
+            .HeaderFilter(headerFilter => headerFilter.Visible(false))
+            )
+    </div>
+</div>
+
+<script>
+    function flagUserContent(contentId, flag) {
+        showConfirmationDialogue("Flag User Content", "Do you want to flag the user content?", FlagContent, contentId, flag)
+    }
+
+    function validUserContent(contentId, flag) {
+        showConfirmationDialogue("Valid User Content", "Are you sure the content is valid?", FlagContent, contentId, flag)
+    }
+
+    function FlagContent(contentId, flag) {
+        if (contentId != null || contentId != '') {
+            $.ajax({
+                type: "PUT",
+                url: '/Content/FlagContent',
+                data: { "contentId": contentId, "flag": flag },
+                success: function (response) {
+                    if (response.status) {
+                        appendAlert(response.message, 'success');
+                        applicationPopupNew.hide();
+                        refreshGrid('#ContentFlaggingInfoDataGrid');
+                    }
+                    else {
+                        appendAlert(response.message, 'danger');
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    appendAlert(errorThrown, 'danger');
+                }
+            });
+        }
+    }
+
+
+    function showReportedContent(data) {
+        applicationPopupNew.show(`/Content/GetReportedContentFlagDetails?contentId=${data}`, '480', '40%', 'Content Reported Details');
+    }
+
+    function showVideo(data) {
+        videoPopup.show(null,
+            data,
+            "Close",
+            function (e) {
+                videoPopup.hide();
+            },
+            '400',
+            '800'
+        )
+    }
+
+
+</script>

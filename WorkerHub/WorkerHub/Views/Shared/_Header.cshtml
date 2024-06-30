@@ -1,0 +1,104 @@
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+@{
+    var userRole = User.Claims.FirstOrDefault(c => c.Type == "Role")?.Value;
+}
+<section id="topbar" class="d-none d-lg-block">
+    <div class="container clearfix">
+        <div class="contact-info float-left">
+            <i class="icofont-envelope"></i><a href="mailto:rajaksujin.sr@gmail.com">rajaksujin.sr@gmail.com</a>
+            <i class="icofont-phone"></i> +977 9843644464
+        </div>
+        <div class="social-links float-right">
+            <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+            <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+            <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+            <a href="#" class="skype"><i class="icofont-skype"></i></a>
+            <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
+        </div>
+    </div>
+</section>
+
+@{
+    if (userRole == "Hiring Manager")
+    {
+        <!-- ======= Header ======= -->
+        <header id="header">
+            <div class="container">
+
+                <div class="logo float-left">
+                    <h1 class="text-light"><a asp-controller="High" asp-action="HighHome"><span>WorkersHub</span></a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                </div>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <nav class="nav-menu float-right d-none d-lg-block">
+                        <ul>
+                            <li class="active"><a asp-controller="High" asp-action="HighHome">Home</a></li>
+                            <li><a href="#team">Employees</a></li>
+                            <li><partial name="_LoginPartialHireManager.cshtml" /></li>
+                        </ul>
+
+                    </nav>
+
+                    <!-- .nav-menu -->
+                }
+                else
+                {
+                    <nav class="nav-menu float-right d-none d-lg-block">
+                        <ul>
+                            <li class="nav-item">
+                                <a class="mainbutt text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class=" mainbutt text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+            </div>
+        </header>
+
+        <!-- End Header -->
+    }
+    else
+    {
+        <header id="header">
+            <div class="container">
+
+                <div class="logo float-left">
+                    <h1 class="text-light"><a asp-controller="Home" asp-action="Index"><span>WorkersHub</span></a></h1>
+                    <!-- Uncomment below if you prefer to use an image logo -->
+                    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+                </div>
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <nav class="nav-menu float-right d-none d-lg-block">
+                        <ul>
+                            <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a href="#about">About Us</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#team">Employees</a></li>
+                            <li><partial name="_LoginPartial.cshtml" /></li>
+                        </ul>
+
+                    </nav>
+                }
+                else
+                {
+                    <nav class="nav-menu float-right d-none d-lg-block">
+                        <ul>
+                            <li class="nav-item">
+                                <a class="mainbutt text-dark" asp-controller="Account" asp-action="Register">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class=" mainbutt text-dark" asp-controller="Account" asp-action="Login">Login</a>
+                            </li>
+                        </ul>
+                    </nav>
+                }
+            </div>
+        </header>
+    }
+}
