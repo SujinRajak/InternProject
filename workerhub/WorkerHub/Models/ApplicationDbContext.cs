@@ -23,6 +23,7 @@ namespace WorkerHub.Models
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<AmountBreakdown> AmountBreakdowns { get; set; }
         public DbSet<UseSubscriptionStatus> UseSubscriptionStatuses { get; set; }
+        public DbSet<EmployeeDetailPermission> EmployeeDetailPermissions { get; set; }
         public DbSet<vw_EmployeeInfo> vw_EmployeeInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)

@@ -22,18 +22,21 @@ namespace WorkerHub.Controllers
         private readonly IApplicationUser _context;
         private ApplicationDbContext dbcontext;
         private readonly RoleManager<IdentityRole> roleManager;
-        public HighController(UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
-            IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _context = context;
-            dbcontext = _db;
-            this.roleManager = roleManager;
-        }
+        private readonly IEmployeeDetailPermissionService _employeeDetailPermissionService;
+		public HighController(UserManager<ApplicationUser> userManager,
+			SignInManager<ApplicationUser> signInManager,
+			IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager,
+            IEmployeeDetailPermissionService employeeDetailPermissionService)
+		{
+			_userManager = userManager;
+			_signInManager = signInManager;
+			_context = context;
+			dbcontext = _db;
+			this.roleManager = roleManager;
+			_employeeDetailPermissionService = employeeDetailPermissionService;
+		}
 
-        [HttpGet]
+		[HttpGet]
         public IActionResult HighHome(string SearchTerm)
         {
             try
@@ -169,14 +172,24 @@ namespace WorkerHub.Controllers
         }
 
         [HttpGet]
-        public IActionResult HighEmployeeDetails(string id)
+        public async Task<IActionResult> HighEmployeeDetails(string id)
         {
             HomeDetailsViewModel details = new HomeDetailsViewModel()
             {
                 AppUser = _context.getUser(id)
 
             };
-            return View(details);
+
+			ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
+            var access = await _employeeDetailPermissionService.CheckIfUserHasAccessAsync(id, user.Id);
+
+            if (!access)
+			{
+                details.PhoneNumber = "xxx-xxxxxxx";
+                details.citizenship = "xxx-xxxxxxx";
+			}
+
+			return View(details);
         }
 
         [HttpGet]
