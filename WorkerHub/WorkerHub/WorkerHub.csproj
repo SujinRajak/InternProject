@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_LayoutPayment.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Views\High\Mailtemplate.html" />
   </ItemGroup>
 
@@ -32,8 +36,6 @@
   <ItemGroup>
     <Folder Include="Utilities\Data\" />
     <Folder Include="Views\MailTemp\" />
-    <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\js\" />
     <Folder Include="wwwroot\lib\bootstrap\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\css\" />
     <Folder Include="wwwroot\lib\bootstrap\dist\js\" />
@@ -45,11 +47,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\_LayoutPayment.cshtml" />
     <None Include="wwwroot\images\bg_1.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\EmailHandler\EmailHandler.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Shared\_LayoutPayment.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Shared\_LayoutPayment.cshtml" />
   </ItemGroup>
 
 </Project>

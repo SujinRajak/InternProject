@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using WorkerHub.Config;
+using WorkerHub.Helper;
 using WorkerHub.Infrastructure;
 using WorkerHub.Interface;
 using WorkerHub.Models;
@@ -46,7 +47,8 @@ namespace WorkerHub
                  options.Password.RequireDigit = false;
              })
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders()
+            .AddClaimsPrincipalFactory<ClaimPrincipalFactory>();
 
             services.Configure<Appsettings>(Configuration.GetSection("AppSettings"));
 
