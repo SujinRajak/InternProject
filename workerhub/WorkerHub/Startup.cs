@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
@@ -50,6 +49,20 @@ namespace WorkerHub
             .AddDefaultTokenProviders()
             .AddClaimsPrincipalFactory<ClaimPrincipalFactory>();
 
+            services.AddAuthorization(option =>
+            {
+                option.AddPolicy("AdminOnly",
+                    policy => policy.RequireAssertion(context => context.User.IsAdmin())
+                );
+
+                option.AddPolicy("HiringManger",
+                    policy => policy.RequireAssertion(context => context.User.IsHighringManager()));
+
+                option.AddPolicy("Employee",
+                      policy => policy.RequireAssertion(context => context.User.IsEmployee()));
+
+            });
+
             services.Configure<Appsettings>(Configuration.GetSection("AppSettings"));
 
             services.AddMvc(options=> {
@@ -67,6 +80,7 @@ namespace WorkerHub
             services.AddScoped<IGenericUnitOfWork, GenericUnitOfWork>();
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IEmployeeDetailPermissionService, EmployeeDetailPermissionService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -14,7 +14,7 @@ using WorkerHub.ViewModel;
 namespace WorkerHub.Controllers
 {
 
-    [Authorize]
+    [Authorize(Policy = "Employee")]
     public class HomeController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;

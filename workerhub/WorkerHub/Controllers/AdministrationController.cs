@@ -12,7 +12,8 @@ using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
+    [Authorize(Policy = "AdminOnly")]
     public class AdministrationController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;

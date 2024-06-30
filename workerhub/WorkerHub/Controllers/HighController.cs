@@ -14,7 +14,7 @@ using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
 {
-    [Authorize(Roles = "Hiring Manager")]
+    [Authorize(Policy = "HiringManger")]
     public class HighController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
