@@ -34,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Migrations\" />
     <Folder Include="Utilities\Data\" />
     <Folder Include="Views\MailTemp\" />
     <Folder Include="wwwroot\lib\bootstrap\" />

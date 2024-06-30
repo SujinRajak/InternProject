@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MimeKit;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -69,6 +70,35 @@ namespace WorkerHub.Service
                 }
                 string subject = "Email Confirmation";
                 _emailService.SendEmail(emailConfirmationModel.UserName ?? "", subject, EmailBodyCommon);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void SendHireingManagersEmail(string emailTemplatePath, ApplicationUser toUser, ApplicationUser currentUser)
+        {
+            try
+            {
+                string EmailBodyCommon = string.Empty;
+                //var updateStatusUrl = $"{game.BaseURL}p/{token}";
+                var path = Path.Combine(Directory.GetCurrentDirectory(), emailTemplatePath);
+                
+                if (File.Exists(path))
+                {
+                    using (StreamReader reader = new StreamReader(path))
+                    {
+                        EmailBodyCommon = reader.ReadToEnd();
+                    }
+                    EmailBodyCommon = EmailBodyCommon.Replace("{User}", toUser.Firstname);
+                    EmailBodyCommon = EmailBodyCommon.Replace("{{Company}","");
+                    EmailBodyCommon = EmailBodyCommon.Replace("{Email}", currentUser.UserName);
+                    EmailBodyCommon = EmailBodyCommon.Replace("{PhoneNumber}", currentUser.PhoneNumber);
+                    
+                }
+                string subject = "Recruitment for Skilled Candidate";
+                _emailService.SendEmail(toUser.UserName ?? "", subject, EmailBodyCommon);
             }
             catch (Exception ex)
             {

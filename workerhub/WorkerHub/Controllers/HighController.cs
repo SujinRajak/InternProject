@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using MimeKit;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using WorkerHub.Config;
 using WorkerHub.Interface;
 using WorkerHub.Models;
 using WorkerHub.ViewModel;
@@ -23,10 +25,12 @@ namespace WorkerHub.Controllers
         private ApplicationDbContext dbcontext;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IEmployeeDetailPermissionService _employeeDetailPermissionService;
-		public HighController(UserManager<ApplicationUser> userManager,
+        private Appsettings _app;
+        public HighController(UserManager<ApplicationUser> userManager,
 			SignInManager<ApplicationUser> signInManager,
 			IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager,
-            IEmployeeDetailPermissionService employeeDetailPermissionService)
+            IEmployeeDetailPermissionService employeeDetailPermissionService,
+            IOptions<Appsettings> appConfig)
 		{
 			_userManager = userManager;
 			_signInManager = signInManager;
@@ -34,7 +38,8 @@ namespace WorkerHub.Controllers
 			dbcontext = _db;
 			this.roleManager = roleManager;
 			_employeeDetailPermissionService = employeeDetailPermissionService;
-		}
+            _app = appConfig.Value;
+        }
 
 		[HttpGet]
         public IActionResult HighHome(string SearchTerm)
@@ -195,28 +200,9 @@ namespace WorkerHub.Controllers
         [HttpGet]
         public IActionResult EmailEmployee(string id)
         {
-            ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
-            var profuser = _context.getUser(id);
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress("WorkersHub", "rajaksujin.sr@gmail.com"));
-            message.To.Add(new MailboxAddress(profuser.Firstname, profuser.UserName));
-            message.Subject = "Recruitment for Skilled Candidate";
-            var bodyBuilder = new BodyBuilder();
-            using (StreamReader SourceReader = System.IO.File.OpenText("D:/8th project/CurrentlWorkingproject/Final intern project/WorkerHub/WorkerHub/Views/High/Mailtemplate.html"))
-            {
-                bodyBuilder.HtmlBody = SourceReader.ReadToEnd();
-            }
-            bodyBuilder.HtmlBody = bodyBuilder.HtmlBody.Replace("{User}", profuser.Firstname);
-           // bodyBuilder.HtmlBody = bodyBuilder.HtmlBody.Replace("{Company}",);
-            bodyBuilder.HtmlBody = bodyBuilder.HtmlBody.Replace("{Email}", user.UserName);
-            bodyBuilder.HtmlBody = bodyBuilder.HtmlBody.Replace("{PhoneNumber}", user.PhoneNumber);
-            message.Body = bodyBuilder.ToMessageBody();
-            using (var client = new SmtpClient()){
-                client.Connect("smtp.gmail.com", 587, false);
-                client.Authenticate("rajaksujin.sr@gmail.com", "$Uj##N$p123");
-                client.Send(message);
-                client.Disconnect(true);
-            }
+            ApplicationUser currentUser = _context.getUser(_userManager.GetUserId(User));
+            var toUser = _context.getUser(id);
+            _context.SendHireingManagersEmail(_app.HiringManagersEmailTemplatePath, toUser, currentUser);
             return RedirectToAction("HighEmployees", "High");
         }
 
