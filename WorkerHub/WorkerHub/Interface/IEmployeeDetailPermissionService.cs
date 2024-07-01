@@ -9,7 +9,7 @@ namespace WorkerHub.Interface
 	public interface IEmployeeDetailPermissionService
 	{
 		Task RequestProfileAccess(string employeeId, string hiringManagerId);
-		Task UpdateProfileAccessRequest(Guid id, bool status);
+		Task<bool> UpdateProfileAccessRequest(Guid id, bool status);
 		Task<bool> CheckIfRequestExists(string employeeId, string hiringManagerId);
 		Task<bool> CheckIfUserHasAccessAsync(string employeeId, string hiringManagerId);
 		Task<List<EmployeeDetailPermissionViewDto>> GetEmployeeDetailRequestViewAsync(string employeeId, string status);

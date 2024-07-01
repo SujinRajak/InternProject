@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using WorkerHub.Service.Dto;
 
 namespace WorkerHub.Models
 {
@@ -30,5 +31,7 @@ namespace WorkerHub.Models
         {
             base.OnModelCreating(builder);
         }
+
+        public DbSet<WorkerHub.Service.Dto.EmployeeDetailPermissionForManagerViewDto> EmployeeDetailPermissionForManagerViewDto { get; set; }
     }
 }
