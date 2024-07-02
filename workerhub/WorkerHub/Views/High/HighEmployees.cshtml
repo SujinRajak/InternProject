@@ -4,16 +4,26 @@
     Layout = "/Views/Shared/_LayoutHire.cshtml";
 }
 
-
 <section id="team" class="team">
     <div class="container">
+        <div class="row mb-3">
+            <div class="col-md-12">
+                <form method="get" action="@Url.Action("HighEmployees")">
+                    <div class="input-group">
+                        <input type="text" name="search" class="form-control" placeholder="Search by name" value="@ViewBag.Search" />
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
 
         <div class="row">
             @foreach (var item in Model.applicationUsers)
             {
                 @if (item.InactiveUsers == false && item.Availablility == true)
                 {
-
                     <div class="col-xl-3 col-lg-4 col-md-6" data-aos="fade-up">
                         <div class="member">
                             <div class="pic"><img id="output_image" src="@Url.Content("~/images/" + (item.img ?? "user.png"))" class="img-fluid " asp-append-version="true" /></div>
@@ -27,7 +37,7 @@
                                     {
                                         @if (data.userid == item.Id)
                                         {
-                                            @if (data.totalExp!=0 && data.totalExp <= 3)
+                                            @if (data.totalExp != 0 && data.totalExp <= 3)
                                             {
                                                 for (int i = 1; i <= 5; i++)
                                                 {
@@ -39,7 +49,6 @@
                                                     {
                                                         <i class="fa fa-star fa-2x" style="color:black !important;"></i>
                                                     }
-
                                                 }
                                             }
                                             else if (data.totalExp > 3 && data.totalExp <= 6)
@@ -54,7 +63,6 @@
                                                     {
                                                         <i class="fa fa-star fa-2x" style="color:black !important;"></i>
                                                     }
-
                                                 }
                                             }
                                             else if (data.totalExp > 6)
@@ -75,30 +83,48 @@
                                             {
                                                 for (int i = 1; i <= 5; i++)
                                                 {
-
                                                     <i class="fa fa-star fa-2x" style="color:black !important;"></i>
                                                 }
                                             }
                                         }
                                     }
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 }
             }
-
-
         </div>
 
+        <div class="row">
+            <div class="col-md-12">
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        @if (ViewBag.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("HighEmployees", new { page = ViewBag.CurrentPage - 1, search = ViewBag.Search })" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                        {
+                            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                                <a class="page-link" href="@Url.Action("HighEmployees", new { page = i, search = ViewBag.Search })">@i</a>
+                            </li>
+                        }
+                        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" href="@Url.Action("HighEmployees", new { page = ViewBag.CurrentPage + 1, search = ViewBag.Search })" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+            </div>
+        </div>
     </div>
-</section><!-- End Our Team Section -->
-
-
-
-@section Scripts{
-
-
-
-}
+</section>

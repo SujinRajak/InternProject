@@ -109,11 +109,10 @@ namespace WorkerHub.Controllers
         }
 
         [HttpGet]
-        public IActionResult HighEmployees()
+        public IActionResult HighEmployees(string search, int page = 1, int pageSize = 4)
         {
             try
             {
-
                 DisplayEmployee display = new DisplayEmployee();
                 var userExp = dbcontext.Experices.GroupBy(c => c.Userid).Select(g =>
                     new
@@ -124,37 +123,39 @@ namespace WorkerHub.Controllers
                 var userRole = dbcontext.UserRoles.ToList();
                 var Roles = roleManager.Roles.ToList();
 
-                var employeequery = from c in roleManager.Roles
+                var employees = (from c in roleManager.Roles
                                     join cn in dbcontext.UserRoles on c.Id equals cn.RoleId
-                                    where c.Name != "Admin" && c.Name != "Hiring Manager"
-                                    select new { cn.UserId };
+                                    join SkillSets in dbcontext.SkillSets on cn.UserId equals SkillSets.Userid
+                                     join user in dbcontext.applicationUser on cn.UserId equals user.Id
+                                     where c.Name != "Admin" && c.Name != "Hiring Manager"
+                                    && (string.IsNullOrEmpty(search) 
+                                    || SkillSets.Skill.Trim().ToLower().Contains(search.Trim().ToLower())
+                                    || (!string.IsNullOrEmpty(user.Firstname) && user.Firstname.Trim().ToLower().Contains(search.Trim().ToLower()))
+                                    || (!string.IsNullOrEmpty(user.LastName) && user.LastName.Trim().ToLower().Contains(search.Trim().ToLower())))
+                                     select user).ToList().Distinct().ToList();
 
-                List<ApplicationUser> employees = new List<ApplicationUser>();
-                foreach (var usersss in applicationUsersdata)
-                {
-                    foreach (var users in employeequery)
-                    {
-                        if (usersss.Id == users.UserId)
-                        {
-                            employees.Add(usersss);
-                        }
-                    }
-                }
+               // List<ApplicationUser> employees = new List<ApplicationUser>();
+
+                //var employees = applicationUsersdata.Where(s => employeequery.Contains(s.Id));
+
+
+
+                // Pagination
+                int totalItems = employees.Count();
+                employees = employees.Skip((page - 1) * pageSize).Take(pageSize).ToList();
 
                 var nostarQuery = from c in dbcontext.applicationUser
                                   join p in dbcontext.Experices
-                .GroupBy(c => c.Userid)
-                .Select(g =>
-                    new
-                    {
-                        Id = g.Key,
-                        totalexp = g.Sum(s => s.yearsExp),
-                    }
-                 ) on c.Id equals p.Id into pss
+                    .GroupBy(c => c.Userid)
+                    .Select(g =>
+                        new
+                        {
+                            Id = g.Key,
+                            totalexp = g.Sum(s => s.yearsExp),
+                        }
+                     ) on c.Id equals p.Id into pss
                                   from add in pss.DefaultIfEmpty()
                                   select new { c.Id, add };
-
-
 
                 foreach (var item in nostarQuery)
                 {
@@ -166,6 +167,9 @@ namespace WorkerHub.Controllers
                 }
 
                 display.applicationUsers = employees.ToList();
+                ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+                ViewBag.CurrentPage = page;
+                ViewBag.Search = search;
 
                 return View(display);
             }
@@ -173,8 +177,8 @@ namespace WorkerHub.Controllers
             {
                 throw ex;
             }
-
         }
+
 
         [HttpGet]
         public async Task<IActionResult> HighEmployeeDetails(string id)
@@ -188,8 +192,14 @@ namespace WorkerHub.Controllers
 			ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
             var access = await _employeeDetailPermissionService.CheckIfUserHasAccessAsync(id, user.Id);
 
-            if (!access)
+            ViewBag.CheckRequest = await _employeeDetailPermissionService.CheckIfRequestExists(id, user.Id);
+
+
+			if (!access)
 			{
+                details.AppUser.Email = "xxx@xxxx.xxx";
+                details.AppUser.PhoneNumber = "xxx-xxxxxxx";
+                details.AppUser.citizenship = "xxx-xxxxxxx";
                 details.PhoneNumber = "xxx-xxxxxxx";
                 details.citizenship = "xxx-xxxxxxx";
 			}
