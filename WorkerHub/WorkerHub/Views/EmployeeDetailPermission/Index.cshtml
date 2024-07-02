@@ -1,0 +1,83 @@
+﻿@model List<EmployeePermissionViewModel>
+
+@{
+    ViewBag.Title = "Employee Permissions";
+    Layout = "/Views/Shared/_Layout.cshtml"; // Update the layout path as per your project
+}
+
+<div class="container">
+    <h2>Employee Permissions</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Requester</th>
+                <th>Status</th>
+                <th>Expires In</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.HiringManagerName</td>
+                    <td>@item.Status</td>
+                    <td>@item.ExpiresIn.ToShortDateString()</td>
+                    <td>
+                        @if (item.Status == "requested" && item.ExpiresIn > DateTime.Now)
+                        {
+                            <button class="btn btn-success btn-approve" data-id="@item.Id">Approve</button>
+                            <button class="btn btn-danger btn-reject" data-id="@item.Id">Reject</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.PageCount; i++)
+            {
+                <li class="page-item @(ViewBag.PageNumber == i ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('.btn-approve').click(function () {
+                var requestId = $(this).data('id');
+                updateStatus(requestId, true);
+            });
+
+            $('.btn-reject').click(function () {
+                var requestId = $(this).data('id');
+                updateStatus(requestId, false);
+            });
+
+            function updateStatus(id, status) {
+                $.ajax({
+                    url: '/EmployeeDetailPermission/Update',
+                    type: 'POST',
+                    data: { id: id, status: status },
+                    success: function (data) {
+                        if (data == true) {
+                            location.reload(); // Reload the page on success
+                        } else {
+                            alert('Failed to update status.');
+                        }
+                    },
+                    error: function () {
+                        alert('Error occurred while updating status.');
+                    }
+                });
+            }
+        });
+    </script>
+}
