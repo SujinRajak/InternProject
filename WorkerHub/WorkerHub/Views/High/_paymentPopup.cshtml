@@ -1,0 +1,19 @@
+﻿<div class="bg-background text-primary-foreground min-h-screen flex items-center justify-center">
+    <div class="bg-card shadow-lg rounded-lg p-8 max-w-md w-full">
+        <h2 class="text-2xl font-bold mb-4">Premium Plan</h2>
+        <p class="text-secondary mb-4">Unlock all premium features</p>
+        <div class="flex items-center justify-between bg-primary text-primary-foreground rounded-lg p-4 mb-4">
+            <span class="font-bold text-lg">1999/month</span>
+            <button class="bg-accent text-accent-foreground px-4 py-2 rounded-lg">Subscribe</button>
+        </div>
+        <p class="text-sm text-muted-foreground mb-4">Cancel anytime. No hidden fees.</p>
+        <img aria-hidden="true" alt="credit-card" src="https://placehold.co/50?text=💳" class="h-8 w-8 mr-2" />
+        <span class="text-sm text-muted-foreground">Secure eSewa Integration</span>
+    </div>
+</div>
+
+<script>
+    var hash = CryptoJS.HmacSHA256("Message", "secret");
+    var hashInBase64 = CryptoJS.enc.Base64.stringify(hash);
+    document.write(hashInBase64);
+</script>

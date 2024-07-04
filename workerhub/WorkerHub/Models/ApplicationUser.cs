@@ -70,6 +70,7 @@ namespace WorkerHub.Models
         [Column(TypeName = "nvarchar(20)")]
         public string bloodgroup { get; set; }
 
+        public bool IsProfileComplete { get; set; }
         public ICollection<Order> Orders { get; set; }
     }
 }

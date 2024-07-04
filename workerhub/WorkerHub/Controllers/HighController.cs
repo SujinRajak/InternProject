@@ -53,7 +53,7 @@ namespace WorkerHub.Controllers
                     {
                         Id = g.Key,
                     }).ToList();
-                var applicationUsersdata = dbcontext.applicationUser.ToList();
+                var applicationUsersdata = dbcontext.applicationUser.Where(a => a.IsProfileComplete && !a.InactiveUsers).ToList();
                 var userRole = dbcontext.UserRoles.ToList();
                 var Roles = roleManager.Roles.ToList();
 
@@ -120,7 +120,7 @@ namespace WorkerHub.Controllers
                     {
                         Id = g.Key,
                     }).ToList();
-                var applicationUsersdata = dbcontext.applicationUser.ToList();
+                var applicationUsersdata = dbcontext.applicationUser.Where(a=>a.IsProfileComplete && !a.InactiveUsers).ToList();
                 var userRole = dbcontext.UserRoles.ToList();
                 var Roles = roleManager.Roles.ToList();
 
