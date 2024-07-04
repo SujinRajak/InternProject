@@ -39,12 +39,12 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <a asp-controller="High" asp-action="EmailEmployee" asp-route-id="@Model.AppUser.Id" class="btn btn-dark">Send Email</a>
+                            <button id="send-email-btn" data-id="@Model.AppUser.Id" class="btn btn-dark">Send Email</button>
                         </div>
                         @if (ViewBag.CheckRequest == false)
                         {
                             <div class="col-md-4">
-                                <button id="ajaxButton" class="btn btn-secondary">Send Access Request</button>
+                                <button id="ajaxButton" class="btn btn-secondary" class="btn btn-dark">Send Access Request</button>
                             </div>
                         }
 
@@ -203,6 +203,25 @@
                     error: function (xhr, status, error) {
                         alert('Access Request failed: ' + error);
                         // Handle error response here
+                    }
+                });
+            });
+        }); 
+        $(document).ready(function () {
+            $('#send-email-btn').click(function (e) {
+                var userId = '@Model.AppUser.Id';
+                $.ajax({
+                    url: '@Url.Action("EmailEmployee", "High", new { id = "__id__" })'.replace("__id__", userId),
+                    type: 'GET',
+                     success: function (data) {
+                        if (data === false) {
+                            alert('Email Sending failed: Access request denied(Need subscription).');
+                        } else {
+                            alert('Email successful sent!');
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred while sending the email.');
                     }
                 });
             });

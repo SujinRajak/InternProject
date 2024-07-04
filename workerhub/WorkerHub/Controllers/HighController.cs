@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using WorkerHub.Config;
 using WorkerHub.Interface;
 using WorkerHub.Models;
+using WorkerHub.Service;
 using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
@@ -25,19 +26,22 @@ namespace WorkerHub.Controllers
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly IEmployeeDetailPermissionService _employeeDetailPermissionService;
         private Appsettings _app;
+        private readonly IPaymentService _paymentService;
         public HighController(UserManager<ApplicationUser> userManager,
-			SignInManager<ApplicationUser> signInManager,
-			IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager,
+            SignInManager<ApplicationUser> signInManager,
+            IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager,
             IEmployeeDetailPermissionService employeeDetailPermissionService,
-            IOptions<Appsettings> appConfig)
-		{
-			_userManager = userManager;
-			_signInManager = signInManager;
-			_context = context;
-			dbcontext = _db;
-			this.roleManager = roleManager;
-			_employeeDetailPermissionService = employeeDetailPermissionService;
+            IOptions<Appsettings> appConfig, 
+            IPaymentService paymentService)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _context = context;
+            dbcontext = _db;
+            this.roleManager = roleManager;
+            _employeeDetailPermissionService = employeeDetailPermissionService;
             _app = appConfig.Value;
+            _paymentService = paymentService;
         }
 
         [Authorize(Policy = "HiringManger")]
@@ -211,12 +215,17 @@ namespace WorkerHub.Controllers
 
         [Authorize(Policy = "HiringManger")]
         [HttpGet]
-        public IActionResult EmailEmployee(string id)
+        public async Task<bool> EmailEmployee(string id)
         {
+
             ApplicationUser currentUser = _context.getUser(_userManager.GetUserId(User));
+
+            if (!(await _paymentService.CheckIfUserIsSubscribed(new Guid(currentUser.Id))))
+                return false;
             var toUser = _context.getUser(id);
             _context.SendHireingManagersEmail(_app.HiringManagersEmailTemplatePath, toUser, currentUser);
-            return RedirectToAction("HighEmployees", "High");
+            return true;
+
         }
 
         [Authorize(Policy = "HiringManger")]
