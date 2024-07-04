@@ -298,32 +298,43 @@ namespace WorkerHub.Controllers
 
         [Authorize(Policy = "AdminOnly")]
         [HttpGet]
-        public async Task<IActionResult> GetAdminTransactionList(int page = 1)
+        public async Task<IActionResult> GetAdminTransactionList(DateTime? fromDate, DateTime? toDate, int page = 1)
         {
+            if(fromDate == null && toDate == null)
+            {
+                toDate = DateTime.Now.Date;
+                fromDate = DateTime.Today.AddDays(-7).Date;
+            }
             var pageSize = 10;
-            var transactionDetails = await (from transaction in _dbcontext.Transactions
-                                            join order in _dbcontext.Order on transaction.OrderId equals order.Id
-                                            join user in _dbcontext.applicationUser on order.ApplicationUserId equals user.Id
-                                            select new TransactionDetailViewModel
-                                            {
-                                                Tidx = transaction.tidx,
-                                                Status = transaction.Status,
-                                                OrderId = order.Id,
-                                                PurchaseOrderName = order.PurchaseOrderName,
-                                                Amount = order.Amount,
-                                                CreatedAt = transaction.CreatedAt,
-                                                UserName = user.Firstname + " " + user.LastName
-                                            }).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            var transactionDetails = (from transaction in _dbcontext.Transactions
+                                      join order in _dbcontext.Order on transaction.OrderId equals order.Id
+                                      join user in _dbcontext.applicationUser on order.ApplicationUserId equals user.Id
+                                      where transaction.CreatedAt.Date >= fromDate && transaction.CreatedAt.Date <= toDate
+                                      select new TransactionDetailViewModel
+                                      {
+                                          Tidx = transaction.tidx,
+                                          Status = transaction.Status,
+                                          OrderId = order.Id,
+                                          PurchaseOrderName = order.PurchaseOrderName,
+                                          Amount = order.Amount,
+                                          CreatedAt = transaction.CreatedAt,
+                                          UserName = user.Firstname + " " + user.LastName
+                                      });
 
-            var totalItems = await _dbcontext.Transactions.CountAsync();
+            var totalItems = await transactionDetails.CountAsync();
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
 
-            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            var data = await transactionDetails.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
+            ViewBag.TotalSales = transactionDetails.Where(s=>s.Status.Equals("Completed")).Sum(s => s.Amount);
+            ViewBag.FromDate = fromDate.Value.ToString("yyyy-MM-dd");
+            ViewBag.ToDate = toDate.Value.ToString("yyyy-MM-dd");
 
             var viewModel = new TransactionIndexViewModel
             {
-                Transactions = transactionDetails,
+                Transactions = data,
                 CurrentPage = page,
                 TotalPages = totalPages
             };

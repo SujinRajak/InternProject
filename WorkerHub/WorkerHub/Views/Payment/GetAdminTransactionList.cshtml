@@ -1,14 +1,37 @@
 ﻿@model TransactionIndexViewModel
 
 @{
-    Layout = "/Views/Shared/_adminView.cshtml"; // Update the layout path as per your project
+    Layout = "/Views/Shared/_adminView.cshtml";
     ViewData["Title"] = "Transaction Details";
 }
 
 <div class="right_col" role="main">
     <div class="x_title">
         <h2>Transaction List</h2>
+        <div class="text-right">
+            <h4>Total Sales: Rs @(ViewBag.TotalSales / 100)</h4>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form method="get" action="@Url.Action("GetAdminTransactionList")">
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="fromDate">From Date</label>
+                        <input type="date" class="form-control" id="fromDate" name="fromDate" value="@ViewBag.FromDate" required>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="toDate">To Date</label>
+                        <input type="date" class="form-control" id="toDate" name="toDate" value="@ViewBag.ToDate" required>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <button type="submit" class="btn btn-primary mt-4">Apply Filter</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <table class="table">
         <thead>
             <tr>
@@ -29,8 +52,8 @@
                     <td>@item.Status</td>
                     <td>@item.OrderId</td>
                     <td>@item.PurchaseOrderName</td>
-                    <td>@item.Amount Paisa</td>
-                    <td>@item.CreatedAt.ToString("g")</td>
+                    <td>Rs @(item.Amount / 100)</td>
+                    <td>@item.CreatedAt.ToString("dd/MM/yyyy")</td>
                     <td>@item.UserName</td>
                 </tr>
             }
