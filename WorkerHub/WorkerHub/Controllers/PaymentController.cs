@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using WorkerHub.Interface;
 using WorkerHub.Service.Dto;
 using System.Diagnostics;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace WorkerHub.Controllers
 {
@@ -33,7 +34,7 @@ namespace WorkerHub.Controllers
             _paymentService = paymentService;
         }
         [HttpGet]
-        public async Task<IActionResult> CatchResponse(
+        public async Task<IActionResult> CatchMockResponse(
             string pidx,
             string txnId,
             decimal amount,
@@ -67,6 +68,87 @@ namespace WorkerHub.Controllers
             ViewBag.Success = transacction.Status == "Completed" ? true : false;
 
             return View();
+
+        }
+        public async Task<IActionResult> CatchResponse(
+            string pidx,
+            string txnId,
+            decimal amount,
+            decimal total_amount,
+            string status,
+            string mobile,
+            string tidx,
+            string purchase_order_id,
+            string purchase_order_name,
+            string transaction_id)
+        {
+            var order = await _dbcontext.Order.FirstOrDefaultAsync(s => s.Id.Equals(purchase_order_id));
+
+            var a = await _dbcontext.Order.ToListAsync();
+
+            var transacction = new Transaction
+            {
+                Id = Guid.NewGuid().ToString(),
+                OrderId = order.Id.ToString(),
+                Status = status,
+                tidx = tidx,
+                transaction_id = transaction_id
+            };
+            _dbcontext.Add(transacction);
+
+            await _dbcontext.SaveChangesAsync();
+            if (transacction.Status == "Completed")
+            {
+                var check = await VerifyPayment(pidx);
+                if(check)
+                    await _paymentService.CompletePaymentProcessAsync(3, order.ApplicationUserId);
+            }
+
+
+            ViewBag.Success = transacction.Status == "Completed" ? true : false;
+
+            return View();
+
+        }
+        private async Task<bool> VerifyPayment(string pxid)
+        {
+            var check = false;
+
+            do
+            {
+                using (HttpClient httpClient = new HttpClient())
+                {
+                    var url = "https://a.khalti.com/api/v2/epayment/lookup/";
+
+                    var payload = new
+                    {
+                        pidx = pxid
+                    };
+                    var jsonPayload = JsonConvert.SerializeObject(payload);
+                    var content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
+
+                    var client = new HttpClient();
+                    client.DefaultRequestHeaders.Add("Authorization", "key 6de045a8cd7a42879dafd3fc1418ddd4");
+
+                    var response = await client.PostAsync(url, content);
+                    var responseContent = await response.Content.ReadAsStringAsync();
+
+                    var res = JsonConvert.DeserializeObject<KhaltiVerifyPaymentResponseDto>(responseContent);
+
+                    if (res.status == "Completed")
+                        return true;
+                    else if (res.status == "Pending" || res.status == "Initiated")
+                    {
+                        await Task.Delay(10000);
+                        check = true;
+                    }
+                    else
+                        return false;
+                }
+            }
+            while (check);
+
+            return false;
 
         }
         [HttpPost]
@@ -114,7 +196,7 @@ namespace WorkerHub.Controllers
                 string transaction_id = "4H7AhoXDJWg5WjrcPT9ixW";
 
                 // Construct the URL to redirect to CatchResponse
-                var url = baseUrl + Url.Action("CatchResponse", "Payment", new
+                var url = baseUrl + Url.Action("CatchMockResponse", "Payment", new
                 {
                     pidx,
                     txnId,
