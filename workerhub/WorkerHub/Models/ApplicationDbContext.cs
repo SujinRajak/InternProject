@@ -20,10 +20,10 @@ namespace WorkerHub.Models
         public DbSet<UserAcademic>  Academics { get; set; }
         public DbSet<UserSkills> SkillSets { get; set; }
         public DbSet<UserExperience> Experices { get; set; }
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Order> Order { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<AmountBreakdown> AmountBreakdowns { get; set; }
-        public DbSet<UseSubscriptionStatus> UseSubscriptionStatuses { get; set; }
+        public DbSet<UseSubscriptionStatus> UseSubscriptionStatus { get; set; }
         public DbSet<EmployeeDetailPermission> EmployeeDetailPermissions { get; set; }
         public DbSet<vw_EmployeeInfo> vw_EmployeeInfo { get; set; }
 

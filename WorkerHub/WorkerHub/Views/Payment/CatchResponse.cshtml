@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null; // No layout needed
+    bool success = ViewBag.Success ?? false;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Response</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var success = @success.ToString().ToLower();
+            if (success) {
+                alert("Payment completed successfully!");
+            } else {
+                alert("Payment failed. Please try again.");
+            }
+            // Close the tab
+            window.close();
+        };
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -19,6 +19,8 @@
 
     var dateChanger = Model.AppUser.dob;
     var photopath = "~/images/" + (Model.AppUser.img ?? "user.png");
+
+    var subbed = @Model.IsSubed;
 }
 
 <div class="container" style="margin-top: 30px;">
@@ -33,7 +35,6 @@
                     </span>
                 </div>
             </div>
-
             <div class="col-md-5 col-sm-5 col-xs-12">
                 <h5>@Model.AppUser.Firstname @Model.AppUser.LastName</h5>
                 <ul>
@@ -41,11 +42,13 @@
                     <li><i class="fa fa-home fa-1x"></i> @(Model.AppUser.PermanentAddress==null?"-": Model.AppUser.PermanentAddress)</li>
                     <li><i class="fa fa-phone fa-1x"></i> <a href="#" title="call">(+977) @(Model.AppUser.PhoneNumber==null?"--- --- ----": Model.AppUser.PhoneNumber)</a></li>
                     <li><i class="fa fa-envelope fa-1x"></i><a href="#" title="mail"> @Model.AppUser.Email</a></li>
+                    <li><i class="fa fa-dollar fa-1x"></i><a href="#" title="Is Subbed"> @subbed</a></li>
                 </ul>
+                    <button id="initiate-payment-btn" class="btn btn-primary btn-sm rounded-pill">Pay With Khalti</button>
+                    <button id="initiate-mock-payment-btn" class="btn btn-primary btn-sm rounded-pill">Mock Pay With Khalti</button>
             </div>
         </div>
     </div>
-
 </div>
 @*container close*@
 
@@ -377,4 +380,68 @@
     });
 </script>
 
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#initiate-payment-btn').click(function (e) {
+                e.preventDefault();
+
+                // Make AJAX call to initiate payment
+                $.ajax({
+                    url: '@Url.Action("InitiatePayment", "Payment")',
+                    type: 'POST',
+                    dataType: 'text', // Ensure the dataType is set correctly
+                    success: function (response) {
+                        // Handle success response
+                        console.log('Payment initiated successfully.');
+                        console.log(response); // Log the response data
+
+                        // Open the received URL in a new tab
+                        window.open(response, '_blank');
+
+                        // Optionally, you can display a message to the user
+                        alert('Payment initiated successfully!');
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error('Error initiating payment:', error);
+                        alert('Error initiating payment. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#initiate-mock-payment-btn').click(function (e) {
+                e.preventDefault();
+
+                // Make AJAX call to initiate payment
+                $.ajax({
+                    url: '@Url.Action("MockPayment", "Payment")',
+                    type: 'POST',
+                    dataType: 'text', // Ensure the dataType is set correctly
+                    success: function (response) {
+                        // Handle success response
+                        console.log('Payment initiated successfully.');
+                        console.log(response); // Log the response data
+
+                        // Open the received URL in a new tab
+                        window.open(response, '_blank');
+
+                        // Optionally, you can display a message to the user
+                        alert('Payment initiated successfully!');
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error('Error initiating payment:', error);
+                        alert('Error initiating payment. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
+}
 

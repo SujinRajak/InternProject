@@ -69,6 +69,8 @@ namespace WorkerHub.ViewModel
         public DateTime dob { get; set; }
 
         public string bloodgroup { get; set; }
+
+        public string IsSubed { get; set; }
     }
     public class EmpProfileDetialViewModel
     {

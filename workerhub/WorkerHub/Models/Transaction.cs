@@ -6,11 +6,10 @@ namespace WorkerHub.Models
 	public class Transaction
 	{
 		[Key]
-		public Guid Id { get; set; }
-		public int OrderID { get; set; }
-		public Order Order { get; set; }
-		public string KhaltiToken { get; set; }
-		public int Amount { get; set; }
+		public string Id { get; set; }
+		public string tidx { get; set; }
+		public string transaction_id { get; set; }
+		public string OrderId { get; set; }
 		public string Status { get; set; }
 		public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 	}

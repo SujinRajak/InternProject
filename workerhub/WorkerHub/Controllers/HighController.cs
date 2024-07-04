@@ -230,7 +230,7 @@ namespace WorkerHub.Controllers
 
         [Authorize(Policy = "HiringManger")]
         [HttpGet]
-        public IActionResult HighProfileSection()
+        public async Task<IActionResult> HighProfileSection()
         {
             //var id = _userManager.GetUserAsync(User);
             //var idid = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -277,8 +277,17 @@ namespace WorkerHub.Controllers
                     det.TotalExpdata.totalExp = item.add.totalexp;
                     det.TotalExpdata.userid = item.Id;
                 }
-
             }
+
+
+            if (await _paymentService.CheckIfUserIsSubscribed(new Guid(user.Id)))
+            {
+
+                det.IsSubed = $"Subscribed  Till :{(await _paymentService.UserIsSubscribedEndDate(new Guid(user.Id))).ToString("dd/MM/yyyy")}";
+            }
+            else
+                det.IsSubed = "Not Subscribed ";
+
             return View(det);
         }
         

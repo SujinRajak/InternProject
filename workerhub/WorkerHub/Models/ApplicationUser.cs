@@ -69,7 +69,5 @@ namespace WorkerHub.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(20)")]
         public string bloodgroup { get; set; }
-
-        public ICollection<Order> Orders { get; set; }
     }
 }
