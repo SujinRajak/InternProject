@@ -11,8 +11,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WorkerHub.Interface;
 using WorkerHub.Service.Dto;
-using System.Diagnostics;
-using Org.BouncyCastle.Asn1.Ocsp;
+using System.Linq;
+using WorkerHub.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WorkerHub.Controllers
 {
@@ -83,8 +84,6 @@ namespace WorkerHub.Controllers
             string transaction_id)
         {
             var order = await _dbcontext.Order.FirstOrDefaultAsync(s => s.Id.Equals(purchase_order_id));
-
-            var a = await _dbcontext.Order.ToListAsync();
 
             var transacction = new Transaction
             {
@@ -295,6 +294,41 @@ namespace WorkerHub.Controllers
                 throw ex;
             }
 
+        }
+
+        [Authorize(Policy = "AdminOnly")]
+        [HttpGet]
+        public async Task<IActionResult> GetAdminTransactionList(int page = 1)
+        {
+            var pageSize = 10;
+            var transactionDetails = await (from transaction in _dbcontext.Transactions
+                                            join order in _dbcontext.Order on transaction.OrderId equals order.Id
+                                            join user in _dbcontext.applicationUser on order.ApplicationUserId equals user.Id
+                                            select new TransactionDetailViewModel
+                                            {
+                                                Tidx = transaction.tidx,
+                                                Status = transaction.Status,
+                                                OrderId = order.Id,
+                                                PurchaseOrderName = order.PurchaseOrderName,
+                                                Amount = order.Amount,
+                                                CreatedAt = transaction.CreatedAt,
+                                                UserName = user.Firstname + " " + user.LastName
+                                            }).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+
+            var totalItems = await _dbcontext.Transactions.CountAsync();
+            var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            ViewBag.CurrentPage = page;
+
+            var viewModel = new TransactionIndexViewModel
+            {
+                Transactions = transactionDetails,
+                CurrentPage = page,
+                TotalPages = totalPages
+            };
+
+            return View(viewModel);
         }
     }
 }

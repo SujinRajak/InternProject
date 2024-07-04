@@ -7,7 +7,6 @@
         public string expires_at { get; set; }
         public int expires_in { get; set; }
     }
-}
     public class KhaltiVerifyPaymentResponseDto
     {
         public string pidx { get; set; }
@@ -17,4 +16,5 @@
         public int fee { get; set; }
         public int refunded { get; set; }
     }
+
 }
