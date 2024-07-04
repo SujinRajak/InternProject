@@ -1,0 +1,73 @@
+﻿@model List<EmployeePermissionViewModel>
+
+@{
+    ViewBag.Title = "Employee Permissions";
+    Layout = "/Views/Shared/_LayoutHire.cshtml"; // Update the layout path as per your project
+    var statusList = new List<SelectListItem>
+    {
+        new SelectListItem { Text = "All", Value = "" },
+        new SelectListItem { Text = "Requested", Value = "requested" },
+        new SelectListItem { Text = "Approved", Value = "approved" },
+        new SelectListItem { Text = "Rejected", Value = "rejected" }
+    };
+}
+
+<div class="container">
+    <h2>Employee Permissions</h2>
+
+    <form method="get" action="@Url.Action("HierIndex")">
+        <div class="form-group">
+            <label for="status">Filter by Status</label>
+            <select id="status" name="status" class="form-control" onchange="this.form.submit()">
+                @foreach (var status in statusList)
+                {
+                    @if (status.Value == ViewBag.Status)
+                    {
+                        <option value="@status.Value" selected="selected">
+                            @status.Text
+                        </option>
+                    }
+                    else
+                    {
+                        <option value="@status.Value" )>@status.Text</option>
+                    }
+                }
+            </select>
+        </div>
+    </form>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Requestd To</th>
+                <th>Status</th>
+                <th>Expires In</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a href="@Url.Action("HighEmployeeDetails", "High", new { id = item.EmployeeId })" class="btn btn-primary">
+                            @item.EmployeeName
+                        </a>
+                    </td>
+                    <td>@item.Status</td>
+                    <td>@item.ExpiresIn.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <ul class="pagination">
+            @for (int i = 1; i <= ViewBag.PageCount; i++)
+            {
+                <li class="page-item @(ViewBag.PageNumber == i ? "active" : "")">
+                    <a class="page-link" href="@Url.Action("Index", new { page = i, status = ViewBag.Status })">@i</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

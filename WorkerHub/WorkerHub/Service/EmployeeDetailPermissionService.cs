@@ -94,27 +94,30 @@ namespace WorkerHub.Service
 
             return datas;
         }
-        public async Task<List<EmployeeDetailPermissionForManagerViewDto>> GetEmployeeDetailRequestForManagerViewAsync(string hiringManagerId, string status)
+        public async Task<IQueryable<EmployeePermissionViewModel>> GetEmployeeDetailRequestForManagerViewAsync(string hiringManagerId, string status)
 		{
-			var response = new List<EmployeeDetailPermissionForManagerViewDto>();
-			var datas = _dbcontext.EmployeeDetailPermissions.Where(s =>s.HiringManagerId.Equals(hiringManagerId));
-            if (string.IsNullOrEmpty(status))
+            var datas = (
+             from permission in _dbcontext.EmployeeDetailPermissions
+             join hiringManager in _dbcontext.applicationUser on permission.HiringManagerId equals hiringManager.Id
+             join employee in _dbcontext.Users on permission.EmployeeId equals employee.Id
+             orderby permission.ExpiresIn descending
+             where hiringManager.Id == hiringManagerId
+             select new EmployeePermissionViewModel
+             {
+                 Id = permission.Id,
+                 HiringManagerName = hiringManager.UserName,
+                 EmployeeName = employee.UserName,
+                 Status = permission.Status,
+                 ExpiresIn = permission.ExpiresIn,
+                 HiringManagerId = hiringManager.Id,
+                 EmployeeId = employee.Id
+             });
+
+            if (!string.IsNullOrEmpty(status))
                 datas = datas.Where(s => s.Status.Equals(status));
 
-            if (datas.Any())
-			{
-				response.AddRange(await datas.Select(s => new EmployeeDetailPermissionForManagerViewDto
-				{
-					Employee = s.HiringManager.Firstname + s.HiringManager.LastName,
-					EmployeeId = s.HiringManagerId,
-					Status = status,
-					Id = s.Id,
-                    ExpiresIn = s.ExpiresIn
-                }).ToListAsync());
-			}
-
-			return response;
-		}
+            return datas;
+        }
 
 
 		private void SendEmail(string userid, string employeeid, string status)

@@ -15,6 +15,6 @@ namespace WorkerHub.Interface
 		Task<bool> CheckIfRequestExists(string employeeId, string hiringManagerId);
 		Task<bool> CheckIfUserHasAccessAsync(string employeeId, string hiringManagerId);
 		Task<IQueryable<EmployeePermissionViewModel>> GetEmployeeDetailRequestViewAsync(string employeeId, string status);
-		Task<List<EmployeeDetailPermissionForManagerViewDto>> GetEmployeeDetailRequestForManagerViewAsync(string hiringManagerId, string status);
+		Task<IQueryable<EmployeePermissionViewModel>> GetEmployeeDetailRequestForManagerViewAsync(string hiringManagerId, string status);
 	}
 }

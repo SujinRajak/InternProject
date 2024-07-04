@@ -59,6 +59,33 @@ namespace WorkerHub.Controllers
 
             return View(paginatedData);
         }
+        public async Task<IActionResult> HierIndex(int? page, string status)
+        {
+            int pageSize = 10; // Number of items per page
+            int pageNumber = page ?? 1;
+
+            ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
+
+            // Fetch data based on the status filter
+            var data = await _employeeDetailPermissionService.GetEmployeeDetailRequestForManagerViewAsync(user.Id, status);
+
+            // Apply pagination
+            var paginatedData = data
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+            // Calculate total pages
+            int totalCount = data.Count();
+            int pageCount = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            // Pass page information to the view
+            ViewBag.PageNumber = pageNumber;
+            ViewBag.PageCount = pageCount;
+            ViewBag.Status = status; // Pass the current status filter to the view
+
+            return View(paginatedData);
+        }
         public async Task<bool> AccessRequest(string id)
 		{
 			ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
