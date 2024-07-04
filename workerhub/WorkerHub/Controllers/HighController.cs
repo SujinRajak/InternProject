@@ -16,7 +16,6 @@ using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
 {
-    [Authorize(Policy = "HiringManger")]
     public class HighController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -41,7 +40,8 @@ namespace WorkerHub.Controllers
             _app = appConfig.Value;
         }
 
-		[HttpGet]
+        [Authorize(Policy = "HiringManger")]
+        [HttpGet]
         public IActionResult HighHome(string SearchTerm)
         {
             try
@@ -108,6 +108,7 @@ namespace WorkerHub.Controllers
             }
         }
 
+        [Authorize(Policy = "HiringManger")]
         [HttpGet]
         public IActionResult HighEmployees(string search, int page = 1, int pageSize = 4)
         {
@@ -180,6 +181,7 @@ namespace WorkerHub.Controllers
         }
 
 
+        [Authorize(Policy = "HiringManger")]
         [HttpGet]
         public async Task<IActionResult> HighEmployeeDetails(string id)
         {
@@ -207,6 +209,7 @@ namespace WorkerHub.Controllers
 			return View(details);
         }
 
+        [Authorize(Policy = "HiringManger")]
         [HttpGet]
         public IActionResult EmailEmployee(string id)
         {
@@ -216,6 +219,7 @@ namespace WorkerHub.Controllers
             return RedirectToAction("HighEmployees", "High");
         }
 
+        [Authorize(Policy = "HiringManger")]
         [HttpGet]
         public IActionResult HighProfileSection()
         {
@@ -268,13 +272,45 @@ namespace WorkerHub.Controllers
             }
             return View(det);
         }
+        
+        public async Task<IActionResult> Details(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
 
+            ApplicationUser currentUser = _context.getUser(_userManager.GetUserId(User));
+            var check = await _employeeDetailPermissionService.CheckIfRequestExists(currentUser.Id, id);
 
+            var viewModel = new EmpProfileDetialViewModel
+            {
+                Id = user.Id,
+                FirstName = user.Firstname,
+                LastName = user.LastName,
+                PhoneNumber = check ? user.PhoneNumber : "*********",
+                PermanentAddress = check ? user.PermanentAddress : "*********",
+                TemporaryAddress = check ? user.TemporaryAddress: "*********",
+                Sex = check ? user.Sex: "*********",
+                InactiveUsers =  user.InactiveUsers,
+                Availabilility = user.Availablility,
+                Descripition = check ? user.Descripition: "*********",
+                citizenship = check ? user.citizenship: "*********",
+                country = check ? user.country: "*********",
+                city = check ? user.city: "*********",
+                streetname = check ? user.streetname: "*********",
+                states = check ? user.states: "*********",
+                dob = check ? user.dob.ToString("dd/MM/yyyy"): "*********",
+                bloodgroup = check ? user.bloodgroup: "*********",
+                // Assuming the image is stored as a base64 string
+                photo = check ? user.img : "*********"// You will need to handle the photo separately
+            };
+
+            return View(viewModel);
+        }
         /// <summary>
         /// submitting the form after editing the details of the users
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
+        [Authorize(Policy = "HiringManger")]
         [HttpPost]
         public async Task<IActionResult> HighEdit(ProfileDetialViewModel model)
         {
@@ -303,7 +339,8 @@ namespace WorkerHub.Controllers
             }
             return View(model);
         }
-
+        
+        [Authorize(Policy = "HiringManger")]
         [HttpGet]
         public IActionResult SearchAction(string searchKey = "")
         {

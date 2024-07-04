@@ -8,6 +8,7 @@ namespace WorkerHub.Service.Dto
 		public string HiringManagerId { get; set; }
 		public string HiringManager { get; set; }
 		public string Status { get; set; }
+		public DateTime ExpiresIn { get; set; }
 	}
 	public class EmployeeDetailPermissionForManagerViewDto
 	{
@@ -15,5 +16,6 @@ namespace WorkerHub.Service.Dto
 		public string EmployeeId { get; set; }
 		public string Employee { get; set; }
 		public string Status { get; set; }
-	}
+        public DateTime ExpiresIn { get; set; }
+    }
 }

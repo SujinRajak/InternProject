@@ -69,45 +69,48 @@ namespace WorkerHub.Service
 																	&& s.Status.Equals("approved")))
 				return true;
 			return false;
-		}
-		public async Task<List<EmployeeDetailPermissionViewDto>> GetEmployeeDetailRequestViewAsync(string employeeId, string status)
-		{
-			var response = new List<EmployeeDetailPermissionViewDto>();
-			if (string.IsNullOrEmpty(status))
-				status = "requested";
-			var datas = _dbcontext.EmployeeDetailPermissions.Where(s =>s.EmployeeId.Equals(employeeId)
-																	&& s.Status.Equals(status));
+        }
+        public async Task<IQueryable<EmployeePermissionViewModel>> GetEmployeeDetailRequestViewAsync(string employeeId, string status)
+        {
+            var datas = (
+             from permission in _dbcontext.EmployeeDetailPermissions
+             join hiringManager in _dbcontext.applicationUser on permission.HiringManagerId equals hiringManager.Id
+             join employee in _dbcontext.Users on permission.EmployeeId equals employee.Id
+             orderby permission.ExpiresIn descending
+			 where employee.Id == employeeId
+             select new EmployeePermissionViewModel
+             {
+                 Id = permission.Id,
+                 HiringManagerName = hiringManager.UserName,
+                 EmployeeName = employee.UserName,
+                 Status = permission.Status,
+                 ExpiresIn = permission.ExpiresIn,
+				 HiringManagerId = hiringManager.Id,
+				 EmployeeId = employee.Id
+             });
 
-			if(datas.Any())
-			{
-				response.AddRange(await datas.Select(s => new EmployeeDetailPermissionViewDto
-				{
-					HiringManager = s.HiringManager.Firstname + s.HiringManager.LastName,
-					HiringManagerId = s.HiringManagerId,
-					Status = status,
-					Id = s.Id
-				}).ToListAsync());
-			}
+            if (!string.IsNullOrEmpty(status))
+                datas = datas.Where(s => s.Status.Equals(status));
 
-			return response;
-		}
-		public async Task<List<EmployeeDetailPermissionForManagerViewDto>> GetEmployeeDetailRequestForManagerViewAsync(string hiringManagerId, string status)
+            return datas;
+        }
+        public async Task<List<EmployeeDetailPermissionForManagerViewDto>> GetEmployeeDetailRequestForManagerViewAsync(string hiringManagerId, string status)
 		{
 			var response = new List<EmployeeDetailPermissionForManagerViewDto>();
-			if (string.IsNullOrEmpty(status))
-				status = "approved";
-			var datas = _dbcontext.EmployeeDetailPermissions.Where(s =>s.HiringManagerId.Equals(hiringManagerId)
-																	&& s.Status.Equals(status));
+			var datas = _dbcontext.EmployeeDetailPermissions.Where(s =>s.HiringManagerId.Equals(hiringManagerId));
+            if (string.IsNullOrEmpty(status))
+                datas = datas.Where(s => s.Status.Equals(status));
 
-			if(datas.Any())
+            if (datas.Any())
 			{
 				response.AddRange(await datas.Select(s => new EmployeeDetailPermissionForManagerViewDto
 				{
 					Employee = s.HiringManager.Firstname + s.HiringManager.LastName,
 					EmployeeId = s.HiringManagerId,
 					Status = status,
-					Id = s.Id
-				}).ToListAsync());
+					Id = s.Id,
+                    ExpiresIn = s.ExpiresIn
+                }).ToListAsync());
 			}
 
 			return response;

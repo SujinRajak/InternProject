@@ -32,36 +32,32 @@ namespace WorkerHub.Controllers
 			_paymentService = paymentService;
 		}
 
-        public async Task<IActionResult> Index(int? page)
+        public async Task<IActionResult> Index(int? page, string status)
         {
             int pageSize = 10; // Number of items per page
             int pageNumber = page ?? 1;
 
+            ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
 
-            var permissions = await (
-             from permission in _dbcontext.EmployeeDetailPermissions
-             join hiringManager in _dbcontext.applicationUser on permission.HiringManagerId equals hiringManager.Id
-             join employee in _dbcontext.Users on permission.EmployeeId equals employee.Id
-             orderby permission.ExpiresIn descending
-             select new EmployeePermissionViewModel
-             {
-                 Id = permission.Id,
-                 HiringManagerName = hiringManager.UserName,
-                 EmployeeName = employee.UserName,
-                 Status = permission.Status,
-                 ExpiresIn = permission.ExpiresIn
-             }
-         )
-         .Skip((pageNumber - 1) * pageSize)
-         .Take(pageSize)
-         .ToListAsync();
+            // Fetch data based on the status filter
+            var data = await _employeeDetailPermissionService.GetEmployeeDetailRequestViewAsync(user.Id, status);
 
-            int pageCount = (int)Math.Ceiling((double)permissions.Count / pageSize);
+            // Apply pagination
+            var paginatedData = data
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
 
+            // Calculate total pages
+            int totalCount = data.Count();
+            int pageCount = (int)Math.Ceiling((double)totalCount / pageSize);
+
+            // Pass page information to the view
             ViewBag.PageNumber = pageNumber;
             ViewBag.PageCount = pageCount;
+            ViewBag.Status = status; // Pass the current status filter to the view
 
-            return View(permissions);
+            return View(paginatedData);
         }
         public async Task<bool> AccessRequest(string id)
 		{
