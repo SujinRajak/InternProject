@@ -329,7 +329,7 @@ namespace WorkerHub.Controllers
                                           Amount = order.Amount,
                                           CreatedAt = transaction.CreatedAt,
                                           UserName = user.Firstname + " " + user.LastName
-                                      });
+                                      }).OrderByDescending(s=>s.CreatedAt);
 
             var totalItems = await transactionDetails.CountAsync();
             var totalPages = (int)Math.Ceiling((double)totalItems / pageSize);

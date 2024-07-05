@@ -114,7 +114,7 @@ namespace WorkerHub.Controllers
 
         [Authorize(Policy = "HiringManger")]
         [HttpGet]
-        public IActionResult HighEmployees(string search, int page = 1, int pageSize = 8)
+        public IActionResult HighEmployees(string search, int page = 1, int pageSize = 4)
         {
             try
             {
