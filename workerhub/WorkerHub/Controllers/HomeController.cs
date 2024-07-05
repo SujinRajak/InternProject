@@ -55,7 +55,7 @@ namespace WorkerHub.Controllers
                 {
                     userExperiences = dbcontext.Experices.ToList()
                 };
-                var applicationUsersdata = dbcontext.applicationUser.ToList();
+                var applicationUsersdata = dbcontext.applicationUser.Where(a=>a.IsProfileCompleted).ToList();
                 var userRole = dbcontext.UserRoles.ToList();
                 var Roles = roleManager.Roles.ToList();
 
@@ -105,13 +105,13 @@ namespace WorkerHub.Controllers
                     {
                         Id = g.Key,
                     }).ToList();
-                var applicationUsersdata = dbcontext.applicationUser.ToList();
+                var applicationUsersdata = dbcontext.applicationUser.Where(a => a.IsProfileCompleted).ToList();
                 var userRole = dbcontext.UserRoles.ToList();
                 var Roles = roleManager.Roles.ToList();
 
                 var employeequery = from c in roleManager.Roles
                                     join cn in dbcontext.UserRoles on c.Id equals cn.RoleId
-                                    where c.Name != "Admin" && c.Name != "Hiring Manager"
+                                    where c.Name != "Admin" && c.Name != "Hiring Manager" 
                                     select new { cn.UserId };
 
                 List<ApplicationUser> employees = new List<ApplicationUser>();
