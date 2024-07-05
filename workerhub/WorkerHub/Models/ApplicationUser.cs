@@ -69,5 +69,8 @@ namespace WorkerHub.Models
         [PersonalData]
         [Column(TypeName = "nvarchar(20)")]
         public string bloodgroup { get; set; }
+        [PersonalData]
+        [Column(TypeName = "bit")]
+        public bool IsProfileCompleted { get; set; }
     }
 }
