@@ -199,8 +199,7 @@ namespace WorkerHub.Controllers
             var access = await _employeeDetailPermissionService.CheckIfUserHasAccessAsync(id, user.Id);
 
             ViewBag.CheckRequest = await _employeeDetailPermissionService.CheckIfRequestExists(id, user.Id);
-
-
+            ViewBag.Access=access;
 			if (!access)
 			{
                 details.AppUser.Email = "xxx@xxxx.xxx";
@@ -208,7 +207,8 @@ namespace WorkerHub.Controllers
                 details.AppUser.citizenship = "xxx-xxxxxxx";
                 details.PhoneNumber = "xxx-xxxxxxx";
                 details.citizenship = "xxx-xxxxxxx";
-			}
+                details.dob = DateTime.MinValue;
+            }
 
 			return View(details);
         }

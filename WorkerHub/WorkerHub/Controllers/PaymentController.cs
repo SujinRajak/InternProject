@@ -93,16 +93,22 @@ namespace WorkerHub.Controllers
                 tidx = tidx,
                 transaction_id = transaction_id
             };
-            _dbcontext.Add(transacction);
+            //_dbcontext.Add(transacction);
 
-            await _dbcontext.SaveChangesAsync();
+            //await _dbcontext.SaveChangesAsync();
             if (transacction.Status == "Completed")
             {
                 var check = await VerifyPayment(pidx);
                 if(check)
                     await _paymentService.CompletePaymentProcessAsync(order.Amount, order.ApplicationUserId);
-            }
+                else
+                {
+                    transacction.Status = "Failed";
+                }
 
+            }
+            _dbcontext.Add(transacction);
+            await _dbcontext.SaveChangesAsync();
 
             ViewBag.Success = transacction.Status == "Completed" ? true : false;
 
