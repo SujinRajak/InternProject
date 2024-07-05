@@ -7,8 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using WorkerHub.Interface;
 using WorkerHub.Models;
+using WorkerHub.Service;
 using WorkerHub.ViewModel;
 
 namespace WorkerHub.Controllers
@@ -22,15 +24,17 @@ namespace WorkerHub.Controllers
         private readonly IApplicationUser _context;
         private ApplicationDbContext dbcontext;
         private readonly RoleManager<IdentityRole> roleManager;
+          private readonly IEmployeeDetailPermissionService _employeeDetailPermissionService;
         public HomeController(UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager)
+            IApplicationUser context, ApplicationDbContext _db, RoleManager<IdentityRole> roleManager, IEmployeeDetailPermissionService employeeDetailPermissionService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             dbcontext = _db;
             this.roleManager = roleManager;
+            _employeeDetailPermissionService = employeeDetailPermissionService;
         }
 
         [HttpGet]
@@ -158,13 +162,26 @@ namespace WorkerHub.Controllers
         }
 
         [HttpGet]
-        public IActionResult Detail(string id)
+        public async Task<IActionResult> Detail(string id)
         {
             HomeDetailsViewModel details = new HomeDetailsViewModel()
             {
                 AppUser = _context.getUser(id)
 
             };
+            ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
+            var access = await _employeeDetailPermissionService.CheckIfUserHasAccessAsync(id, user.Id);
+            ViewBag.CheckRequest = await _employeeDetailPermissionService.CheckIfRequestExists(id, user.Id);
+
+            if (!access)
+            {
+                details.AppUser.Email = "xxx@xxxx.xxx";
+                details.AppUser.PhoneNumber = "xxx-xxxxxxx";
+                details.AppUser.citizenship = "xxx-xxxxxxx";
+                details.PhoneNumber = "xxx-xxxxxxx";
+                details.citizenship = "xxx-xxxxxxx";
+            }
+
             return View(details);
         }
 
