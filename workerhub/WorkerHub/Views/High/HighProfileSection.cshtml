@@ -22,7 +22,59 @@
 
     var subbed = @Model.IsSubed;
 }
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        padding-top: 60px;
+    }
 
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+ /*    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+    } */
+
+      /*   .btn:hover {
+            background-color: #0056b3;
+        } */
+</style>
 <div class="container" style="margin-top: 30px;">
     <div class="profile-head">
         <div class="row">
@@ -46,6 +98,41 @@
                 </ul>
                     <button id="initiate-payment-btn" class="btn btn-primary btn-sm rounded-pill">Pay With Khalti</button>
                     <button id="initiate-mock-payment-btn" class="btn btn-primary btn-sm rounded-pill">Mock Pay With Khalti</button>
+
+
+                <div id="paymentModal" class="modal">
+                    <div class="modal-content">
+                        <h2>Pay With Khalti</h2>
+                        <h5>Select Payment Option</h5>
+                        <div class="row">
+                            <div class="col-9">
+                                <button id="option1" class="btn btn-primary btn-sm rounded-pill">1 Month Subscription</button>
+                                <button id="option2" class="btn btn-primary btn-sm rounded-pill">6 Month Subscription</button>
+                                <button id="option3" class="btn btn-primary btn-sm rounded-pill">12 Month Subscription</button>
+                            </div>
+                            <div class="col-3 text-right">
+                                <button id="myButton1" class="btn btn-primary btn-sm rounded-pill btn-danger">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="MockpaymentModal" class="modal">
+                    <div class="modal-content">
+                        <h2>Mock Pay With Khalti</h2>
+                        <h5>Select Payment Option</h5>
+                        <div class="row">
+                            <div class="col-9">
+                                <button id="Mockoption1" class="btn btn-primary btn-sm rounded-pill">1 Month Subscription</button>
+                                <button id="Mockoption2" class="btn btn-primary btn-sm rounded-pill">6 Month Subscription</button>
+                                <button id="Mockoption3" class="btn btn-primary btn-sm rounded-pill">12 Month Subscription</button>
+                            </div>
+                            <div class="col-3 text-right">
+                                <button id="myButton2" class="btn btn-primary btn-sm rounded-pill btn-danger">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -381,7 +468,7 @@
 </script>
 
 @section Scripts {
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   @*  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function () {
             $('#initiate-payment-btn').click(function (e) {
@@ -442,6 +529,129 @@
                 });
             });
         });
+    </script> *@
+
+    <script>
+        $(document).ready(function () {
+            // Get the modal
+            var modal = document.getElementById("paymentModal");
+
+            // Get the button that opens the modal
+            var btns = document.querySelectorAll("#initiate-payment-btn");
+
+
+            // When the user clicks the button, open the modal
+            btns.forEach(function (btn) {
+                btn.onclick = function () {
+                    modal.style.display = "block";
+                };
+            });
+
+            $('#myButton1').click(function () {
+                // Code to execute when the button is clicked
+                modal.style.display = "none";
+            });
+
+
+            $('#option1').click(function () {
+                initiatePayment(1);
+            });
+
+            $('#option2').click(function () {
+                initiatePayment(2);
+            });
+
+            $('#option3').click(function () {
+                initiatePayment(3);
+            });
+
+            function initiatePayment(type) {
+                $.ajax({
+                    url: '@Url.Action("InitiatePayment", "Payment")',
+                    type: 'POST',
+                    data: { type: type },
+                    dataType: 'text',
+                    success: function (response) {
+                        console.log('Payment initiated successfully.');
+                        console.log(response); // Log the response data
+
+                        // Open the received URL in a new tab
+                        window.open(response, '_blank');
+
+                        alert('Payment initiated successfully!');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error initiating payment:', error);
+                        alert('Error initiating payment. Please try again.');
+                    }
+                });
+
+                modal.style.display = "none";
+            }
+        });
     </script>
+    <script>
+        $(document).ready(function () {
+            // Get the modal
+            var modal = document.getElementById("MockpaymentModal");
+
+            // Get the button that opens the modal
+            var btns = document.querySelectorAll("#initiate-mock-payment-btn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal
+            btns.forEach(function (btn) {
+                btn.onclick = function () {
+                    modal.style.display = "block";
+                };
+            });
+
+
+            $('#myButton2').click(function () {
+                // Code to execute when the button is clicked
+                modal.style.display = "none";
+            });
+
+
+            $('#Mockoption1').click(function () {
+                initiatePayment(1);
+            });
+
+            $('#Mockoption2').click(function () {
+                initiatePayment(2);
+            });
+
+            $('#Mockoption3').click(function () {
+                initiatePayment(3);
+            });
+
+            function initiatePayment(type) {
+                $.ajax({
+                    url: '@Url.Action("MockPayment", "Payment")',
+                    type: 'POST',
+                    data: { type: type },
+                    dataType: 'text',
+                    success: function (response) {
+                        console.log('Payment initiated successfully.');
+                        console.log(response); // Log the response data
+
+                        // Open the received URL in a new tab
+                        window.open(response, '_blank');
+
+                        alert('Payment initiated successfully!');
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error initiating payment:', error);
+                        alert('Error initiating payment. Please try again.');
+                    }
+                });
+
+                modal.style.display = "none";
+            }
+        });
+    </script>
+  
 }
 

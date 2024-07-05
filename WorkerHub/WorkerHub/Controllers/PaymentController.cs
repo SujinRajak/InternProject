@@ -63,7 +63,7 @@ namespace WorkerHub.Controllers
 
             await _dbcontext.SaveChangesAsync();
             if (transacction.Status == "Completed")
-                await _paymentService.CompletePaymentProcessAsync(3, order.ApplicationUserId);
+                await _paymentService.CompletePaymentProcessAsync(order.Amount, order.ApplicationUserId);
 
 
             ViewBag.Success = transacction.Status == "Completed" ? true : false;
@@ -100,7 +100,7 @@ namespace WorkerHub.Controllers
             {
                 var check = await VerifyPayment(pidx);
                 if(check)
-                    await _paymentService.CompletePaymentProcessAsync(3, order.ApplicationUserId);
+                    await _paymentService.CompletePaymentProcessAsync(order.Amount, order.ApplicationUserId);
             }
 
 
@@ -151,7 +151,7 @@ namespace WorkerHub.Controllers
 
         }
         [HttpPost]
-        public async Task<string> MockPayment()
+        public async Task<string> MockPayment(int type)
         {
             try
             {
@@ -168,12 +168,14 @@ namespace WorkerHub.Controllers
                 ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
 
 
+                var _amount = type == 1 ? 1000 : type == 2 ? 3000 : type == 3 ? 5000 : 1000;
+
                 var order = new Order
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Amount = 1000,
+                    Amount = _amount,
                     ApplicationUserId = user.Id,
-                    PurchaseOrderName = "Subscription",
+                    PurchaseOrderName = $"{type} Months Subscription",
                     ReturnUrl = $"{baseUrl}/Payment/CatchResponse",
                     WebsiteUrl = baseUrl
                 };
@@ -183,16 +185,16 @@ namespace WorkerHub.Controllers
                 _dbcontext.Add(order);
                 await _dbcontext.SaveChangesAsync();
 
-                string pidx = "bZQLD9wRVWo4CdESSfuSsB";
-                string txnId = "4H7AhoXDJWg5WjrcPT9ixW";
-                decimal amount = 1000;
-                decimal total_amount = 1000;
+                string pidx = Guid.NewGuid().ToString().Replace("-", "");
+                string txnId = Guid.NewGuid().ToString().Replace("-", "");
+                decimal amount = order.Amount;
+                decimal total_amount = order.Amount;
                 string status = "Completed";
                 string mobile = "98XXXXX904";
-                string tidx = "4H7AhoXDJWg5WjrcPT9ixW";
+                string tidx = txnId;
                 string purchase_order_id = order.Id.ToString();
                 string purchase_order_name = order.PurchaseOrderName;
-                string transaction_id = "4H7AhoXDJWg5WjrcPT9ixW";
+                string transaction_id = txnId;
 
                 // Construct the URL to redirect to CatchResponse
                 var url = baseUrl + Url.Action("CatchMockResponse", "Payment", new
@@ -220,7 +222,7 @@ namespace WorkerHub.Controllers
         }
 
         [HttpPost]
-        public async Task<string> InitiatePayment()
+        public async Task<string> InitiatePayment(int type)
         {
             try
             {
@@ -237,12 +239,14 @@ namespace WorkerHub.Controllers
 
                 ApplicationUser user = _context.getUser(_userManager.GetUserId(User));
 
+                var amount = type == 1 ? 1000 : type == 2 ? 3000 : type == 3 ? 5000 : 1000;
+
                 var order = new Order
                 {
                     Id = Guid.NewGuid().ToString(),
-                    Amount = 1000,
+                    Amount = amount,
                     ApplicationUserId = user.Id,
-                    PurchaseOrderName = "Subscription",
+                    PurchaseOrderName = $"{type} Months Subscription",
                     ReturnUrl = $"{baseUrl}/Payment/CatchResponse",
                     WebsiteUrl = baseUrl
                 };

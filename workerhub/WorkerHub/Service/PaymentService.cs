@@ -21,9 +21,11 @@ namespace WorkerHub.Service
 			_dbcontext = dbcontext;
 		}
 
-		public async Task CompletePaymentProcessAsync(int duration, string userId)
+		public async Task CompletePaymentProcessAsync(int amount, string userId)
 		{
-			var userSubscription = await _dbcontext.UseSubscriptionStatus.FirstOrDefaultAsync(s => s.ApplicationUserId.Equals(userId));
+			var duration = amount == 1000 ? 1 : amount == 3000 ? 6 : amount == 5000 ? 12 : 1;
+
+            var userSubscription = await _dbcontext.UseSubscriptionStatus.FirstOrDefaultAsync(s => s.ApplicationUserId.Equals(userId));
 			if (userSubscription == null)
 				_dbcontext.Add(new UseSubscriptionStatus
 				{
@@ -37,7 +39,7 @@ namespace WorkerHub.Service
 				if (userSubscription.EndDate < DateTime.Now)
 					userSubscription.EndDate = DateTime.UtcNow.AddMonths(duration);
 				else
-					userSubscription.EndDate.AddMonths(duration);
+                    userSubscription.EndDate = userSubscription.EndDate.AddMonths(duration);
 			}
 
 			await _dbcontext.SaveChangesAsync();

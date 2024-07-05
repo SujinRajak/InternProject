@@ -12,9 +12,9 @@
         public string pidx { get; set; }
         public string total_amount { get; set; }
         public string status { get; set; }
-        public int transaction_id { get; set; }
-        public int fee { get; set; }
-        public int refunded { get; set; }
+        public string transaction_id { get; set; }
+        public string fee { get; set; }
+        public string refunded { get; set; }
     }
 
 }
