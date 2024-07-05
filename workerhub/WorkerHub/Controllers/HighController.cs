@@ -133,6 +133,7 @@ namespace WorkerHub.Controllers
                                     join SkillSets in dbcontext.SkillSets on cn.UserId equals SkillSets.Userid
                                      join user in dbcontext.applicationUser on cn.UserId equals user.Id
                                      where c.Name != "Admin" && c.Name != "Hiring Manager"
+                                     && user.IsProfileCompleted
                                     && (string.IsNullOrEmpty(search) 
                                     || SkillSets.Skill.Trim().ToLower().Contains(search.Trim().ToLower())
                                     || (!string.IsNullOrEmpty(user.Firstname) && user.Firstname.Trim().ToLower().Contains(search.Trim().ToLower()))
